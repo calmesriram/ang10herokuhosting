@@ -7,8 +7,18 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ApiService {
 public baseurl:String= "https://jwlserver.herokuapp.com"
+public billingobject:any={
+  customerdetails:[],
+  tabledatadet:[],
+  tax_details_addtional_bill_1:[]
+};
   constructor(public _snackBar: MatSnackBar,public http: HttpClient) {
 
+  }
+  clearbillingdetails(){
+    this.billingobject.customerdetails = "";
+    this.billingobject.tabledatadet = "";
+    this.billingobject.tax_details_addtional_bill_1 = "";
   }
   Postcustomer(data){
     return new Promise((resolve,reject) => {

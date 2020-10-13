@@ -14,6 +14,8 @@ var ELEMENT_DATA: any = [];
 })
 export class BillComponent implements OnInit {
   displayedColumns:any = ['position','productname','rate','Delete'];  
+  data ="ram"
+  datafromparentcompo = "123465"
   dataSource = new MatTableDataSource(ELEMENT_DATA);  
   countryCtrl: FormControl;
   productForm: FormGroup;
@@ -51,6 +53,8 @@ proditem;
   }
 
   ngOnInit() {
+    this.api.billingobject = {};
+    // window.print()
     this.productForm = this.formBuilder.group({
       productname: ['', Validators.required],
       rate: ['', Validators.required],
@@ -85,12 +89,14 @@ proditem;
       country.productname.toLowerCase().indexOf(name.toLowerCase()) === 0);
   }
   test(para){  
+    this.api.billingobject.customerdetails = "";
+    this.api.billingobject.customerdetails = para;
     this.cus_address = para.address
     this.cus_adhaarid =para.adhaarid;
     this.cus_customername = para.customername;
     this.cus_emailid = para.emailid
     this.cus_phonenumber = para.phoneumber
-    // console.log(para);
+    console.log(para);
 
   }
   prod(item){
@@ -102,7 +108,7 @@ proditem;
     // this.productForm.controls.qty.setValue(0);   
     
   }
-  getTotalAmount() {
+  getTotalAmount() {   
     return this.selectedproditem.map(t => t.rate).reduce((acc, value) => acc + value, 0);
   }
   getcustomer(){
@@ -146,6 +152,7 @@ this.tabledata();
    
 }
 taxcalc(){
+  this.api.billingobject.tax_details_addtional_bill_1 ="";
   let taxamount =0;
   let tax_cgst_sgst =0;
   let totalamount_withtax = 0;
@@ -163,12 +170,16 @@ taxcalc(){
   this.gstForm.controls.sgsttax.setValue(tax_cgst_sgst);
   this.gstForm.controls.totamtwithtax.setValue(totalamount_withtax);  
   this.gstForm.controls.roundoff.setValue(Math.round(totalamount_withtax));
+  this.api.billingobject.tax_details_addtional_bill_1 = this.gstForm.value;
   
 }
 tabledata(){
+  this.taxcalc();
+  this.api.billingobject.tabledatadet = "";
   console.log(this.getTotalAmount())
   console.log(this.selectedproditem)
   this.dataSource = new MatTableDataSource(this.selectedproditem);
+  this.api.billingobject.tabledatadet =this.selectedproditem;
 }
 remove(dat){
   // console.log(dat);    

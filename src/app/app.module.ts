@@ -14,6 +14,7 @@ import { ProductComponent } from './product/product.component';
 import { PrintComponent } from './print/print.component';
 import { BillComponent } from './bill/bill.component';
 import { PopupComponent } from './popup/popup.component';
+
 @NgModule({
   declarations: [
     AppComponent,
