@@ -14,7 +14,7 @@ export class NonincludedgstbillpageComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.api.billingobject,"**********")
 
-    // this.api.billingobject = {"customerdetails":{"_id":"5f817a5673936c0ec00d3280","customername":"santhoush","phoneumber":"1234567890","address":"salme","emailid":"san@gmail.com","adhaarid":"11559922663","date":"2020-10-09T18:30:00.000Z","customerid":"o0qZ92uyM","__v":0},"tax_details_addtional_bill_1":{"totamt":6000,"taxamt":180,"tottaxpercent":3,"cgsttax":90,"sgsttax":90,"roundoff":6180,"totamtwithtax":6180},"tabledatadet":[{"_id":"5f817b5573936c0ec00d3282","productname":"100g kuthuvilaku","date":"2020-10-01T18:30:00.000Z","productid":"5yOB3akzF","__v":0,"rate":5000},{"_id":"5f817b7873936c0ec00d3284","productname":"24 coin","date":"2020-10-01T18:30:00.000Z","productid":"jfIqLG1qI","__v":0,"rate":1000}]}
+    this.api.billingobject = {"customerdetails":{"_id":"5f817a5673936c0ec00d3280","customername":"santhoush","phoneumber":"1234567890","address":"salme","emailid":"san@gmail.com","adhaarid":"11559922663","date":"2020-10-09T18:30:00.000Z","customerid":"o0qZ92uyM","__v":0},"tax_details_addtional_bill_1":{"totamt":6000,"taxamt":180,"tottaxpercent":3,"cgsttax":90,"sgsttax":90,"roundoff":6180,"totamtwithtax":6180},"tabledatadet":[{"_id":"5f817b5573936c0ec00d3282","productname":"100g kuthuvilaku","date":"2020-10-01T18:30:00.000Z","productid":"5yOB3akzF","__v":0,"rate":5000},{"_id":"5f817b7873936c0ec00d3284","productname":"24 coin","date":"2020-10-01T18:30:00.000Z","productid":"jfIqLG1qI","__v":0,"rate":1000}]}
 //     $.noConflict();
 
 //     $(document).ready(function() {

@@ -1,51 +1,84 @@
-<p>sareebillpage works!</p>
 
 <button (click)="printdata();">Print</button>
-<div id="example">
+<div id="example" style="padding:0px 6px 0px 6px;">
     <br><br><br>
 <div class="container" style="border-style: ridge;" >
+  <div class="row form-inline">
+    <div class="col-sm-4" >
+      <div class="alignleft">
+        <h3 >
+          <small >Cell : 97914 26926</small><br>
+          <small >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 94437 71179</small>
+      </h3>
+      </div>
+    </div>
+    <div class="col-sm-4 text-center">
+      <br>
+        <h4  style="border-style: ridge;">
+            TAX INVOICE<br>
+            <p >CASH/CREDIT BILL</p>
+        </h4> 
+        <p style="border-style: ridge;">GSTIN : 33BKMPA0961M1Z5</p>
+        
+    </div>
+    <div class="col-sm-4">
+      <div class="alignright">
+      <input class="form-check-input" type="checkbox"> Original For Recipient<br>
+      <input class="form-check-input" type="checkbox"> Duplicate For Transporter<br>
+      <input class="form-check-input" type="checkbox"> Triplicate for Supplier
+    </div>
+    </div>
+  </div>
     <div class="text-center">
-        <br>
-        <h3  style="border-style: ridge;">
+        <h3  style="border-style: ridge;padding:6px 6px;">
             <span class="text-left"><img src="../../assets/photo/vinayaga.jpg" style="width:50px;height:50px;">
             </span>
-            SRI JAYAM SILVER
+            SHREE JEYAM SILVERS
             <span class="text-right"><img src="../../assets/photo/murugan.jpg" style="width:50px;height:50px;">
             </span>
             <br>
-            <small >28/9, 1st Floor,Adhi Raman Nandavanam Street,Shevapet,Salem -636002,TN</small>
+            <small >Manufactures of Silver Ornaments</small><br>
+            <small >14/6 , Thammannan Street,Gugai,Salem - 636006</small>
         </h3>
         <div class="row">
-        <div class="col-sm-12"> 
+        <div class="col-sm-6"> 
+          <input type="text" value="Vehical No:" class="form-control">
+          <input type="text" value="Date & Time of Supply:" class="form-control">
+          <input type="text" value="Place of Supply:" class="form-control">
+          <input type="text" value="Trasportation Mode:(Own/Hired)" class="form-control">
 
-            <table  class="table table-bordered ">
-                <thead>
-                  <tr>
-                      <th>State Code</th>
-                      <td>{{"33"}}</td>
-                      <th>GSTIN</th>
-                      <td>{{"33BFSPP1826D1ZG"}}</td>
-                  </tr>
-                </thead>
-            </table>
+          
         </div>
+        <div class="col-sm-6"> 
+          <input type="text" value="Invoice No:" class="form-control">
+          <input type="text" value="Invoice Date:" class="form-control">
+          <input type="text" value="State & Code: TamilNadu & 33" class="form-control">
 
+          <!-- <table  class="table table-bordered table-sm">
+              <thead>
+                <tr>
+                    <th>GSTIN</th>
+                    <td>{{"33BFSPP1826D1ZG"}}</td>
+                </tr>
+              </thead>
+          </table> -->
+      </div>
           </div>
       </div>
-      
-<!-- <h2>Basic Table</h2> -->
-<!-- <p>The .table class adds basic styling (light padding and horizontal dividers) to a table:</p>             -->
     <div class="row">
-        <div class="col-sm-6">                 
-            <label class="text-right" for="cus_address">Name:&nbsp;{{api.billingobject.customerdetails.customername || "xxx"}}</label><br>
+      <div class="col-sm-12">  
+        <div style="border-style:ridge;padding:6px 6px;">
+             <label class="text-right" for="cus_address">Customer Name:&nbsp;{{api.billingobject.customerdetails.customername || "xxx"}}</label><br>
             <label  for="cus_address">Phone Number:&nbsp;{{api.billingobject.customerdetails.phoneumber || "xxx"}}</label><br>
-            <label  for="cus_address">Adhaar:&nbsp;{{api.billingobject.customerdetails.adhaarid || "xxx"}}</label><br>
+            <label  for="cus_address">Address:&nbsp;{{api.billingobject.customerdetails.address || "xxx"}}</label><br>
           </div>
-          <div class="col-sm-6">                    
+      </div>
+          <!-- <div class="col-sm-6">                    
             <label  for="cus_address">Mail:&nbsp;{{api.billingobject.customerdetails.emailid || "xxx"}}</label><br>
-              <label  for="cus_address">Address:&nbsp;{{api.billingobject.customerdetails.address || "xxx"}}</label><br>
-          </div>
-          <br>
+            <label  for="cus_address">Adhaar:&nbsp;{{api.billingobject.customerdetails.adhaarid || "xxx"}}</label><br>
+          </div> -->
+        </div>
+          <div class="row">
         <div class="table-responsive-sm col-sm-12">           
 <table  class="table table-bordered table-sm">
   <thead>
@@ -62,47 +95,79 @@
       <td>{{items.rate}} &#x20B9;</td>
     </tr>
   </tbody>
-  <tfoot>
-      <br>
-    <tr>
-        <td></td>
-        <td class="text-right"><small>{{ "Total Amount Before Tax"}}</small></td>
-        <td class="text-center">{{api.billingobject.tax_details_addtional_bill_1.totamt}} &#x20B9;</td>
-      </tr>
-      <tr>
-        <td></td>
-        <td class="text-right"><small>{{ "GST Percent"}}</small></td>
-        <td class="text-center">{{api.billingobject.tax_details_addtional_bill_1.tottaxpercent}} %</td>
-      </tr>
-      <tr>
-        <td></td>
-        <td class="text-right"><small>{{ "GST Tax Amount"}}</small></td>
-        <td class="text-center">{{api.billingobject.tax_details_addtional_bill_1.taxamt}} &#x20B9;</td>
-      </tr>
-      <tr>
-        <td></td>
-        <td class="text-right"><small>{{ "Add CGST 1.5 %"}}</small></td>
-        <td class="text-center">{{api.billingobject.tax_details_addtional_bill_1.cgsttax}} &#x20B9;</td>
-      </tr>
-      <tr>
-        <td></td>
-        <td class="text-right"><small>{{ "Add SGST 1.5 %"}}</small></td>
-        <td class="text-center">{{api.billingobject.tax_details_addtional_bill_1.sgsttax}} &#x20B9;</td>
-      </tr>
-      <tr>
-        <td></td>
-        <td class="text-right"><small>{{ "Total Amount After Tax"}}</small></td>
-        <td class="text-center">{{api.billingobject.tax_details_addtional_bill_1.totamtwithtax}} &#x20B9;</td>
-      </tr>
-      <tr>
-        <td></td>
-        <td class="text-right"><small>{{ "Round off"}}</small></td>
-        <td class="text-center">{{api.billingobject.tax_details_addtional_bill_1.roundoff}} &#x20B9;</td>
-      </tr>
-  </tfoot>
 </table>
         </div>
     </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <p style="border-style: ridge;" class="text-center">Subject to Salem Jurisdiction</p>
+        <p class="alignleft">Bank Details:</p><br>
+        <p class="alignleft">
+          <span>Bank Name - KARNATAKA BANK LIMITED,</span><br>
+          <span>A/c No. - 7162000100865901,</span><br>
+          <span> IFSC Code - KARB0000716 </span></p>
+      </div>
+      <div class="col-sm-8">
+        <table  class="table table-bordered table-sm">
+              <thead>
+                <tr>
+                    <th class="text-right"><small>{{ "Total Amount Before Tax"}}</small></th>
+                    <td class="text-center">{{api.billingobject.tax_details_addtional_bill_1.totamt}} &#x20B9;</td>              
+                </tr>
+                <tr>
+                  <th class="text-right"><small>{{ "GST Percent"}}</small></th>
+                  <td class="text-center">{{api.billingobject.tax_details_addtional_bill_1.tottaxpercent}} %</td>
+              </tr>
+              <tr>
+                <th class="text-right"><small>{{ "GST Tax Amount"}}</small></th>
+                <td class="text-center">{{api.billingobject.tax_details_addtional_bill_1.taxamt}} &#x20B9;</td>            
+            </tr>
+            <tr>
+              <th class="text-right"><small>{{ "Add CGST 1.5 %"}}</small></th>
+              <td class="text-center">{{api.billingobject.tax_details_addtional_bill_1.cgsttax}} &#x20B9;</td>
+            </tr>
+          <tr>
+            <th class="text-right"><small>{{ "Add SGST 1.5 %"}}</small></th>
+            <td class="text-center">{{api.billingobject.tax_details_addtional_bill_1.sgsttax}} &#x20B9;</td>
+          </tr>
+        <tr>
+          <th class="text-right"><small>{{ "Total Amount After Tax"}}</small></th>
+          <td class="text-center">{{api.billingobject.tax_details_addtional_bill_1.totamtwithtax}} &#x20B9;</td>
+        </tr>
+        <tr>
+          <th class="text-right"><small>{{ "Round off"}}</small></th>
+          <td class="text-center">{{api.billingobject.tax_details_addtional_bill_1.roundoff}} &#x20B9;</td>
+        </tr>
+              </thead>
+          </table>
+      </div>
+    </div>
+    <!-- <hr> -->
+    <div class="row">
+      <div class="col-sm-12">
+        <input type="text" class="form-control" value="Rupees">
+      </div>
+      <div class="col-sm-6">
+        <br>
+        <p class="text-center" style="border-style: ridge;padding: 6px 6px;">
+          <span></span><br>
+          <span></span><br>
+          <br><br>
+          <span>Party's Signature</span><br>
+        </p>
+      </div>
+      <div class="col-sm-6">
+        <br>
+        <p class="text-center" style="border-style: ridge;padding: 6px 6px;">
+          <span><small>For</small>&nbsp;SHREE JEYAM SILVERS</span><br>
+          <span></span><br>
+          <span></span><br>
+          <span>Proprietor</span><br>
+        </p>
+      </div>
+    </div>
 </div>
+<br>
+<br>
 </div>
 

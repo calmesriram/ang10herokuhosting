@@ -17,6 +17,7 @@ import { SareeproductpageComponent } from './sareeproductpage/sareeproductpage.c
 import { SareebillpageComponent } from './sareebillpage/sareebillpage.component';
 import { NonincludedgstComponent } from './nonincludedgst/nonincludedgst.component';
 import { IncludedgstComponent } from './includedgst/includedgst.component';
+import { SareeproductgstComponent } from './sareeproductgst/sareeproductgst.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { IncludedgstComponent } from './includedgst/includedgst.component';
     SareeproductpageComponent,
     SareebillpageComponent,
     NonincludedgstComponent,
-    IncludedgstComponent
+    IncludedgstComponent,
+    SareeproductgstComponent
   ],
   imports: [
     BrowserModule,

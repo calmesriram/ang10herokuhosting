@@ -8,6 +8,7 @@ import { NonincludedgstComponent } from './nonincludedgst/nonincludedgst.compone
 import { NonincludedgstbillpageComponent } from './nonincludedgstbillpage/nonincludedgstbillpage.component';
 import { ProductComponent } from './product/product.component';
 import { SareebillpageComponent } from './sareebillpage/sareebillpage.component';
+import { SareeproductgstComponent } from './sareeproductgst/sareeproductgst.component';
 import { SareeproductpageComponent } from './sareeproductpage/sareeproductpage.component';
 
 const routes: Routes = [
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path:'sareeproduct',
     component:SareeproductpageComponent
+  },
+  {
+    path:'sareeproductgst',
+    component:SareeproductgstComponent
   },
   {
     path:'includedgstbillpage',
