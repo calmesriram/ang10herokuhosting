@@ -8,11 +8,11 @@ import {MatTableDataSource} from '@angular/material/table';
 
 var ELEMENT_DATA: any = [];
 @Component({
-  selector: 'app-bill',
-  templateUrl: './bill.component.html',
-  styleUrls: ['./bill.component.css']
+  selector: 'app-nonincludedgst',
+  templateUrl: './nonincludedgst.component.html',
+  styleUrls: ['./nonincludedgst.component.css']
 })
-export class BillComponent implements OnInit {
+export class NonincludedgstComponent implements OnInit {
   displayedColumns:any = ['position','productname','rate','Delete'];  
   data ="ram"
   datafromparentcompo = "123465"
@@ -190,4 +190,5 @@ remove(dat){
   
   this.tabledata();
 }
+
 }

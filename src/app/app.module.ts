@@ -11,10 +11,12 @@ import { ApiService } from './api.service';
 import { HomeComponent } from './home/home.component';
 import { CustomerComponent } from './customer/customer.component';
 import { ProductComponent } from './product/product.component';
-import { PrintComponent } from './print/print.component';
-import { BillComponent } from './bill/bill.component';
-import { PopupComponent } from './popup/popup.component';
-import { Bill2Component } from './bill2/bill2.component';
+import { IncludedgstbillpageComponent } from './includedgstbillpage/includedgstbillpage.component';
+import { NonincludedgstbillpageComponent } from './nonincludedgstbillpage/nonincludedgstbillpage.component';
+import { SareeproductpageComponent } from './sareeproductpage/sareeproductpage.component';
+import { SareebillpageComponent } from './sareebillpage/sareebillpage.component';
+import { NonincludedgstComponent } from './nonincludedgst/nonincludedgst.component';
+import { IncludedgstComponent } from './includedgst/includedgst.component';
 
 @NgModule({
   declarations: [
@@ -22,10 +24,12 @@ import { Bill2Component } from './bill2/bill2.component';
     HomeComponent,
     CustomerComponent,
     ProductComponent,
-    PrintComponent,
-    BillComponent,
-    PopupComponent,
-    Bill2Component
+    IncludedgstbillpageComponent,
+    NonincludedgstbillpageComponent,
+    SareeproductpageComponent,
+    SareebillpageComponent,
+    NonincludedgstComponent,
+    IncludedgstComponent
   ],
   imports: [
     BrowserModule,

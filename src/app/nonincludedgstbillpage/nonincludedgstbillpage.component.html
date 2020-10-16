@@ -1,0 +1,107 @@
+
+<button (click)="printdata();">Print</button>
+<div id="example">
+    <br><br><br>
+<div class="container" style="border-style: ridge;" >
+    <div class="text-center">
+        <br>
+        <h3  style="border-style: ridge;">
+            <span class="text-left"><img src="../../assets/photo/vinayaga.jpg" style="width:50px;height:50px;">
+            </span>
+            SRI JAYAM SILVER
+            <span class="text-right"><img src="../../assets/photo/murugan.jpg" style="width:50px;height:50px;">
+            </span>
+            <br>
+            <small >28/9, 1st Floor,Adhi Raman Nandavanam Street,Shevapet,Salem -636002,TN</small>
+        </h3>
+        <div class="row">
+        <div class="col-sm-12"> 
+
+            <table  class="table table-bordered ">
+                <thead>
+                  <tr>
+                      <th>State Code</th>
+                      <td>{{"33"}}</td>
+                      <th>GSTIN</th>
+                      <td>{{"33BFSPP1826D1ZG"}}</td>
+                  </tr>
+                </thead>
+            </table>
+        </div>
+
+          </div>
+      </div>
+      
+<!-- <h2>Basic Table</h2> -->
+<!-- <p>The .table class adds basic styling (light padding and horizontal dividers) to a table:</p>             -->
+    <div class="row">
+        <div class="col-sm-6">                 
+            <label class="text-right" for="cus_address">Name:&nbsp;{{api.billingobject.customerdetails.customername || "xxx"}}</label><br>
+            <label  for="cus_address">Phone Number:&nbsp;{{api.billingobject.customerdetails.phoneumber || "xxx"}}</label><br>
+            <label  for="cus_address">Adhaar:&nbsp;{{api.billingobject.customerdetails.adhaarid || "xxx"}}</label><br>
+          </div>
+          <div class="col-sm-6">                    
+            <label  for="cus_address">Mail:&nbsp;{{api.billingobject.customerdetails.emailid || "xxx"}}</label><br>
+              <label  for="cus_address">Address:&nbsp;{{api.billingobject.customerdetails.address || "xxx"}}</label><br>
+          </div>
+          <br>
+        <div class="table-responsive-sm col-sm-12">           
+<table  class="table table-bordered table-sm">
+  <thead>
+    <tr class="text-center">
+        <th>Sno</th>
+        <th>Description</th>
+      <th>Rate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let items of api.billingobject.tabledatadet;index as i;">
+      <td class="text-center">{{i+1}} .</td>
+      <td>{{ items.productname}}</td>
+      <td>{{items.rate}} &#x20B9;</td>
+    </tr>
+  </tbody>
+  <tfoot>
+      <br>
+    <tr>
+        <td></td>
+        <td class="text-right"><small>{{ "Total Amount Before Tax"}}</small></td>
+        <td class="text-center">{{api.billingobject.tax_details_addtional_bill_1.totamt}} &#x20B9;</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td class="text-right"><small>{{ "GST Percent"}}</small></td>
+        <td class="text-center">{{api.billingobject.tax_details_addtional_bill_1.tottaxpercent}} %</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td class="text-right"><small>{{ "GST Tax Amount"}}</small></td>
+        <td class="text-center">{{api.billingobject.tax_details_addtional_bill_1.taxamt}} &#x20B9;</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td class="text-right"><small>{{ "Add CGST 1.5 %"}}</small></td>
+        <td class="text-center">{{api.billingobject.tax_details_addtional_bill_1.cgsttax}} &#x20B9;</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td class="text-right"><small>{{ "Add SGST 1.5 %"}}</small></td>
+        <td class="text-center">{{api.billingobject.tax_details_addtional_bill_1.sgsttax}} &#x20B9;</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td class="text-right"><small>{{ "Total Amount After Tax"}}</small></td>
+        <td class="text-center">{{api.billingobject.tax_details_addtional_bill_1.totamtwithtax}} &#x20B9;</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td class="text-right"><small>{{ "Round off"}}</small></td>
+        <td class="text-center">{{api.billingobject.tax_details_addtional_bill_1.roundoff}} &#x20B9;</td>
+      </tr>
+  </tfoot>
+</table>
+        </div>
+    </div>
+</div>
+</div>
+

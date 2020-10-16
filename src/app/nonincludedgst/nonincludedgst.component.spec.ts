@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BillComponent } from './bill.component';
+import { NonincludedgstComponent } from './nonincludedgst.component';
 
-describe('BillComponent', () => {
-  let component: BillComponent;
-  let fixture: ComponentFixture<BillComponent>;
+describe('NonincludedgstComponent', () => {
+  let component: NonincludedgstComponent;
+  let fixture: ComponentFixture<NonincludedgstComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BillComponent ]
+      declarations: [ NonincludedgstComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BillComponent);
+    fixture = TestBed.createComponent(NonincludedgstComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

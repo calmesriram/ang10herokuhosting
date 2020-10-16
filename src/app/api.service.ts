@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ApiService {
 public baseurl:String= "https://jwlserver.herokuapp.com"
+// public baseurl:String= "http://localhost:3000"
 public billingobject:any={
   customerdetails:[],
   tabledatadet:[],
@@ -40,6 +41,42 @@ Getcustomer(){
   })
 }
 
+Getsareeproduct(){
+  return new Promise((resolve,reject) => {
+    this.http.get(this.baseurl+"/Saree").subscribe(res => {
+      resolve(res);
+    }, err => {
+      resolve(err);
+    })
+  })
+}
+Postsareeproduct(data){
+  return new Promise((resolve,reject) => {
+    this.http.post(this.baseurl+"/Saree",data).subscribe(res => {
+      resolve(res);
+    }, err => {
+      resolve(err);
+    })
+  })
+}
+Putsareeproduct(data,sareecode){
+  return new Promise((resolve,reject) => {
+    this.http.put(this.baseurl+"/Saree/"+sareecode,data).subscribe(res => {
+      resolve(res);
+    }, err => {
+      resolve(err);
+    })
+  })
+}
+Deletesareeproduct(sareecode){
+  return new Promise((resolve,reject) => {
+    this.http.delete(this.baseurl+"/Saree/"+sareecode).subscribe(res => {
+      resolve(res);
+    }, err => {
+      resolve(err);
+    })
+  })
+}
 // GetcustomerbyId(id){
 //   return new Promise((resolve,reject) => {
 //     this.http.get(this.baseurl+"/Customer/"+id).subscribe(res => {

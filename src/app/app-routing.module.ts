@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { BillComponent } from './bill/bill.component';
-import { Bill2Component } from './bill2/bill2.component';
 import { CustomerComponent } from './customer/customer.component';
 import { HomeComponent } from './home/home.component';
-import { PrintComponent } from './print/print.component';
+import { IncludedgstComponent } from './includedgst/includedgst.component';
+import { IncludedgstbillpageComponent } from './includedgstbillpage/includedgstbillpage.component';
+import { NonincludedgstComponent } from './nonincludedgst/nonincludedgst.component';
+import { NonincludedgstbillpageComponent } from './nonincludedgstbillpage/nonincludedgstbillpage.component';
 import { ProductComponent } from './product/product.component';
+import { SareebillpageComponent } from './sareebillpage/sareebillpage.component';
+import { SareeproductpageComponent } from './sareeproductpage/sareeproductpage.component';
 
 const routes: Routes = [
   {
@@ -21,17 +24,29 @@ const routes: Routes = [
     component:ProductComponent
   },
   {
-    path:'receipt',
-    component:BillComponent
+    path:'sareeproduct',
+    component:SareeproductpageComponent
   },
   {
-    path:'receipt2',
-    component:Bill2Component
+    path:'includedgstbillpage',
+    component:IncludedgstbillpageComponent
   },
   {
-    path:'print',
-    component:PrintComponent
-  }
+    path:'nonincludedgstbillpage',
+    component:NonincludedgstbillpageComponent
+  },
+  {
+    path:'includedgst',
+    component:IncludedgstComponent
+  },
+  {
+    path:'nonincludedgst',
+    component:NonincludedgstComponent
+  },
+  {
+    path:'sareebill',
+    component:SareebillpageComponent
+  },
 ];
 
 @NgModule({

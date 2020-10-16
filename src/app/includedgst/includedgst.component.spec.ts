@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PrintComponent } from './print.component';
+import { IncludedgstComponent } from './includedgst.component';
 
-describe('PrintComponent', () => {
-  let component: PrintComponent;
-  let fixture: ComponentFixture<PrintComponent>;
+describe('IncludedgstComponent', () => {
+  let component: IncludedgstComponent;
+  let fixture: ComponentFixture<IncludedgstComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PrintComponent ]
+      declarations: [ IncludedgstComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PrintComponent);
+    fixture = TestBed.createComponent(IncludedgstComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

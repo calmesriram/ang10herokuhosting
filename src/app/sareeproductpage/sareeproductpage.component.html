@@ -1,0 +1,173 @@
+<br><br>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header text-center">Sarees Product</div>
+                <div class="card-body">  
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <form autocomplete="off"  [formGroup]="sareesForm" >                        
+                    <mat-form-field  appearance="outline" class="example-full-width">
+                      <mat-label>Product Name</mat-label>
+                      <input matInput formControlName="sareeproductname">
+                    </mat-form-field>
+                    <mat-form-field  appearance="outline" class="example-full-width">
+                        <mat-label>Product Quantity</mat-label>
+                        <input matInput type="number" formControlName="sareeqty">
+                      </mat-form-field>
+                      <mat-form-field  appearance="outline" class="example-full-width">
+                        <mat-label>Product Rate</mat-label>
+                        <input matInput type="number" formControlName="sareerate">
+                      </mat-form-field>
+                      <mat-form-field  appearance="outline" class="example-full-width">
+                        <mat-label>Product Code</mat-label>
+                        <input matInput formControlName="sareecode" [readonly]="pcodedisable">
+                      </mat-form-field>  
+                      <mat-form-field appearance="outline" class="example-full-width">                        
+                            <mat-label>Choose a date</mat-label>
+                            <input matInput formControlName="date" [matDatepicker]="picker">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>                          
+                      </mat-form-field>
+                      </form>                
+                  </div>
+
+                  <div class="col-sm-8">
+                    <mat-form-field>
+                      <mat-label>Search</mat-label>
+                      <input matInput (keyup)="applyFilter($event)" placeholder="Search by Name,Phone Number" #input>
+                    </mat-form-field>
+
+                    <div class="example-container mat-elevation-z8">
+                      <table mat-table [dataSource]="dataSource" matSort>
+                        <!-- Item Column -->
+                        <ng-container matColumnDef="sno">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Sno </th>
+                            <td mat-cell *matCellDef="let customertable;index as i"> {{i+1}}. </td>
+                            <td mat-footer-cell *matFooterCellDef>  </td>
+                          </ng-container>
+
+                        <ng-container matColumnDef="sareeproductname">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header> Product Name </th>
+                          <td mat-cell *matCellDef="let customertable"> {{customertable.sareeproductname}} </td>
+                          <td mat-footer-cell *matFooterCellDef>  </td>
+                        </ng-container>
+                    
+                        <ng-container matColumnDef="sareeqty">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header> Quality </th>
+                          <td mat-cell *matCellDef="let customertable"> {{customertable.sareeqty}} </td>
+                          <td mat-footer-cell *matFooterCellDef>  </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="sareerate">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header> Rate </th>
+                          <td mat-cell *matCellDef="let customertable"> {{customertable.sareerate}} </td>
+                          <td mat-footer-cell *matFooterCellDef>  </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="update">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Update </th>
+                            <td mat-cell *matCellDef="let customertable">
+                                <mat-icon (click)="loaddata(customertable)" color="primary">autorenew</mat-icon>
+                              </td>
+                              <td mat-footer-cell *matFooterCellDef>  </td>
+                        </ng-container>
+                        <ng-container matColumnDef="delete">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Delete </th>
+                            <td mat-cell *matCellDef="let customertable">
+                              <mat-icon (click)="Delete(customertable)" color="warn">delete</mat-icon>
+                            </td>
+                            <td mat-footer-cell *matFooterCellDef>  </td>
+    
+                          </ng-container>
+                    
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        <!-- <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr> -->
+                        <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
+                      </table>
+                    </div>                 
+                             
+                  </div>    
+                </div>                                     
+              </div>
+                <div class="card-footer">
+                    <div class="example-button-row">                      
+                      <button mat-raised-button *ngIf="!btnhideshow" (click)="onSubmit()" color="primary">Save</button>
+                      <button mat-raised-button *ngIf="btnhideshow" (click)="Update()" color="accent">Update</button>
+                      <button mat-raised-button *ngIf="btnhideshow" (click)="Cancel()" color="warn">Cancel</button>
+                    </div>
+                    
+                </div>
+              </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="card">
+              <div class="card-header text-center" style="color:red">Out Of Stock Products</div>
+              <div class="card-body">
+                <mat-form-field>
+                  <mat-label>Search</mat-label>
+                  <input matInput (keyup)="applyFilter2($event)" placeholder="Search by Name,Phone Number" #input>
+                </mat-form-field>
+  
+                <div class="example-container mat-elevation-z8">
+                  <table mat-table [dataSource]="dataSource2" matSort>
+                    <!-- Item Column -->
+                    <ng-container matColumnDef="sno">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Sno </th>
+                        <td mat-cell *matCellDef="let customertable;index as i"> {{i+1}}. </td>
+                        <td mat-footer-cell *matFooterCellDef>  </td>
+                      </ng-container>
+  
+                    <ng-container matColumnDef="sareeproductname">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Product Name </th>
+                      <td mat-cell *matCellDef="let customertable"> {{customertable.sareeproductname}} </td>
+                      <td mat-footer-cell *matFooterCellDef>  </td>
+                    </ng-container>
+                
+                    <ng-container matColumnDef="sareeqty">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Quality </th>
+                      <td mat-cell *matCellDef="let customertable"> {{customertable.sareeqty}} </td>
+                      <td mat-footer-cell *matFooterCellDef>  </td>
+                    </ng-container>
+  
+                    <ng-container matColumnDef="sareerate">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Rate </th>
+                      <td mat-cell *matCellDef="let customertable"> {{customertable.sareerate}} </td>
+                      <td mat-footer-cell *matFooterCellDef>  </td>
+                    </ng-container>
+  
+                    <ng-container matColumnDef="update">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Update </th>
+                        <td mat-cell *matCellDef="let customertable">
+                            <mat-icon (click)="loaddata(customertable)" color="primary">autorenew</mat-icon>
+                          </td>
+                          <td mat-footer-cell *matFooterCellDef>  </td>
+                    </ng-container>
+                    <ng-container matColumnDef="delete">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Delete </th>
+                        <td mat-cell *matCellDef="let customertable">
+                          <mat-icon (click)="Delete(customertable)" color="warn">delete</mat-icon>
+                        </td>
+                        <td mat-footer-cell *matFooterCellDef>  </td>
+  
+                      </ng-container>
+                
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    <!-- <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr> -->
+                    <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
+                  </table>
+                </div>  
+              </div>
+            </div>                                     
+          </div>
+        </div>
+</div>
+
+
+
