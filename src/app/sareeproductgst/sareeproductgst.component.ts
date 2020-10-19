@@ -80,7 +80,7 @@ public proditem:any="";
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;       
       this.dataSource.filter = filterValue.trim().toLowerCase();
-      console.log(this.dataSource.filter) 
+      // console.log(this.dataSource.filter) 
   }
 
   filtercountry(name: string) {
@@ -111,12 +111,12 @@ public proditem:any="";
   }
   getcustomer(){
     this.api.Getcustomer().then((data:any) =>{
-      console.log(data.data.length)
+      // console.log(data.data.length)
       if(data.data.length == 0){
          this.api.snackmsg("No Record(s) Found","Close")
       }
       if( data.status == true && data.data.length != 0){
-        console.log(data)  
+        // console.log(data)  
         this.country_lis = data.data       
      }
   console.log(data);
@@ -131,7 +131,7 @@ public proditem:any="";
        this.api.snackmsg("No Record(s) Found","Close")
     }
     if( res.status == true && res.data.length != 0){
-      console.log(res.data)
+      // console.log(res.data)
       res.data.forEach(element => {
         if(element.sareeqty != 0){
           this.country_lis2.push(element);
