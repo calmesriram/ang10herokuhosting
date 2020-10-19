@@ -68,16 +68,16 @@
     <div class="row">
       <div class="col-sm-12">  
         <div style="border-style:ridge;padding:6px 6px;">
-             <label class="text-right" for="cus_address">Customer Name:&nbsp;{{api.billingobject.customerdetails.customername || "xxx"}}</label><br>
-            <label  for="cus_address">Phone Number:&nbsp;{{api.billingobject.customerdetails.phoneumber || "xxx"}}</label><br>
-            <label  for="cus_address">Address:&nbsp;{{api.billingobject.customerdetails.address || "xxx"}}</label><br>
+             <label class="text-right" for="cus_address">Customer Name:&nbsp;{{api.billingarray_sareeprod.customerdetails.customername || "xxx"}}</label><br>
+            <label  for="cus_address">Phone Number:&nbsp;{{api.billingarray_sareeprod.customerdetails.phoneumber || "xxx"}}</label><br>
+            <label  for="cus_address">Address:&nbsp;{{api.billingarray_sareeprod.customerdetails.address || "xxx"}}</label><br>
           </div>
       </div>
           <!-- <div class="col-sm-6">                    
             <label  for="cus_address">Mail:&nbsp;{{api.billingobject.customerdetails.emailid || "xxx"}}</label><br>
             <label  for="cus_address">Adhaar:&nbsp;{{api.billingobject.customerdetails.adhaarid || "xxx"}}</label><br>
           </div> -->
-        </div>
+        </div><br>
           <div class="row">
         <div class="table-responsive-sm col-sm-12">           
 <table  class="table table-bordered table-sm">
@@ -85,14 +85,23 @@
     <tr class="text-center">
         <th>Sno</th>
         <th>Description</th>
+      <th>HSN Code</th>
+      <th>Quantity</th>
       <th>Rate</th>
+      <th>Discount</th>
+      <th>Total</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let items of api.billingobject.tabledatadet;index as i;">
+    <tr *ngFor="let items of api.billingarray_sareeprod.tabledatadet;index as i;">
       <td class="text-center">{{i+1}} .</td>
-      <td>{{ items.productname}}</td>
-      <td>{{items.rate}} &#x20B9;</td>
+      <td>{{ items.sareeproductname}}</td>
+      <td>{{items.sareehsncode}}</td>
+      <td>{{ items.collected.qty}}</td>
+      <td>{{ items.sareerate}} &#x20B9;</td>
+      <td>{{ items.collected.dis}}</td>
+      <td>{{ items.total}} &#x20B9;</td>
+
     </tr>
   </tbody>
 </table>
@@ -112,31 +121,32 @@
               <thead>
                 <tr>
                     <th class="text-right"><small>{{ "Total Amount Before Tax"}}</small></th>
-                    <td class="text-center">{{api.billingobject.tax_details_addtional_bill_1.totamt}} &#x20B9;</td>              
+                    <td class="text-center">{{api.billingarray_sareeprod.tax_details.totamtwithtax}} &#x20B9;</td>              
+                    <!-- <td class="text-center">{{api.billingarray_sareeprod.tax_details.totamt}} &#x20B9;</td>               -->
                 </tr>
                 <tr>
-                  <th class="text-right"><small>{{ "GST Percent"}}</small></th>
-                  <td class="text-center">{{api.billingobject.tax_details_addtional_bill_1.tottaxpercent}} %</td>
-              </tr>
-              <tr>
-                <th class="text-right"><small>{{ "GST Tax Amount"}}</small></th>
-                <td class="text-center">{{api.billingobject.tax_details_addtional_bill_1.taxamt}} &#x20B9;</td>            
-            </tr>
+                  <!-- <th class="text-right"><small>{{ "GST Percent"}}</small></th>
+                  <td class="text-center">{{api.billingarray_sareeprod.tax_details.tottaxpercent}} %</td> -->
+              </tr>              
             <tr>
-              <th class="text-right"><small>{{ "Add CGST 1.5 %"}}</small></th>
-              <td class="text-center">{{api.billingobject.tax_details_addtional_bill_1.cgsttax}} &#x20B9;</td>
+              <th class="text-right"><small>{{ "Tax of CGST 2.5 %"}}</small></th>
+              <td class="text-center">{{api.billingarray_sareeprod.tax_details.cgsttax}} &#x20B9;</td>
             </tr>
           <tr>
-            <th class="text-right"><small>{{ "Add SGST 1.5 %"}}</small></th>
-            <td class="text-center">{{api.billingobject.tax_details_addtional_bill_1.sgsttax}} &#x20B9;</td>
+            <th class="text-right"><small>{{ "Tax of SGST 2.5 %"}}</small></th>
+            <td class="text-center">{{api.billingarray_sareeprod.tax_details.sgsttax}} &#x20B9;</td>
           </tr>
+          <tr>
+            <th class="text-right"><small>{{ "Total Tax Amount"}}</small></th>
+            <td class="text-center">{{api.billingarray_sareeprod.tax_details.taxamt}} &#x20B9;</td>            
+        </tr>
+        <!-- <tr>
+          <th class="text-right"><small>{{ "Total Amount After Tax"}}</small></th>
+          <td class="text-center">{{api.billingarray_sareeprod.tax_details.totamtwithtax}} &#x20B9;</td>
+        </tr> -->
         <tr>
           <th class="text-right"><small>{{ "Total Amount After Tax"}}</small></th>
-          <td class="text-center">{{api.billingobject.tax_details_addtional_bill_1.totamtwithtax}} &#x20B9;</td>
-        </tr>
-        <tr>
-          <th class="text-right"><small>{{ "Round off"}}</small></th>
-          <td class="text-center">{{api.billingobject.tax_details_addtional_bill_1.roundoff}} &#x20B9;</td>
+          <td class="text-center">{{api.billingarray_sareeprod.tax_details.totamt}} &#x20B9;</td>
         </tr>
               </thead>
           </table>

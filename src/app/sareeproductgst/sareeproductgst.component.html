@@ -190,19 +190,28 @@
                     <input matInput placeholder="taxamt" readonly  formControlName="taxamt" >
                   </mat-form-field>
                   
-                  <mat-form-field class="example-full-width">
+                  <!-- <mat-form-field class="example-full-width">
                     <mat-label> Round off</mat-label>
                     <input matInput placeholder="roundoff" readonly formControlName="roundoff" >
-                  </mat-form-field>
+                  </mat-form-field> -->
 
                   <mat-form-field class="example-full-width">
                     <mat-label>Total Amount After Tax</mat-label>
-                    <input matInput placeholder="Total Amount" readonly formControlName="totamt"  value="{{getTotalAmount() || 0}}">
+                    <input matInput placeholder="Total Amount" readonly formControlName="totamt"  value="{{getTotalAmount()}}">
                   </mat-form-field>
                   <!-- <div class="example-button-row">
                     <button mat-raised-button (click)="taxcalc();" *ngIf="dataSource.data.length != 0"  color="primary">Calculate</button>
                   </div> -->
                   </form>
+                  <mat-label style="color: red;"> Customer Received Amount Calculation</mat-label><br>
+                 <h1 style="text-align: center;color:green;">{{calc_amount2 || "0"}} &#8377;</h1><br>
+                   <mat-form-field appearance="outline" class="example-full-width">
+                    <mat-label> Customer Received Amount</mat-label>
+                    <input matInput #calc [(ngModel)]="calc_amount" (input)="Calculate();" autocomplete="off" >
+                    <button mat-button  matSuffix mat-icon-button aria-label="Clear" (click)="calc.value=''">
+                      <mat-icon>close</mat-icon>
+                    </button>
+                  </mat-form-field>
                 </div>
                </div>
                     </div>         
@@ -211,3 +220,4 @@
             </div>
         </div>
     </div>
+    <br><br><br>

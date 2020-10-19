@@ -34,6 +34,8 @@ cus_emailid:any;
 cus_phonenumber:any; 
   filteredOptions: Observable<string[]>;
   filteredOptions2: Observable<string[]>;
+  calc_amount:any;
+  calc_amount2:Number;
 public proditem:any="";
 
   constructor(public api:ApiService,public formBuilder: FormBuilder) { 
@@ -52,7 +54,7 @@ public proditem:any="";
   }
 
   ngOnInit() {
-    this.api.billingobject = {};
+    this.api.billingarray_sareeprod = {};
     // window.print()
     this.productForm = this.formBuilder.group({
       productname: ['', Validators.required],
@@ -90,29 +92,19 @@ public proditem:any="";
       country.sareecode.toLowerCase().indexOf(name.toLowerCase()) === 0);
   }
   test(para){  
-    this.api.billingobject.customerdetails = "";
-    this.api.billingobject.customerdetails = para;
+    this.api.billingarray_sareeprod.customerdetails = "";
+    this.api.billingarray_sareeprod.customerdetails = para;
     this.cus_address = para.address
     this.cus_adhaarid =para.adhaarid;
     this.cus_customername = para.customername;
     this.cus_emailid = para.emailid
     this.cus_phonenumber = para.phoneumber
-    console.log(para);
+    // console.log(para);
 
   }
   prod(item){
-    // console.log(item)    
     this.proditem = "";    
     this.proditem = item;
-//     sareehsncode: "HSN001"
-// sareeproductid: "A2Jz8bsMq"
-// sareeproductname: "silk"
-// sareeqty: 10
-// sareerate: 50
-    // this.proditem = this.productForm.controls.qty.setValue(0);
-    // this.productForm.controls.productname.setValue(item.productname);
-    // this.productForm.controls.qty.setValue(0);   
-    
   }
   getTotalAmount() {   
     return this.productarray.map(t => t.total).reduce((acc, value) => acc + value, 0);
@@ -151,6 +143,9 @@ public proditem:any="";
   })
 }
 
+Calculate(){  
+  this.calc_amount2 =this.calc_amount - this.getTotalAmount();
+}
 add() { 
   this.proditem.collected = this.productForm.value;
   this.productForm.value
@@ -159,37 +154,12 @@ this.productForm.reset();
 this.tabledata();
    this.proditem= ""
 }
-// taxcalc(){
-//   this.api.billingobject.tax_details_addtional_bill_1 ="";
-//   let taxamount:any =0;
-//   let tax_cgst_sgst:any =0;
-//   let totalamount_withtax = 0;
-//   let totalamount:any = 0;
-  
-//   this.gstForm.controls.totamt.setValue(this.getTotalAmount());  
-//   totalamount = this.gstForm.controls.totamt.value
-//   // console.log(totalamount,"totalamount")
-//   taxamount =  (totalamount * (0.05)).toFixed(2);
-//   // console.log(taxamount,"taxamount")
-//    tax_cgst_sgst = ((taxamount / 2)).toFixed(2);
-//    totalamount_withtax = (Number(totalamount) + Number(taxamount));
-//    console.log(totalamount_withtax)
-//   this.gstForm.controls.tottaxpercent.setValue(5);
-//   this.gstForm.controls.taxamt.setValue(taxamount);
-//   this.gstForm.controls.cgsttax.setValue(tax_cgst_sgst);
-//   this.gstForm.controls.sgsttax.setValue(tax_cgst_sgst);
-//   this.gstForm.controls.totamtwithtax.setValue(totalamount_withtax);  
-//   this.gstForm.controls.roundoff.setValue(Math.round(totalamount_withtax));
-//   this.api.billingobject.tax_details_addtional_bill_1 = this.gstForm.value;
-  
-// }
 taxcalc(){
-  this.api.billingobject.tax_details_addtional_bill_1 ="";
+  this.api.billingarray_sareeprod.tax_details ="";
   let taxamount:any =0;
   let tax_cgst_sgst:any =0;
   let totalamount_withtax:any = 0;
   let totalamount:any = 0;
-  
   this.gstForm.controls.totamt.setValue(this.getTotalAmount());  
   totalamount = this.gstForm.controls.totamt.value
   taxamount =  ((totalamount/105)*5).toFixed(2);
@@ -201,10 +171,11 @@ taxcalc(){
   this.gstForm.controls.sgsttax.setValue(tax_cgst_sgst);
   this.gstForm.controls.totamtwithtax.setValue(totalamount_withtax);  
   this.gstForm.controls.roundoff.setValue(Math.round(totalamount_withtax));
-  this.api.billingobject.tax_details_addtional_bill_1 = this.gstForm.value;
+  this.api.billingarray_sareeprod.tax_details = this.gstForm.value;
   
 }
 tabledata(){
+  this.api.billingarray_sareeprod.tabledatadet = "";
   this.productarray.length =0;
   this.selectedproditem.forEach(item => {
     let total =0;
@@ -213,11 +184,9 @@ tabledata(){
     this.productarray.push(item);
   });
   this.taxcalc();
-  // this.api.billingobject.tabledatadet = "";
-  // console.log(this.getTotalAmount())
-  // console.log(this.selectedproditem)
   this.dataSource = new MatTableDataSource(this.productarray);
-  // this.api.billingobject.tabledatadet =this.selectedproditem;
+  this.api.billingarray_sareeprod.tabledatadet= this.productarray;
+  // console.log(this.api.billingarray_sareeprod)
 }
 remove(dat){
   // console.log(dat);    
@@ -227,6 +196,7 @@ remove(dat){
     }
   
   this.tabledata();
+  this.Calculate()
 }
 
 }

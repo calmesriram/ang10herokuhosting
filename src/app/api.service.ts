@@ -15,9 +15,15 @@ public billingobject:any={
   tabledatadet:[],
   tax_details_addtional_bill_1:[]
 };
+public billingarray_sareeprod:any={
+  customerdetails:[],
+  tabledatadet:[],
+  tax_details:[]
+};
+
   constructor(public _snackBar: MatSnackBar,public http: HttpClient,public spinner: NgxSpinnerService    ) {
     this.createOnline$().subscribe(isOnline => {
-      console.log(isOnline);
+      // console.log(isOnline);
       if (isOnline == true) {
         this.spinner.hide();
       }
