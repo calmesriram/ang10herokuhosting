@@ -13,7 +13,7 @@ var ELEMENT_DATA: any = [];
   styleUrls: ['./sareeproductgst.component.css']
 })
 export class SareeproductgstComponent implements OnInit {
-  displayedColumns:any = ['position','productname','qty','rate','discount','total','Delete'];  
+  displayedColumns:any = ['position','productname','qty','rate','subtotal','discount','total','Delete'];  
   dataSource = new MatTableDataSource(ELEMENT_DATA);  
   countryCtrl: FormControl;
   productForm: FormGroup;
@@ -34,7 +34,7 @@ cus_emailid:any;
 cus_phonenumber:any; 
   filteredOptions: Observable<string[]>;
   filteredOptions2: Observable<string[]>;
-proditem;
+public proditem:any="";
 
   constructor(public api:ApiService,public formBuilder: FormBuilder) { 
     this.countryCtrl = new FormControl();
@@ -58,6 +58,7 @@ proditem;
       productname: ['', Validators.required],
       qty: ['', Validators.required],
       dis: ['', Validators.required],
+      
       // qty: ['', Validators.required]
     
       
@@ -103,6 +104,11 @@ proditem;
     // console.log(item)    
     this.proditem = "";    
     this.proditem = item;
+//     sareehsncode: "HSN001"
+// sareeproductid: "A2Jz8bsMq"
+// sareeproductname: "silk"
+// sareeqty: 10
+// sareerate: 50
     // this.proditem = this.productForm.controls.qty.setValue(0);
     // this.productForm.controls.productname.setValue(item.productname);
     // this.productForm.controls.qty.setValue(0);   
@@ -133,7 +139,12 @@ proditem;
        this.api.snackmsg("No Record(s) Found","Close")
     }
     if( res.status == true && res.data.length != 0){
-      this.country_lis2 = res.data   
+      console.log(res.data)
+      res.data.forEach(element => {
+        if(element.sareeqty != 0){
+          this.country_lis2.push(element);
+        }
+      });
     }
 }).catch(err =>{
     // this.api.snackmsg("Hail","close")
@@ -146,23 +157,44 @@ add() {
   this.selectedproditem.push(this.proditem)
 this.productForm.reset();
 this.tabledata();
-   
+   this.proditem= ""
 }
+// taxcalc(){
+//   this.api.billingobject.tax_details_addtional_bill_1 ="";
+//   let taxamount:any =0;
+//   let tax_cgst_sgst:any =0;
+//   let totalamount_withtax = 0;
+//   let totalamount:any = 0;
+  
+//   this.gstForm.controls.totamt.setValue(this.getTotalAmount());  
+//   totalamount = this.gstForm.controls.totamt.value
+//   // console.log(totalamount,"totalamount")
+//   taxamount =  (totalamount * (0.05)).toFixed(2);
+//   // console.log(taxamount,"taxamount")
+//    tax_cgst_sgst = ((taxamount / 2)).toFixed(2);
+//    totalamount_withtax = (Number(totalamount) + Number(taxamount));
+//    console.log(totalamount_withtax)
+//   this.gstForm.controls.tottaxpercent.setValue(5);
+//   this.gstForm.controls.taxamt.setValue(taxamount);
+//   this.gstForm.controls.cgsttax.setValue(tax_cgst_sgst);
+//   this.gstForm.controls.sgsttax.setValue(tax_cgst_sgst);
+//   this.gstForm.controls.totamtwithtax.setValue(totalamount_withtax);  
+//   this.gstForm.controls.roundoff.setValue(Math.round(totalamount_withtax));
+//   this.api.billingobject.tax_details_addtional_bill_1 = this.gstForm.value;
+  
+// }
 taxcalc(){
   this.api.billingobject.tax_details_addtional_bill_1 ="";
   let taxamount:any =0;
   let tax_cgst_sgst:any =0;
-  let totalamount_withtax = 0;
+  let totalamount_withtax:any = 0;
   let totalamount:any = 0;
   
   this.gstForm.controls.totamt.setValue(this.getTotalAmount());  
   totalamount = this.gstForm.controls.totamt.value
-  // console.log(totalamount,"totalamount")
-  taxamount =  (totalamount * (0.05)).toFixed(2);
-  // console.log(taxamount,"taxamount")
+  taxamount =  ((totalamount/105)*5).toFixed(2);
    tax_cgst_sgst = ((taxamount / 2)).toFixed(2);
-   totalamount_withtax = (Number(totalamount) + Number(taxamount));
-   console.log(totalamount_withtax)
+   totalamount_withtax = totalamount - taxamount;
   this.gstForm.controls.tottaxpercent.setValue(5);
   this.gstForm.controls.taxamt.setValue(taxamount);
   this.gstForm.controls.cgsttax.setValue(tax_cgst_sgst);
