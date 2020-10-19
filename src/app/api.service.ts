@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { HttpClient } from '@angular/common/http';
-
+import { Observable, Observer, fromEvent, merge } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { NgxSpinnerService } from "ngx-spinner";
 @Injectable({
   providedIn: 'root'
 })
@@ -13,8 +15,25 @@ public billingobject:any={
   tabledatadet:[],
   tax_details_addtional_bill_1:[]
 };
-  constructor(public _snackBar: MatSnackBar,public http: HttpClient) {
-
+  constructor(public _snackBar: MatSnackBar,public http: HttpClient,public spinner: NgxSpinnerService    ) {
+    this.createOnline$().subscribe(isOnline => {
+      console.log(isOnline);
+      if (isOnline == true) {
+        this.spinner.hide();
+      }
+      if (isOnline == false) {
+        this.spinner.show();
+      }
+    });
+  }
+  createOnline$() {
+    return merge<boolean>(
+      fromEvent(window, 'offline').pipe(map(() => false)),
+      fromEvent(window, 'online').pipe(map(() => true)),
+      new Observable((sub: Observer<boolean>) => {
+        sub.next(navigator.onLine);
+        sub.complete();
+      }));
   }
   clearbillingdetails(){
     this.billingobject.customerdetails = "";

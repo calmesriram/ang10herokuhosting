@@ -18,6 +18,7 @@ import { SareebillpageComponent } from './sareebillpage/sareebillpage.component'
 import { NonincludedgstComponent } from './nonincludedgst/nonincludedgst.component';
 import { IncludedgstComponent } from './includedgst/includedgst.component';
 import { SareeproductgstComponent } from './sareeproductgst/sareeproductgst.component';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { SareeproductgstComponent } from './sareeproductgst/sareeproductgst.comp
     FormsModule, 
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxSpinnerModule
     
   ],
   providers: [ApiService],
