@@ -156,41 +156,47 @@
                 </div> 
                 <div class="col-sm-4"> 
                   <form class="form-inline" autocomplete="off" [formGroup]="gstForm">  
-                    <mat-form-field class="example-full-width">
+                    <!-- <mat-form-field class="example-full-width">
                       <mat-label>Round off</mat-label>
                       <input matInput placeholder="roundoff" readonly formControlName="roundoff" >
+                    </mat-form-field> -->
+                    
+                  
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Total Amount Before Tax</mat-label>
+                      <input matInput placeholder="totalamounttaxs" readonly formControlName="totamtwithtax" >
                     </mat-form-field>
 
-                  
-
-                  <mat-form-field class="example-full-width">
+                  <!-- <mat-form-field class="example-full-width">
                     <mat-label>Total Tax percentage</mat-label>
                     <input matInput placeholder="Total Tax percentage" readonly  formControlName="tottaxpercent">
-                  </mat-form-field>
+                  </mat-form-field> -->
 
-                  <mat-form-field class="example-full-width">
-                    <mat-label>Tax Amount</mat-label>
-                    <input matInput placeholder="taxamt" readonly  formControlName="taxamt" >
-                  </mat-form-field>
+                 
 
 
                   <mat-form-field class="example-full-width">
-                    <mat-label>Tax of CGST 1.5 %</mat-label>
+                    <mat-label>Tax of CGST 2.5 %</mat-label>
                     <input matInput placeholder="cgsttax" readonly formControlName="cgsttax" >
                   </mat-form-field>
 
                   <mat-form-field class="example-full-width">
-                    <mat-label>Tax of SGST 1.5 %</mat-label>
+                    <mat-label>Tax of SGST 2.5 %</mat-label>
                     <input matInput placeholder="sgsttax" readonly formControlName="sgsttax" >
                   </mat-form-field>
 
                   <mat-form-field class="example-full-width">
-                    <mat-label>Total Amount After Tax</mat-label>
-                    <input matInput placeholder="totalamounttaxs" readonly formControlName="totamtwithtax" >
+                    <mat-label>Total Tax Amount</mat-label>
+                    <input matInput placeholder="taxamt" readonly  formControlName="taxamt" >
+                  </mat-form-field>
+                  
+                  <mat-form-field class="example-full-width">
+                    <mat-label> Round off</mat-label>
+                    <input matInput placeholder="roundoff" readonly formControlName="roundoff" >
                   </mat-form-field>
 
                   <mat-form-field class="example-full-width">
-                    <mat-label>Total Amount Before Tax</mat-label>
+                    <mat-label>Total Amount After Tax</mat-label>
                     <input matInput placeholder="Total Amount" readonly formControlName="totamt"  value="{{getTotalAmount() || 0}}">
                   </mat-form-field>
                   <!-- <div class="example-button-row">
