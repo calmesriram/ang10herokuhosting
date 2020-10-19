@@ -50,20 +50,20 @@
                   <form class="form-inline"  [formGroup]="productForm">                
                     <div class="col-sm-4">
                       <mat-form-field appearance="outline" class="example-full-width">
-                        <input type="text" formControlName="productname" [(ngModel)]="value2" placeholder="Saree Product Code" aria-label="Number1" matInput [formControl]="countryCtrl2" [matAutocomplete]="auto1" required matTooltip="Type to filter the Product Detail" matTooltipPosition="after">
+                        <input type="text" formControlName="productname" [(ngModel)]="value2" placeholder="Saree Code" aria-label="Number1" matInput [formControl]="countryCtrl2" [matAutocomplete]="auto1" required matTooltip="Type to filter the Product Detail" matTooltipPosition="after">
                         <button mat-button  matSuffix mat-icon-button aria-label="Clear" (click)="value2=''">
                           <mat-icon>close</mat-icon>
                         </button>
                         <mat-autocomplete #auto1="matAutocomplete">
-                          <mat-option (onSelectionChange)="prod(proditem);" (keydown.enter)="prod(proditem);"  (click)="prod(proditem);" *ngFor="let proditem of filteredCountry2 | async" [value]="proditem.sareeproductname">
-                            <span>{{ proditem.sareeproductname}} | {{ proditem.sareeqty }}</span>
+                          <mat-option (onSelectionChange)="prod(proditem);" (keydown.enter)="prod(proditem);"  (click)="prod(proditem);" *ngFor="let proditem of filteredCountry2 | async" [value]="proditem.sareecode">
+                            <span>{{ proditem.sareecode}} | {{ proditem.sareeqty }}</span>
                           </mat-option>
                         </mat-autocomplete>
                       </mat-form-field>   
                       <div *ngIf="proditem != ''">
                         <span class="badge badge-info">Product Name</span>:<span class="badge badge-light">{{proditem.sareeproductname || "xxx"}}</span><br>
                         <span class="badge badge-info">Total Qty</span>:<span class="badge badge-light">{{proditem.sareeqty || "xxx"}}</span><br>
-                        <span class="badge badge-info">Rate</span>:<span class="badge badge-light">{{proditem.sareerate || "xxx"}}</span><br>
+                        <span class="badge badge-info">Rate</span>:<span class="badge badge-light">{{proditem.sareerate || "xxx"}}&#8377;</span><br>
                         <span class="badge badge-info">Hsn Code</span>:<span class="badge badge-light">{{proditem.sareehsncode || "xxx"}}</span><br>
                       </div>
                     </div>
@@ -120,7 +120,7 @@
 
                       <ng-container matColumnDef="subtotal">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> Subtotal </th>
-                        <td mat-cell *matCellDef="let producttable"> {{producttable.sareerate * producttable.collected.qty}} </td>
+                        <td mat-cell *matCellDef="let producttable"> {{producttable.sareerate * producttable.collected.qty }} &#8377; </td>
                         <td mat-footer-cell *matFooterCellDef> </td>
                       </ng-container>
 <!-- s -->

@@ -87,7 +87,7 @@ public proditem:any="";
   }
   filtercountry2(name: string) {
     return this.country_lis2.filter(country => 
-      country.sareeproductname.toLowerCase().indexOf(name.toLowerCase()) === 0);
+      country.sareecode.toLowerCase().indexOf(name.toLowerCase()) === 0);
   }
   test(para){  
     this.api.billingobject.customerdetails = "";
