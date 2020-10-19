@@ -63,7 +63,7 @@
                       <div *ngIf="proditem != ''">
                         <span class="badge badge-info">Product Name</span>:<span class="badge badge-light">{{proditem.sareeproductname || "xxx"}}</span><br>
                         <span class="badge badge-info">Total Qty</span>:<span class="badge badge-light">{{proditem.sareeqty || "xxx"}}</span><br>
-                        <span class="badge badge-info">Rate</span>:<span class="badge badge-light">{{proditem.sareerate || "xxx"}}&#8377;</span><br>
+                        <span class="badge badge-info">Rate</span>:<span class="badge badge-light">{{proditem.sareerate || "xxx"}} &#8377;</span><br>
                         <span class="badge badge-info">Hsn Code</span>:<span class="badge badge-light">{{proditem.sareehsncode || "xxx"}}</span><br>
                       </div>
                     </div>
@@ -155,11 +155,13 @@
                            
                 </div> 
                 <div class="col-sm-4"> 
-                  <form class="form-inline" autocomplete="off" [formGroup]="gstForm">                
-                  <mat-form-field class="example-full-width">
-                    <mat-label>Total Amount Before Tax</mat-label>
-                    <input matInput placeholder="Total Amount" readonly formControlName="totamt"  value="{{getTotalAmount() || 0}}">
-                  </mat-form-field>
+                  <form class="form-inline" autocomplete="off" [formGroup]="gstForm">  
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Round off</mat-label>
+                      <input matInput placeholder="roundoff" readonly formControlName="roundoff" >
+                    </mat-form-field>
+
+                  
 
                   <mat-form-field class="example-full-width">
                     <mat-label>Total Tax percentage</mat-label>
@@ -188,8 +190,8 @@
                   </mat-form-field>
 
                   <mat-form-field class="example-full-width">
-                    <mat-label>Round off</mat-label>
-                    <input matInput placeholder="roundoff" readonly formControlName="roundoff" >
+                    <mat-label>Total Amount Before Tax</mat-label>
+                    <input matInput placeholder="Total Amount" readonly formControlName="totamt"  value="{{getTotalAmount() || 0}}">
                   </mat-form-field>
                   <!-- <div class="example-button-row">
                     <button mat-raised-button (click)="taxcalc();" *ngIf="dataSource.data.length != 0"  color="primary">Calculate</button>
