@@ -1,19 +1,28 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
-// declare var require: any;    
+// import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material';
+// import { MomentDateModule, MomentDateAdapter } from '@angular/material-moment-adapter';
+
+declare var require: any;    
 // var $ = require("jquery");
+const numberWords = require('number-words');
+ 
+//=> 'one hundred and one'
+ 
 @Component({
   selector: 'app-sareebillpage',
   templateUrl: './sareebillpage.component.html',
   styleUrls: ['./sareebillpage.component.css']
 })
 export class SareebillpageComponent implements OnInit {
-
+rupessinwords:any;
   constructor(public api:ApiService) { }
 
   ngOnInit(): void {
     
-    this.api.billingarray_sareeprod = {"customerdetails":{"_id":"5f893afd4a8eb2001728f72b","customername":"santhoush ","phoneumber":"12345679","address":"salem,tamilnadu,india,south india","emailid":"san@gamil.com","adhaarid":"21365480","date":"2020-10-18T18:30:00.000Z","customerid":"jbxgKwLw4","__v":0},"tabledatadet":[{"_id":"5f8d33a614712100171d0c80","sareeproductname":"demo","sareeqty":500,"sareerate":1350,"sareecode":"555","sareehsncode":"8245","date":"2020-10-22T18:30:00.000Z","sareeproductid":"KuyjqOlhv","__v":0,"collected":{"productname":"555","qty":1,"dis":25},"total":1325},{"_id":"5f8d248ce9a1a82f242873f9","sareeproductname":"silk","sareeqty":10,"sareerate":50,"sareecode":"silk100","sareehsncode":"HSN001","date":"2020-10-16T18:30:00.000Z","sareeproductid":"A2Jz8bsMq","__v":0,"collected":{"productname":"silk100","qty":2,"dis":0},"total":100}],"tax_details":{"totamt":1425,"taxamt":"67.86","tottaxpercent":5,"cgsttax":"33.93","sgsttax":"33.93","roundoff":1357,"totamtwithtax":1357.14}}
+    // this.api.billingarray_sareeprod = {"customerdetails":{"_id":"5f893afd4a8eb2001728f72b","customername":"santhoush ","phoneumber":"12345679","address":"salem,tamilnadu,india,south india","emailid":"san@gamil.com","adhaarid":"21365480","date":"2020-10-18T18:30:00.000Z","customerid":"jbxgKwLw4","__v":0},"tabledatadet":[{"_id":"5f8d33a614712100171d0c80","sareeproductname":"demo","sareeqty":500,"sareerate":1350,"sareecode":"555","sareehsncode":"8245","date":"2020-10-22T18:30:00.000Z","sareeproductid":"KuyjqOlhv","__v":0,"collected":{"productname":"555","qty":1,"dis":25},"total":1325},{"_id":"5f8d248ce9a1a82f242873f9","sareeproductname":"silk","sareeqty":10,"sareerate":50,"sareecode":"silk100","sareehsncode":"HSN001","date":"2020-10-16T18:30:00.000Z","sareeproductid":"A2Jz8bsMq","__v":0,"collected":{"productname":"silk100","qty":2,"dis":0},"total":100}],"tax_details":{"totamt":1425,"taxamt":"67.86","tottaxpercent":5,"cgsttax":"33.93","sgsttax":"33.93","roundoff":1357,"totamtwithtax":1357.14}}
+    this.rupessinwords = numberWords.convert(this.api.billingarray_sareeprod.tax_details.totamt)
+    // console.log(this.rupessinwords)
     // console.log(    this.api.billingarray_sareeprod ,"**********")
 //     $.noConflict();
 

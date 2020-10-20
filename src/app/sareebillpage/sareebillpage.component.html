@@ -120,7 +120,7 @@
         <table  class="table table-bordered table-sm">
               <thead>
                 <tr>
-                    <th class="text-right"><small>{{ "Total Amount Before Tax"}}</small></th>
+                    <th class="text-right">{{ "Total Amount Before Tax"}}</th>
                     <td class="text-center">{{api.billingarray_sareeprod.tax_details.totamtwithtax}} &#x20B9;</td>              
                     <!-- <td class="text-center">{{api.billingarray_sareeprod.tax_details.totamt}} &#x20B9;</td>               -->
                 </tr>
@@ -129,23 +129,23 @@
                   <td class="text-center">{{api.billingarray_sareeprod.tax_details.tottaxpercent}} %</td> -->
               </tr>              
             <tr>
-              <th class="text-right"><small>{{ "Tax of CGST 2.5 %"}}</small></th>
+              <th class="text-right">{{ "Tax of CGST 2.5 %"}}</th>
               <td class="text-center">{{api.billingarray_sareeprod.tax_details.cgsttax}} &#x20B9;</td>
             </tr>
           <tr>
-            <th class="text-right"><small>{{ "Tax of SGST 2.5 %"}}</small></th>
+            <th class="text-right">{{ "Tax of SGST 2.5 %"}}</th>
             <td class="text-center">{{api.billingarray_sareeprod.tax_details.sgsttax}} &#x20B9;</td>
           </tr>
           <tr>
-            <th class="text-right"><small>{{ "Total Tax Amount"}}</small></th>
+            <th class="text-right">{{ "Total Tax Amount"}}</th>
             <td class="text-center">{{api.billingarray_sareeprod.tax_details.taxamt}} &#x20B9;</td>            
         </tr>
         <!-- <tr>
-          <th class="text-right"><small>{{ "Total Amount After Tax"}}</small></th>
+          <th class="text-right">{{ "Total Amount After Tax"}}</th>
           <td class="text-center">{{api.billingarray_sareeprod.tax_details.totamtwithtax}} &#x20B9;</td>
         </tr> -->
         <tr>
-          <th class="text-right"><small>{{ "Total Amount After Tax"}}</small></th>
+          <th class="text-right">{{ "Total Amount After Tax"}}</th>
           <td class="text-center">{{api.billingarray_sareeprod.tax_details.totamt}} &#x20B9;</td>
         </tr>
               </thead>
@@ -155,7 +155,7 @@
     <!-- <hr> -->
     <div class="row">
       <div class="col-sm-12">
-        <input type="text" class="form-control" value="Rupees">
+        <span><b>Rupees</b></span><input type="text" class="form-control" value="{{rupessinwords | uppercase}} only">
       </div>
       <div class="col-sm-6">
         <br>
@@ -171,7 +171,7 @@
         <p class="text-center" style="border-style: ridge;padding: 6px 6px;">
           <span><small>For</small>&nbsp;SHREE JEYAM SILVERS</span><br>
           <span></span><br>
-          <span></span><br>
+          <span></span><br><br>
           <span>Proprietor</span><br>
         </p>
       </div>

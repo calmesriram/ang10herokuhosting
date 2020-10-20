@@ -143,6 +143,18 @@ public proditem:any="";
   })
 }
 
+sareebill(){
+  console.log(this.api.billingarray_sareeprod)
+  this.api.Postsareebill(this.api.billingarray_sareeprod).then(res =>{
+    console.log(res)
+    if(res['status'] == true){
+      this.api.snackmsg(res["msg"],"close")
+    }
+  }).catch(e =>{
+    console.log(e)
+  })
+}
+
 Calculate(){  
   this.calc_amount2 =this.calc_amount - this.getTotalAmount();
 }

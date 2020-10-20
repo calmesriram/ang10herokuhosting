@@ -75,6 +75,43 @@ Getsareeproduct(){
     })
   })
 }
+sareebillcount(){
+  return new Promise((resolve,reject) => {
+    this.http.get(this.baseurl+"/Sareebillcount").subscribe(res => {
+      resolve(res);
+    }, err => {
+      resolve(err);
+    })
+  })
+}
+Sareeproductcount(){
+  return new Promise((resolve,reject) => {
+    this.http.get(this.baseurl+"/Sareeproductcount").subscribe(res => {
+      resolve(res);
+    }, err => {
+      resolve(err);
+    })
+  })
+}
+Customercount(){
+  return new Promise((resolve,reject) => {
+    this.http.get(this.baseurl+"/Customercount").subscribe(res => {
+      resolve(res);
+    }, err => {
+      resolve(err);
+    })
+  })
+}
+Productcount(){
+  return new Promise((resolve,reject) => {
+    this.http.get(this.baseurl+"/Productcount").subscribe(res => {
+      resolve(res);
+    }, err => {
+      resolve(err);
+    })
+  })
+}
+
 Postsareeproduct(data){
   return new Promise((resolve,reject) => {
     this.http.post(this.baseurl+"/Saree",data).subscribe(res => {
@@ -96,6 +133,15 @@ Putsareeproduct(data,sareecode){
 Deletesareeproduct(sareecode){
   return new Promise((resolve,reject) => {
     this.http.delete(this.baseurl+"/Saree/"+sareecode).subscribe(res => {
+      resolve(res);
+    }, err => {
+      resolve(err);
+    })
+  })
+}
+Postsareebill(data){
+  return new Promise((resolve,reject) => {
+    this.http.post(this.baseurl+"/Sareebill",data).subscribe(res => {
       resolve(res);
     }, err => {
       resolve(err);

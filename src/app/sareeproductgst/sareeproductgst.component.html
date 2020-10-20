@@ -89,7 +89,10 @@
                   <mat-form-field>
                     <mat-label>Search</mat-label>
                     <input matInput (keyup)="applyFilter($event)" placeholder="Name " #input>
-                  </mat-form-field>                  
+                  </mat-form-field>   
+                  <div class="example-button-row">
+                    <button mat-raised-button (click)="sareebill();"  color="primary">Save</button>
+                    </div>               
                   <div class="example-container mat-elevation-z8">
                     <table mat-table [dataSource]="dataSource" matSort>                                
 
