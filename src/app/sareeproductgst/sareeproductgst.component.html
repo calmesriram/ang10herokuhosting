@@ -85,14 +85,16 @@
                 </form><br>
               </div>   
                 <!-- <div class="col-sm-12" *ngIf="dataSource.data.length != 0">                   -->
-                  <div class="col-sm-8">                  
+                  <div class="col-sm-8">    
+                    <form class="form-inline" autocomplete="off">                                               
                   <mat-form-field>
                     <mat-label>Search</mat-label>
                     <input matInput (keyup)="applyFilter($event)" placeholder="Name " #input>
-                  </mat-form-field>   
+                  </mat-form-field>&nbsp;&nbsp;&nbsp;   
                   <div class="example-button-row">
                     <button mat-raised-button (click)="sareebill();"  color="primary">Save</button>
-                    </div>               
+                    </div>      
+                    </form>              
                   <div class="example-container mat-elevation-z8">
                     <table mat-table [dataSource]="dataSource" matSort>                                
 

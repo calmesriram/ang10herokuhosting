@@ -5,6 +5,7 @@ import {map, startWith} from 'rxjs/operators';
 import { ApiService } from '../api.service';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
+import { Router } from '@angular/router';
 
 var ELEMENT_DATA: any = [];
 @Component({
@@ -38,7 +39,7 @@ cus_phonenumber:any;
   calc_amount2:Number;
 public proditem:any="";
 
-  constructor(public api:ApiService,public formBuilder: FormBuilder) { 
+  constructor(public api:ApiService,public formBuilder: FormBuilder,public router:Router) { 
     this.countryCtrl = new FormControl();
     this.countryCtrl2 = new FormControl();
     this.filteredCountry = this.countryCtrl.valueChanges
@@ -125,7 +126,23 @@ public proditem:any="";
       // this.api.snackmsg("Hail","close")
     })
   }
+  
+sareebill(){
+  console.log(this.api.billingarray_sareeprod)
+  this.api.Postsareebill(this.api.billingarray_sareeprod).then(res =>{
+    console.log(res)
+    if(res['status'] == true){
+      this.api.snackmsg(res["msg"],"close");
+      this.router.navigateByUrl('/sareebill')
+
+    }
+  }).catch(e =>{
+    console.log(e)
+  })
+}
+
   getsareeproduct(){  
+    console.log("calling")
     this.api.Getsareeproduct().then((res:any) =>{    
     if(res.data.length == 0){
        this.api.snackmsg("No Record(s) Found","Close")
@@ -143,17 +160,6 @@ public proditem:any="";
   })
 }
 
-sareebill(){
-  console.log(this.api.billingarray_sareeprod)
-  this.api.Postsareebill(this.api.billingarray_sareeprod).then(res =>{
-    console.log(res)
-    if(res['status'] == true){
-      this.api.snackmsg(res["msg"],"close")
-    }
-  }).catch(e =>{
-    console.log(e)
-  })
-}
 
 Calculate(){  
   this.calc_amount2 =this.calc_amount - this.getTotalAmount();
