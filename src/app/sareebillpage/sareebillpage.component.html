@@ -1,10 +1,11 @@
 
-<button (click)="printdata();">Print</button>
-<div id="example" style="padding:0px 6px 0px 6px;">
-    <br><br><br>
+<button type="button" class="btn btn-primary" (click)="printdata();">Print</button>
+
+<div id="example" style="margin:0px 6px 0px 6px;">
+    <br>
 <div class="container" style="border-style: ridge;" >
   <div class="row form-inline">
-    <div class="col-sm-4" >
+    <div class="col-sm-3" >
       <div class="alignleft">
         <h3 >
           <small >Cell : 97914 26926</small><br>
@@ -12,16 +13,16 @@
       </h3>
       </div>
     </div>
-    <div class="col-sm-4 text-center">
+    <div class="col-sm-6 text-center">
       <br>
         <h4  style="border-style: ridge;">
             TAX INVOICE<br>
             <p >CASH/CREDIT BILL</p>
         </h4> 
-        <p style="border-style: ridge;">GSTIN : 33BKMPA0961M1Z5</p>
+        <p style="border-style: ridge;font-size: x-large;padding: 3px 3px;">GSTIN : 33BKMPA0961M1Z5</p>
         
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-3">
       <div class="alignright">
       <input class="form-check-input" type="checkbox"> Original For Recipient<br>
       <input class="form-check-input" type="checkbox"> Duplicate For Transporter<br>
@@ -29,20 +30,29 @@
     </div>
     </div>
   </div>
-    <div class="text-center">
-        <h2  style="border-style: ridge;padding:6px 6px;">
-            <span class="text-left"><img src="../../assets/photo/vinayaga.jpg" style="width:50px;height:50px;">
-            </span>
-            SHREE JEYAM SILVERS & Sarees
-            <span class="text-right"><img src="../../assets/photo/murugan.jpg" style="width:50px;height:50px;">
-            </span>
-            <br>
-            <small >Manufactures of Silver Ornaments</small><br>
-            <small >14/6 , Thammannan Street,Gugai,Salem - 636006</small>
-        </h2>
+  <div class="row" style="border-style: ridge;margin:6px 6px 6px 6px;">
+    <div class="col-sm-3"> <br>
+      <span ><img src="../../assets/photo/vinayaga.jpg" style="width:120px;height:120px;">
+      </span>
+    </div>
+    <div class="col-sm-6"> <br>
+      <p style="font-size: large;" class="text-center"><b>SHREE JEYAM SILVERS & SAREES</b></p>
+        <p class="text-center">Wholesale and Retail<br>
+          <span>31, Chairman Ramalingam Street, </span><br>
+          <span>(Opposite to paavadi girls higher secondary school), </span><br>
+          <span> Salem - 636 001.</span>
+        </p>          
+        </div>
+    <div class="col-sm-3"> <br>
+      <span><img src="../../assets/photo/murugan.jpg" style="width:120px;height:120px;">
+      </span>
+    </div>
+  </div>
+      <div class="text-center">
+        
         <div class="row">
         <div class="col-sm-6"> 
-          <input type="text" value="Vehical No:" class="form-control">
+          <input type="text" value="Vehicle No:" class="form-control">
           <input type="text" value="Date & Time of Supply:" class="form-control">
           <input type="text" value="Place of Supply:" class="form-control">
           <input type="text" value="Trasportation Mode:(Own/Hired)" class="form-control">
@@ -64,13 +74,13 @@
           </table> -->
       </div>
           </div>
-      </div>
+      </div><br>
     <div class="row">
       <div class="col-sm-12">  
         <div style="border-style:ridge;padding:6px 6px;">
-             <label class="text-right" for="cus_address">Customer Name:&nbsp;{{api.billingarray_sareeprod.customerdetails.customername || "xxx"}}</label><br>
-            <label  for="cus_address">Phone Number:&nbsp;{{api.billingarray_sareeprod.customerdetails.phoneumber || "xxx"}}</label><br>
-            <label  for="cus_address">Address:&nbsp;{{api.billingarray_sareeprod.customerdetails.address || "xxx"}}</label><br>
+             <label class="text-right" for="cus_address">Customer Name:&nbsp;<b>{{api.billingarray_sareeprod.customerdetails.customername || "xxx"}}</b></label><br>
+            <label  for="cus_address">Phone Number:&nbsp;<b>{{api.billingarray_sareeprod.customerdetails.phoneumber || "xxx"}}</b></label><br>
+            <label  for="cus_address">Address:&nbsp;<b>{{api.billingarray_sareeprod.customerdetails.address || "xxx"}}</b></label><br>
           </div>
       </div>
           <!-- <div class="col-sm-6">                    
@@ -82,7 +92,7 @@
         <div class="table-responsive-sm col-sm-12">           
 <table  class="table table-bordered table-sm">
   <thead>
-    <tr class="text-center">
+    <tr>
         <th>Sno</th>
         <th>Description</th>
       <th>HSN Code</th>
@@ -94,13 +104,13 @@
   </thead>
   <tbody>
     <tr *ngFor="let items of api.billingarray_sareeprod.tabledatadet;index as i;">
-      <td class="text-center">{{i+1}} .</td>
+      <td>{{i+1}} .</td>
       <td>{{ items.sareeproductname}}</td>
       <td>{{items.sareehsncode}}</td>
       <td>{{ items.collected.qty}}</td>
-      <td>{{ items.sareerate}} &#x20B9;</td>
-      <td>{{ items.collected.dis}}</td>
-      <td>{{ items.total}} &#x20B9;</td>
+      <td>&#x20B9; {{ items.sareerate}}</td>
+      <td>&#x20B9; {{ items.collected.dis}}</td>
+      <td>&#x20B9; {{ items.total}}</td>
 
     </tr>
   </tbody>
@@ -110,18 +120,19 @@
     <div class="row">
       <div class="col-sm-4">
         <p style="border-style: ridge;" class="text-center">Subject to Salem Jurisdiction</p>
-        <p class="alignleft">Bank Details:</p><br>
-        <p class="alignleft">
-          <span>Bank Name - KARNATAKA BANK LIMITED,</span><br>
-          <span>A/c No. - 7162000100865901,</span><br>
-          <span> IFSC Code - KARB0000716 </span></p>
+        <p class="alignleft">Bank Details:</p>
+        <p class="alignleft"><br>
+          <span>Name : Shree jeyam silvers,</span><br>
+          <span>Bank Name - Indian Overseas Bank,</span><br>
+          <span>A/c No. - 014902000002879,</span><br>
+          <span> IFSC Code - IOBA0000149 </span></p>
       </div>
       <div class="col-sm-8">
         <table  class="table table-bordered table-sm">
               <thead>
                 <tr>
                     <th class="text-right">{{ "Total Amount Before Tax"}}</th>
-                    <td class="text-center">{{api.billingarray_sareeprod.tax_details.totamtwithtax}} &#x20B9;</td>              
+                    <td class="text-center">&#x20B9; {{api.billingarray_sareeprod.tax_details.totamtwithtax}}</td>              
                     <!-- <td class="text-center">{{api.billingarray_sareeprod.tax_details.totamt}} &#x20B9;</td>               -->
                 </tr>
                 <tr>
@@ -130,23 +141,23 @@
               </tr>              
             <tr>
               <th class="text-right">{{ "Tax of CGST 2.5 %"}}</th>
-              <td class="text-center">{{api.billingarray_sareeprod.tax_details.cgsttax}} &#x20B9;</td>
+              <td class="text-center">&#x20B9; {{api.billingarray_sareeprod.tax_details.cgsttax}} </td>
             </tr>
           <tr>
             <th class="text-right">{{ "Tax of SGST 2.5 %"}}</th>
-            <td class="text-center">{{api.billingarray_sareeprod.tax_details.sgsttax}} &#x20B9;</td>
+            <td class="text-center">&#x20B9; {{api.billingarray_sareeprod.tax_details.sgsttax}} </td>
           </tr>
           <tr>
             <th class="text-right">{{ "Total Tax Amount"}}</th>
-            <td class="text-center">{{api.billingarray_sareeprod.tax_details.taxamt}} &#x20B9;</td>            
+            <td class="text-center">&#x20B9; {{api.billingarray_sareeprod.tax_details.taxamt}} </td>            
         </tr>
         <!-- <tr>
           <th class="text-right">{{ "Total Amount After Tax"}}</th>
-          <td class="text-center">{{api.billingarray_sareeprod.tax_details.totamtwithtax}} &#x20B9;</td>
+          <td class="text-center">{{api.billingarray_sareeprod.tax_details.totamtwithtax}} </td>
         </tr> -->
         <tr>
-          <th class="text-right">{{ "Total Amount After Tax"}}</th>
-          <td class="text-center">{{api.billingarray_sareeprod.tax_details.totamt}} &#x20B9;</td>
+          <th class="text-right"><h2>{{ "Total Amount After Tax"}}</h2></th>
+          <td class="text-center"><h2>&#x20B9; {{api.billingarray_sareeprod.tax_details.totamt}} </h2></td>
         </tr>
               </thead>
           </table>
@@ -155,7 +166,7 @@
     <!-- <hr> -->
     <div class="row">
       <div class="col-sm-12" style="border-style: ridge;padding: 6px 6px;">
-        <label  for="Rupees"><b>Rupees</b>&nbsp;{{rupessinwords | uppercase}}</label><br>
+        <label  for="Rupees"><b>Rupees (In Words): </b>&nbsp;{{rupessinwords | uppercase}}</label><br>
       </div>
       <div class="col-sm-6">
         <br>
@@ -169,7 +180,7 @@
       <div class="col-sm-6">
         <br>
         <p class="text-center" style="border-style: ridge;padding: 6px 6px;">
-          <span><small>For</small>&nbsp;SHREE JEYAM SILVERS</span><br>
+          <b><span><b><small>For</small></b>&nbsp;SHREE JEYAM SILVERS</span></b><br>
           <span></span><br>
           <span></span><br><br>
           <span>Proprietor</span><br>
