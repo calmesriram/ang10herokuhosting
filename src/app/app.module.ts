@@ -19,6 +19,10 @@ import { NonincludedgstComponent } from './nonincludedgst/nonincludedgst.compone
 import { IncludedgstComponent } from './includedgst/includedgst.component';
 import { SareeproductgstComponent } from './sareeproductgst/sareeproductgst.component';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MAT_DATE_FORMATS } from '@angular/material/core';
+import { MY_DATE_FORMATS } from './mydateformat';
+
 
 @NgModule({
   declarations: [
@@ -42,10 +46,14 @@ import { NgxSpinnerModule } from "ngx-spinner";
     ReactiveFormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    MatDatepickerModule,
+    //MomentDateModule
     
   ],
-  providers: [ApiService],
+  providers: [ApiService,
+    { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS }
+  ],
   // schemas: [
   //   CUSTOM_ELEMENTS_SCHEMA
   // ],

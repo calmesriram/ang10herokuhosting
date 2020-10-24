@@ -5,6 +5,7 @@ import {map, startWith} from 'rxjs/operators';
 import { ApiService } from '../api.service';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
+import { Router } from '@angular/router';
 
 var ELEMENT_DATA: any = [];
 @Component({
@@ -37,7 +38,7 @@ cus_phonenumber:any;
   filteredOptions2: Observable<string[]>;
 proditem;
 
-  constructor(public api:ApiService,public formBuilder: FormBuilder) { 
+  constructor(public api:ApiService,public formBuilder: FormBuilder,public router:Router) { 
     this.countryCtrl = new FormControl();
     this.countryCtrl2 = new FormControl();
     this.filteredCountry = this.countryCtrl.valueChanges
@@ -69,10 +70,13 @@ proditem;
     cgsttax: ['', Validators.required],
     sgsttax: ['', Validators.required],
     roundoff: ['', Validators.required],
-    totamtwithtax: ['', Validators.required]
+    totamtwithtax: ['', Validators.required],
+    onegramsilverrate: ['', Validators.required]
+
   })
     this.getcustomer();
     this.getproduct();
+    this.productCount();
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;       
@@ -96,7 +100,7 @@ proditem;
     this.cus_customername = para.customername;
     this.cus_emailid = para.emailid
     this.cus_phonenumber = para.phoneumber
-    console.log(para);
+    // console.log(para);
 
   }
   prod(item){
@@ -113,15 +117,15 @@ proditem;
   }
   getcustomer(){
     this.api.Getcustomer().then((data:any) =>{
-      console.log(data.data.length)
+      // console.log(data.data.length)
       if(data.data.length == 0){
          this.api.snackmsg("No Record(s) Found","Close")
       }
       if( data.status == true && data.data.length != 0){
-        console.log(data)  
+        // console.log(data)  
         this.country_lis = data.data       
      }
-  console.log(data);
+  // console.log(data);
   
     }).catch(err =>{
       // this.api.snackmsg("Hail","close")
@@ -134,9 +138,9 @@ proditem;
     }
     if( data.status == true && data.data.length != 0){
       this.country_lis2 = data.data   
-      console.log(data.data)           
+      // console.log(data.data)           
     }
-    console.log(data)         
+    // console.log(data)         
 }).catch(err =>{
     // this.api.snackmsg("Hail","close")
   })
@@ -157,9 +161,12 @@ taxcalc(){
   let tax_cgst_sgst:any =0;
   let totalamount_withtax:any = 0;
   let totalamount:any = 0;
-  
+  let silverrate:any= 0;
   this.gstForm.controls.totamt.setValue(this.getTotalAmount());  
-  totalamount = this.gstForm.controls.totamt.value
+  totalamount = this.gstForm.controls.totamt.value;
+  // console.log(totalamount)
+  silverrate = (totalamount / 100 ).toFixed(2);
+  // console.log(silverrate)
   taxamount =  ((totalamount/103)*3).toFixed(2);
    tax_cgst_sgst = ((taxamount / 2)).toFixed(2);
    totalamount_withtax = totalamount - taxamount;
@@ -167,6 +174,8 @@ taxcalc(){
   this.gstForm.controls.taxamt.setValue(taxamount);
   this.gstForm.controls.cgsttax.setValue(tax_cgst_sgst);
   this.gstForm.controls.sgsttax.setValue(tax_cgst_sgst);
+    this.gstForm.controls.onegramsilverrate.setValue(silverrate);
+
   this.gstForm.controls.totamtwithtax.setValue(totalamount_withtax);  
   this.gstForm.controls.roundoff.setValue(Math.round(totalamount_withtax));
   this.api.billingobject.tax_details_addtional_bill_1 = this.gstForm.value;
@@ -188,6 +197,33 @@ remove(dat){
     }
   
   this.tabledata();
+}
+
+productCount(){
+  this.api.productbillcount().then(res =>{
+    console.log(res)
+    //  console.log(res['count']);
+    //  console.log(res['count']+1);
+    // this.sareebillcount = res['count']+1;
+    this.api.billingobject.invoiceno = res["count"]+1;
+    this.api.billingobject.invoicedate = (new Date()).toLocaleDateString();
+    console.log(this.api.billingobject)
+  }).catch(e =>{
+    console.log(e)
+  })
+}
+
+pr0ductbill(){
+console.log(this.api.billingobject)
+this.api.Productbill(this.api.billingobject).then(res =>{
+  console.log(res)
+  if(res['status'] == true){
+    this.api.snackmsg(res["msg"],"close");
+    // this.router.navigateByUrl('/includedgstbillpage')
+  }
+}).catch(e =>{
+  console.log(e)
+})
 }
 
 }

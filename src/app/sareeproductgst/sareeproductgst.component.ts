@@ -38,6 +38,7 @@ cus_phonenumber:any;
   calc_amount:any;
   calc_amount2:Number;
 public proditem:any="";
+public sareebillcount:any;
 
   constructor(public api:ApiService,public formBuilder: FormBuilder,public router:Router) { 
     this.countryCtrl = new FormControl();
@@ -77,6 +78,7 @@ public proditem:any="";
   })
     this.getcustomer();
     this.getsareeproduct();
+    this.sareebillcout();
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;       
@@ -127,6 +129,19 @@ public proditem:any="";
     })
   }
   
+  sareebillcout(){
+    this.api.sareebillcount().then(res =>{
+      //  console.log(res['count']);
+      //  console.log(res['count']+1);
+      // this.sareebillcount = res['count']+1;
+      this.api.billingarray_sareeprod.invoiceno = res["count"]+1;
+      this.api.billingarray_sareeprod.invoicedate = (new Date()).toLocaleDateString();
+      console.log(this.api.billingarray_sareeprod)
+    }).catch(e =>{
+      console.log(e)
+    })
+  }
+  
 sareebill(){
   console.log(this.api.billingarray_sareeprod)
   this.api.Postsareebill(this.api.billingarray_sareeprod).then(res =>{
@@ -134,7 +149,6 @@ sareebill(){
     if(res['status'] == true){
       this.api.snackmsg(res["msg"],"close");
       this.router.navigateByUrl('/sareebill')
-
     }
   }).catch(e =>{
     console.log(e)

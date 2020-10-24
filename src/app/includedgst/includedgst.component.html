@@ -76,11 +76,17 @@
                 </form><br>
               </div>   
                 <!-- <div class="col-sm-12" *ngIf="dataSource.data.length != 0">                   -->
-                  <div class="col-sm-8">                  
+                  <div class="col-sm-8">     
+                    <form class="form-inline" autocomplete="off">                                               
+             
                   <mat-form-field>
                     <mat-label>Search</mat-label>
                     <input matInput (keyup)="applyFilter($event)" placeholder="Name " #input>
-                  </mat-form-field>                  
+                  </mat-form-field>   
+                  <div class="example-button-row">
+                    <button mat-raised-button (click)="pr0ductbill();"  color="primary">Save</button>
+                    </div>            
+                    </form>    
                   <div class="example-container mat-elevation-z8">
                     <table mat-table [dataSource]="dataSource" matSort>                                
 
@@ -125,21 +131,26 @@
                 </div> 
                 <div class="col-sm-4"> 
                   <form class="form-inline" autocomplete="off" [formGroup]="gstForm">                
-                  <mat-form-field class="example-full-width">
+                  <!-- <mat-form-field class="example-full-width">
                     <mat-label>Total Amount Before Tax</mat-label>
                     <input matInput placeholder="Total Amount" readonly formControlName="totamt"  value="{{getTotalAmount() || 0}}">
-                  </mat-form-field>
+                  </mat-form-field> -->
 
-                  <mat-form-field class="example-full-width">
+                  <!-- <mat-form-field class="example-full-width">
                     <mat-label>Total Tax percentage</mat-label>
                     <input matInput placeholder="Total Tax percentage" readonly  formControlName="tottaxpercent">
+                  </mat-form-field> -->
+
+                  
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Silver rate for one gram</mat-label>
+                    <input matInput placeholder="totalamounttaxs" readonly formControlName="onegramsilverrate" >
                   </mat-form-field>
 
                   <mat-form-field class="example-full-width">
-                    <mat-label>Tax Amount</mat-label>
-                    <input matInput placeholder="taxamt" readonly  formControlName="taxamt" >
+                    <mat-label>Total Amount Before Tax</mat-label>
+                    <input matInput placeholder="totalamounttaxs" readonly formControlName="roundoff" >
                   </mat-form-field>
-
 
                   <mat-form-field class="example-full-width">
                     <mat-label>Tax of CGST 1.5 %</mat-label>
@@ -152,14 +163,25 @@
                   </mat-form-field>
 
                   <mat-form-field class="example-full-width">
-                    <mat-label>Total Amount After Tax</mat-label>
-                    <input matInput placeholder="totalamounttaxs" readonly formControlName="totamtwithtax" >
+                    <mat-label> Total Tax Amount</mat-label>
+                    <input matInput placeholder="taxamt" readonly  formControlName="taxamt" >
                   </mat-form-field>
 
+                  <!-- <mat-form-field class="example-full-width">
+                    <mat-label>Total Amount After Tax</mat-label>
+                    <input matInput placeholder="totalamounttaxs" readonly formControlName="totamtwithtax" >
+                  </mat-form-field> -->
+                  
+
                   <mat-form-field class="example-full-width">
+                    <mat-label>Total Amount After Tax</mat-label>
+                    <input matInput placeholder="Total Amount" readonly formControlName="totamt"  value="{{getTotalAmount() || 0}}">
+                  </mat-form-field>
+
+                  <!-- <mat-form-field class="example-full-width">
                     <mat-label>Round off</mat-label>
                     <input matInput placeholder="roundoff" readonly formControlName="roundoff" >
-                  </mat-form-field>
+                  </mat-form-field> -->
                   <!-- <div class="example-button-row">
                     <button mat-raised-button (click)="taxcalc();" *ngIf="dataSource.data.length != 0"  color="primary">Calculate</button>
                   </div> -->

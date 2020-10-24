@@ -11,6 +11,7 @@ public sareebillcount=0;
 public sareeproductcount=0;
 public customercount=0;
 public productcount=0;
+public productbillcount =0;
   constructor(public api:ApiService) { }
 
   ngOnInit(): void {
@@ -35,6 +36,12 @@ public productcount=0;
     this.api.Productcount().then(res =>{
       // console.log(res['count']);
       this.productcount = res['count'];
+    }).catch(e =>{
+      console.log(e)
+    })
+    this.api.productbillcount().then(res =>{
+      // console.log(res['count']);
+      this.productbillcount = res['count'];
     }).catch(e =>{
       console.log(e)
     })

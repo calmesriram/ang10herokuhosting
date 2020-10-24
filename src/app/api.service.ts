@@ -13,12 +13,16 @@ public baseurl:String= "https://jwlserver.herokuapp.com"
 public billingobject:any={
   customerdetails:[],
   tabledatadet:[],
-  tax_details_addtional_bill_1:[]
+  tax_details_addtional_bill_1:[],
+  invoiceno:String,
+invoicedate:String
 };
 public billingarray_sareeprod:any={
   customerdetails:[],
   tabledatadet:[],
-  tax_details:[]
+  tax_details:[],
+  invoiceno:String,
+invoicedate:String
 };
 
   constructor(public _snackBar: MatSnackBar,public http: HttpClient,public spinner: NgxSpinnerService    ) {
@@ -84,6 +88,15 @@ sareebillcount(){
     })
   })
 }
+productbillcount(){
+  return new Promise((resolve,reject) => {
+    this.http.get(this.baseurl+"/Bill").subscribe(res => {
+      resolve(res);
+    }, err => {
+      resolve(err);
+    })
+  })
+}
 Sareeproductcount(){
   return new Promise((resolve,reject) => {
     this.http.get(this.baseurl+"/Sareeproductcount").subscribe(res => {
@@ -142,6 +155,16 @@ Deletesareeproduct(sareecode){
 Postsareebill(data){
   return new Promise((resolve,reject) => {
     this.http.post(this.baseurl+"/Sareebill",data).subscribe(res => {
+      resolve(res);
+    }, err => {
+      resolve(err);
+    })
+  })
+}
+
+Productbill(data){
+  return new Promise((resolve,reject) => {
+    this.http.post(this.baseurl+"/Productbill",data).subscribe(res => {
       resolve(res);
     }, err => {
       resolve(err);
