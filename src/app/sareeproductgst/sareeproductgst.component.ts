@@ -135,7 +135,9 @@ public sareebillcount:any;
       //  console.log(res['count']+1);
       // this.sareebillcount = res['count']+1;
       this.api.billingarray_sareeprod.invoiceno = res["count"]+1;
-      this.api.billingarray_sareeprod.invoicedate = (new Date()).toLocaleDateString();
+      this.api.billingarray_sareeprod.invoicedate = (new Date()).toLocaleDateString('en-GB');
+      this.api.billingarray_sareeprod.invoicemonth = (new Date()).getMonth() +1 ;
+      this.api.billingarray_sareeprod.invoiceyear = (new Date()).getFullYear();
       console.log(this.api.billingarray_sareeprod)
     }).catch(e =>{
       console.log(e)

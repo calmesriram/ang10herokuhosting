@@ -22,7 +22,9 @@ public billingarray_sareeprod:any={
   tabledatadet:[],
   tax_details:[],
   invoiceno:String,
-invoicedate:String
+invoicedate:String,
+invoicemonth:String,
+  invoiceyear:String
 };
 
   constructor(public _snackBar: MatSnackBar,public http: HttpClient,public spinner: NgxSpinnerService    ) {

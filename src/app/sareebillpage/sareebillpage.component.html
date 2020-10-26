@@ -16,7 +16,7 @@
     <div class="col-sm-6 text-center">
       <br>
         <h3  style="border-style: ridge;">
-            TAX INVOICE<br>
+            SAREE TAX INVOICE<br>
             <p >CASH/CREDIT BILL</p>
         </h3> 
         <p style="border-style: ridge;font-size: x-large;padding: 3px 3px;">GSTIN : 33BKMPA0961M1Z5</p>
@@ -52,7 +52,7 @@
         
         <div class="row">
         <div class="col-sm-6"> 
-          <input type="text" value="Vehicle No:" class="form-control">
+          <input type="text" value="{{'Vehicle No:'}}" class="form-control">
           <input type="text" value="Date & Time of Supply:" class="form-control">
           <input type="text" value="Place of Supply:" class="form-control">
           <input type="text" value="Trasportation Mode:(Own/Hired)" class="form-control">
@@ -60,8 +60,8 @@
           
         </div>
         <div class="col-sm-6"> 
-          <input type="text" value="Invoice No:" class="form-control">
-          <input type="text" value="Invoice Date:" class="form-control">
+          <input type="text" value="Invoice No: {{api.billingarray_sareeprod.invoiceno || 'xxx'}}" class="form-control">
+          <input type="text" value="Invoice Date: {{api.billingarray_sareeprod.invoicedate || 'xxx'}}" class="form-control">
           <input type="text" value="State & Code: TamilNadu & 33" class="form-control">
 
           <!-- <table  class="table table-bordered table-sm">
@@ -169,7 +169,7 @@
         <label  for="Rupees"><b>Rupees (In Words): </b>&nbsp;{{rupessinwords | uppercase}}</label><br>
       </div><br>
       <div class="col-sm-12 text-center" style="border-style: ridge;padding: 6px 6px;">
-        <label  for="Rupees" ><b> * Goods once sold will not be exchange or taken back</b></label><br>
+        <label  for="Rupees" ><b> * Goods once sold will not be exchange or taken back Subject to salem Jurisdiction  E&OE</b></label><br>
       </div>
       <div class="col-sm-6">
         <br>
@@ -184,7 +184,7 @@
         <br>
         <p class="text-center" style="border-style: ridge;padding: 6px 6px;">
           <b><span><b><small>For</small></b>&nbsp;SHREE JEYAM SILVERS</span></b><br>
-          <span>Subject to salem Jurisdiction  E&OE</span><br>
+          <span></span><br>
           <span></span><br><br>
           <span>Proprietor</span><br>
         </p>
