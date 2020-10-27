@@ -2,6 +2,13 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 // declare var require: any;    
 // var $ = require("jquery");
+// declare var require: any;    
+// var $ = require("jquery");
+
+declare var require: any;    
+// var $ = require("jquery");
+const numberWords = require('number-words');
+
 @Component({
   selector: 'app-nonincludedgstbillpage',
   templateUrl: './nonincludedgstbillpage.component.html',
@@ -9,24 +16,26 @@ import { ApiService } from '../api.service';
 })
 export class NonincludedgstbillpageComponent implements OnInit {
 
+  rupessinwords:any;
   constructor(public api:ApiService) { }
-
-  ngOnInit(): void {
-    console.log(this.api.billingobject,"**********")
-
-    this.api.billingobject = {"customerdetails":{"_id":"5f817a5673936c0ec00d3280","customername":"santhoush","phoneumber":"1234567890","address":"salme","emailid":"san@gmail.com","adhaarid":"11559922663","date":"2020-10-09T18:30:00.000Z","customerid":"o0qZ92uyM","__v":0},"tax_details_addtional_bill_1":{"totamt":6000,"taxamt":180,"tottaxpercent":3,"cgsttax":90,"sgsttax":90,"roundoff":6180,"totamtwithtax":6180},"tabledatadet":[{"_id":"5f817b5573936c0ec00d3282","productname":"100g kuthuvilaku","date":"2020-10-01T18:30:00.000Z","productid":"5yOB3akzF","__v":0,"rate":5000},{"_id":"5f817b7873936c0ec00d3284","productname":"24 coin","date":"2020-10-01T18:30:00.000Z","productid":"jfIqLG1qI","__v":0,"rate":1000}]}
-//     $.noConflict();
-
-//     $(document).ready(function() {
-//     $('#example').DataTable( {
-//         dom: 'Bfrtip',
-//         buttons: [
-//             'copy', 'csv', 'excel', 'pdf', 'print'
-//         ]
-//     } );
-// } );
-  }
-
+  
+    ngOnInit(): void {
+      
+      
+      // this.api.billingarray_nonincgst = {"invoiceno":1,"invoicedate":"27/10/2020","invoicemonth":10,"invoiceyear":2020,"customerdetails":{"_id":"5f893afd4a8eb2001728f72b","customername":"santhoush ","phoneumber":"12345679","address":"salem,tamilnadu,india,south india","emailid":"san@gamil.com","adhaarid":"21365480","date":"2020-10-18T18:30:00.000Z","customerid":"jbxgKwLw4","__v":0},"tax_details":{"taxdet_totalamountbeforetax":5825,"taxdet_totalamountaftertax":6000,"taxdet_totalamountoftax":"174.76","taxdet_totalamountofsgsttax":"87.38","taxdet_totalamountofcgsttax":"87.38","taxdet_taxpercenttage":3},"tabledatadet":[{"_id":"5f893b2f4a8eb2001728f72d","productname":"Silver 100g","date":"2020-10-15T18:30:00.000Z","productid":"KJOrUVSWb","__v":0},{"_id":"5f893b424a8eb2001728f72f","productname":"glod 24 1g","date":"2020-10-15T18:30:00.000Z","productid":"8JMsl004c","__v":0}]}
+      this.rupessinwords = numberWords.convert(this.api.billingarray_nonincgst.tax_details.taxdet_totalamountaftertax)
+      console.log(this.api.billingarray_nonincgst,"**********")
+  //     $.noConflict();
+  
+  //     $(document).ready(function() {
+  //     $('#example').DataTable( {
+  //         dom: 'Bfrtip',
+  //         buttons: [
+  //             'copy', 'csv', 'excel', 'pdf', 'print'
+  //         ]
+  //     } );
+  // } );
+    }
   printdata(){
     var printlme = document.getElementById("example");
     var wme = window.open("","","width=900,height=700");

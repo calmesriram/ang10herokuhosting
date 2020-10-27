@@ -5,6 +5,7 @@ import {map, startWith} from 'rxjs/operators';
 import { ApiService } from '../api.service';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
+import { Router } from '@angular/router';
 
 var ELEMENT_DATA: any = [];
 @Component({
@@ -13,7 +14,7 @@ var ELEMENT_DATA: any = [];
   styleUrls: ['./nonincludedgst.component.css']
 })
 export class NonincludedgstComponent implements OnInit {
-  displayedColumns:any = ['position','productname','rate','Delete'];  
+  displayedColumns:any = ['position','productname','Delete'];  
   data ="ram"
   datafromparentcompo = "123465"
   dataSource = new MatTableDataSource(ELEMENT_DATA);  
@@ -36,8 +37,10 @@ cus_phonenumber:any;
   filteredOptions: Observable<string[]>;
   filteredOptions2: Observable<string[]>;
 proditem;
+public totamtModel:any=0;
 
-  constructor(public api:ApiService,public formBuilder: FormBuilder) { 
+
+  constructor(public api:ApiService,public formBuilder: FormBuilder,public router:Router) { 
     this.countryCtrl = new FormControl();
     this.countryCtrl2 = new FormControl();
     this.filteredCountry = this.countryCtrl.valueChanges
@@ -53,26 +56,35 @@ proditem;
   }
 
   ngOnInit() {
-    this.api.billingobject = {};
+    this.api.billingarray_nonincgst = {};
     // window.print()
     this.productForm = this.formBuilder.group({
       productname: ['', Validators.required],
-      rate: ['', Validators.required],
+      // rate: ['', Validators.required],
       // qty: ['', Validators.required]
     
       
   });
   this.gstForm = this.formBuilder.group({
-    totamt: ['', Validators.required],
-    taxamt: ['', Validators.required],
-    tottaxpercent: ['', Validators.required],
-    cgsttax: ['', Validators.required],
-    sgsttax: ['', Validators.required],
-    roundoff: ['', Validators.required],
-    totamtwithtax: ['', Validators.required]
+    // totamt: ['', Validators.required],
+    // taxamt: ['', Validators.required],
+    // tottaxpercent: ['', Validators.required],
+    // cgsttax: ['', Validators.required],
+    // sgsttax: ['', Validators.required],
+    // roundoff: ['', Validators.required],
+    // totamtwithtax: ['', Validators.required]
+
+    taxdet_totalamountbeforetax:['',Validators.required],
+    taxdet_totalamountaftertax:['', Validators.required],
+    taxdet_totalamountoftax:['', Validators.required],
+    taxdet_totalamountofsgsttax:['', Validators.required],
+    taxdet_totalamountofcgsttax:['', Validators.required],
+    taxdet_taxpercenttage:['', Validators.required],
+
   })
-    this.getcustomer();
+  this.getcustomer();
     this.getproduct();
+    this.productCount();
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;       
@@ -89,8 +101,8 @@ proditem;
       country.productname.toLowerCase().indexOf(name.toLowerCase()) === 0);
   }
   test(para){  
-    this.api.billingobject.customerdetails = "";
-    this.api.billingobject.customerdetails = para;
+    this.api.billingarray_nonincgst.customerdetails = "";
+    this.api.billingarray_nonincgst.customerdetails = para;
     this.cus_address = para.address
     this.cus_adhaarid =para.adhaarid;
     this.cus_customername = para.customername;
@@ -143,7 +155,7 @@ proditem;
 }
 
 add() { 
-  this.proditem.rate = this.productForm.controls.rate.value
+  // this.proditem.rate = this.productForm.controls.rate.value
 this.selectedproditem.push(this.proditem);
 this.productForm.reset();
 console.log(this.selectedproditem)
@@ -152,34 +164,35 @@ this.tabledata();
    
 }
 taxcalc(){
-  this.api.billingobject.tax_details_addtional_bill_1 ="";
+  this.api.billingarray_nonincgst.tax_details ="";
   let taxamount =0;
   let tax_cgst_sgst =0;
   let totalamount_withtax = 0;
   let totalamount = 0;
-  
-  this.gstForm.controls.totamt.setValue(this.getTotalAmount());  
-  totalamount = this.gstForm.controls.totamt.value
+  totalamount = this.totamtModel;
+  this.gstForm.controls.taxdet_totalamountbeforetax.setValue(0);
   taxamount = (totalamount * (0.03));
-  // console.log(taxamount)
+  console.log(taxamount)
    tax_cgst_sgst = (taxamount / 2);
+   console.log(tax_cgst_sgst)
    totalamount_withtax = totalamount + taxamount;
-  this.gstForm.controls.tottaxpercent.setValue(3);
-  this.gstForm.controls.taxamt.setValue(taxamount);
-  this.gstForm.controls.cgsttax.setValue(tax_cgst_sgst);
-  this.gstForm.controls.sgsttax.setValue(tax_cgst_sgst);
-  this.gstForm.controls.totamtwithtax.setValue(totalamount_withtax);  
-  this.gstForm.controls.roundoff.setValue(Math.round(totalamount_withtax));
-  this.api.billingobject.tax_details_addtional_bill_1 = this.gstForm.value;
+   console.log(totalamount_withtax)
+   this.gstForm.controls.taxdet_taxpercenttage.setValue(3);
+   this.gstForm.controls.taxdet_totalamountoftax.setValue(taxamount);
+   this.gstForm.controls.taxdet_totalamountofsgsttax.setValue(tax_cgst_sgst);
+   this.gstForm.controls.taxdet_totalamountofcgsttax.setValue(tax_cgst_sgst);
+  // this.gstForm.controls.totamtwithtax.setValue(totalamount_withtax);  
+  this.gstForm.controls.taxdet_totalamountaftertax.setValue(Math.round(Number(totalamount_withtax)));
+  this.gstForm.controls.taxdet_totalamountbeforetax.setValue(Math.round(totalamount));
+  this.api.billingarray_nonincgst.tax_details = this.gstForm.value;
   
 }
 tabledata(){
   this.taxcalc();
-  this.api.billingobject.tabledatadet = "";
-  console.log(this.getTotalAmount())
+  this.api.billingarray_nonincgst.tabledatadet = "";
   console.log(this.selectedproditem)
   this.dataSource = new MatTableDataSource(this.selectedproditem);
-  this.api.billingobject.tabledatadet =this.selectedproditem;
+  this.api.billingarray_nonincgst.tabledatadet =this.selectedproditem;
 }
 remove(dat){
   // console.log(dat);    
@@ -190,5 +203,37 @@ remove(dat){
   
   this.tabledata();
 }
+
+productCount(){
+  this.api.productbillcount().then(res =>{
+    console.log(res)
+    //  console.log(res['count']);
+    //  console.log(res['count']+1);
+    // this.sareebillcount = res['count']+1;
+    
+    this.api.billingarray_incgst.invoiceno = res["count"]+1;
+    this.api.billingarray_incgst.invoicedate = (new Date()).toLocaleDateString('en-GB');
+    this.api.billingarray_incgst.invoicemonth = (new Date()).getMonth() +1 ;
+    this.api.billingarray_incgst.invoiceyear = (new Date()).getFullYear();
+    console.log(this.api.billingarray_incgst)
+  }).catch(e =>{
+    console.log(e)
+  })
+}
+
+pr0ductbill(){
+console.log(this.api.billingarray_incgst)
+// return;
+this.api.Productbill(this.api.billingarray_incgst).then(res =>{
+  console.log(res)
+  if(res['status'] == true){
+    this.api.snackmsg(res["msg"],"close");
+    this.router.navigateByUrl('/nonincludedgstbillpage')
+  }
+}).catch(e =>{
+  console.log(e)
+})
+}
+
 
 }

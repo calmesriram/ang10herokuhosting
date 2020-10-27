@@ -26,6 +26,26 @@ invoicedate:String,
 invoicemonth:String,
   invoiceyear:String
 };
+public billingarray_incgst:any={
+  customerdetails:[],
+  tabledatadet:[],
+  tax_details:[],
+  invoiceno:String,
+invoicedate:String,
+invoicemonth:String,
+  invoiceyear:String,
+  taxdet_role:"includedgst"
+};
+public billingarray_nonincgst:any={
+  customerdetails:[],
+  tabledatadet:[],
+  tax_details:[],
+  invoiceno:String,
+invoicedate:String,
+invoicemonth:String,
+  invoiceyear:String,
+  taxdet_role:"nonincludednon"
+};
 
   constructor(public _snackBar: MatSnackBar,public http: HttpClient,public spinner: NgxSpinnerService    ) {
     this.createOnline$().subscribe(isOnline => {
@@ -46,11 +66,6 @@ invoicemonth:String,
         sub.next(navigator.onLine);
         sub.complete();
       }));
-  }
-  clearbillingdetails(){
-    this.billingobject.customerdetails = "";
-    this.billingobject.tabledatadet = "";
-    this.billingobject.tax_details_addtional_bill_1 = "";
   }
   Postcustomer(data){
     return new Promise((resolve,reject) => {
