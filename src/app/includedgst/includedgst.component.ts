@@ -56,6 +56,7 @@ public totamtModel:any=0;
 
   ngOnInit() {
     this.api.billingarray_incgst = {};
+    this.api.billingarray_nonincgst = {};
     // window.print()
     this.productForm = this.formBuilder.group({
       productname: ['', Validators.required],

@@ -56,6 +56,7 @@ public totamtModel:any=0;
   }
 
   ngOnInit() {
+    this.api.billingarray_incgst = {};
     this.api.billingarray_nonincgst = {};
     // window.print()
     this.productForm = this.formBuilder.group({
@@ -211,20 +212,20 @@ productCount(){
     //  console.log(res['count']+1);
     // this.sareebillcount = res['count']+1;
     
-    this.api.billingarray_incgst.invoiceno = res["count"]+1;
-    this.api.billingarray_incgst.invoicedate = (new Date()).toLocaleDateString('en-GB');
-    this.api.billingarray_incgst.invoicemonth = (new Date()).getMonth() +1 ;
-    this.api.billingarray_incgst.invoiceyear = (new Date()).getFullYear();
-    console.log(this.api.billingarray_incgst)
+    this.api.billingarray_nonincgst.invoiceno = res["count"]+1;
+    this.api.billingarray_nonincgst.invoicedate = (new Date()).toLocaleDateString('en-GB');
+    this.api.billingarray_nonincgst.invoicemonth = (new Date()).getMonth() +1 ;
+    this.api.billingarray_nonincgst.invoiceyear = (new Date()).getFullYear();
+    console.log(this.api.billingarray_nonincgst)
   }).catch(e =>{
     console.log(e)
   })
 }
 
 pr0ductbill(){
-console.log(this.api.billingarray_incgst)
+console.log(this.api.billingarray_nonincgst)
 // return;
-this.api.Productbill(this.api.billingarray_incgst).then(res =>{
+this.api.Productbill(this.api.billingarray_nonincgst).then(res =>{
   console.log(res)
   if(res['status'] == true){
     this.api.snackmsg(res["msg"],"close");
