@@ -22,6 +22,8 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MAT_DATE_FORMATS } from '@angular/material/core';
 import { MY_DATE_FORMATS } from './mydateformat';
+import { MonthandyearwiseinvoiceComponent } from './monthandyearwiseinvoice/monthandyearwiseinvoice.component';
+import { DatewiseinvoiceComponent } from './datewiseinvoice/datewiseinvoice.component';
 
 
 @NgModule({
@@ -36,7 +38,9 @@ import { MY_DATE_FORMATS } from './mydateformat';
     SareebillpageComponent,
     NonincludedgstComponent,
     IncludedgstComponent,
-    SareeproductgstComponent
+    SareeproductgstComponent,
+    MonthandyearwiseinvoiceComponent,
+    DatewiseinvoiceComponent
   ],
   imports: [
     BrowserModule,

@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CustomerComponent } from './customer/customer.component';
+import { DatewiseinvoiceComponent } from './datewiseinvoice/datewiseinvoice.component';
 import { HomeComponent } from './home/home.component';
 import { IncludedgstComponent } from './includedgst/includedgst.component';
 import { IncludedgstbillpageComponent } from './includedgstbillpage/includedgstbillpage.component';
+import { MonthandyearwiseinvoiceComponent } from './monthandyearwiseinvoice/monthandyearwiseinvoice.component';
 import { NonincludedgstComponent } from './nonincludedgst/nonincludedgst.component';
 import { NonincludedgstbillpageComponent } from './nonincludedgstbillpage/nonincludedgstbillpage.component';
 import { ProductComponent } from './product/product.component';
@@ -51,6 +53,14 @@ const routes: Routes = [
   {
     path:'sareebill',
     component:SareebillpageComponent
+  },
+  {
+    path:'invoicemonthandyearwise',
+    component:MonthandyearwiseinvoiceComponent
+  },
+  {
+    path:'invoicedatewise',
+    component:DatewiseinvoiceComponent
   },
 ];
 
