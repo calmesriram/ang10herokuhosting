@@ -7,7 +7,7 @@
                 <div class="card-body">  
                   <div class="row">
                     <div class="col-sm-4">
-                      <form  [formGroup]="customerForm" >
+                      <form  [formGroup]="customerForm" autocomplete="off">
 
                     <mat-form-field  appearance="outline" class="example-full-width">
                       <mat-label>Customer Name</mat-label>
@@ -31,17 +31,22 @@
                         <input matInput formControlName="adhaarid" >
                       </mat-form-field>
   
-                      <mat-form-field appearance="outline" class="example-full-width">                        
+                      <!-- <mat-form-field appearance="outline" class="example-full-width">                        
                             <mat-label>Choose a date</mat-label>
                             <input matInput formControlName="date" [matDatepicker]="picker">
                             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                             <mat-datepicker #picker></mat-datepicker>                          
-                      </mat-form-field>
+                      </mat-form-field> -->
   
                       
                     <mat-form-field appearance="outline" class="example-full-width">
                       <mat-label>Address</mat-label>
                       <textarea formControlName="address" matInput ></textarea>
+                    </mat-form-field> 
+
+                    <mat-form-field appearance="outline" class="example-full-width">
+                      <mat-label>Party'S GSTIN Number</mat-label>
+                      <input matInput formControlName="partygstin" >
                     </mat-form-field> 
 
                       </form>                
@@ -71,6 +76,12 @@
                         <ng-container matColumnDef="adhaarid">
                           <th mat-header-cell *matHeaderCellDef mat-sort-header> Adhaar Number </th>
                           <td mat-cell *matCellDef="let customertable"> {{customertable.adhaarid}} </td>
+                          <td mat-footer-cell *matFooterCellDef>  </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="partygstin">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header> Party's GSTIN </th>
+                          <td mat-cell *matCellDef="let customertable"> {{customertable.partygstin}} </td>
                           <td mat-footer-cell *matFooterCellDef>  </td>
                         </ng-container>
 

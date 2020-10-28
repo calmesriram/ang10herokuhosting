@@ -64,10 +64,14 @@ console.log(data);
 }
 
 onSubmit() {
+  
+  this.productForm.controls.date.setValue((new Date()).toLocaleDateString('en-GB'));
+
   console.warn(this.productForm.value);
   this.api.Postproduct(this.productForm.value).then((data)=>{
     console.log(data)
     this.getproduct();
+    this.productForm.reset();
   }).catch(e =>{
     console.log(e)
     this.getproduct();

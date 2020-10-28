@@ -12,7 +12,7 @@ var ELEMENT_DATA: any = [];
   styleUrls: ['./customer.component.css']
 })
 export class CustomerComponent implements OnInit {
-  displayedColumns:any = ['customername', 'phoneumber','adhaarid','address','emailid'];
+  displayedColumns:any = ['customername', 'phoneumber','adhaarid','partygstin','address','emailid'];
   // customertable;
   dataSource = new MatTableDataSource(ELEMENT_DATA);  
   @ViewChild(MatPaginator) paginator: MatPaginator;  
@@ -27,7 +27,8 @@ export class CustomerComponent implements OnInit {
       emailid: ['', Validators.required],
       adhaarid: ['', Validators.required],
       date: ['', Validators.required],
-      address: ['', Validators.required]      
+      address: ['', Validators.required],
+      partygstin:['',Validators.required]     
   });
 
     this.getcustomer();
@@ -65,10 +66,17 @@ console.log(data);
 }
 
 onSubmit() {
+  this.customerForm.controls.date.setValue((new Date()).toLocaleDateString('en-GB'));
+
   console.warn(this.customerForm.value);
+  // return;
   this.api.Postcustomer(this.customerForm.value).then((data)=>{
     console.log(data)
     this.getcustomer();
+  if(data['status'] == true){
+    this.api.snackmsg(data["msg"],"close");
+    this.customerForm.reset();
+  }
   }).catch(e =>{
     console.log(e)
     this.getcustomer();

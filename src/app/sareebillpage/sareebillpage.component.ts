@@ -16,11 +16,13 @@ const numberWords = require('number-words');
 })
 export class SareebillpageComponent implements OnInit {
 rupessinwords:any;
+dateandtime:any;
   constructor(public api:ApiService) { }
 
   ngOnInit(): void {
     
-    // this.api.billingarray_sareeprod = {"invoiceno":72,"invoicedate":"10/26/2020","customerdetails":{"_id":"5f893afd4a8eb2001728f72b","customername":"santhoush ","phoneumber":"12345679","address":"salem,tamilnadu,india,south india","emailid":"san@gamil.com","adhaarid":"21365480","date":"2020-10-18T18:30:00.000Z","customerid":"jbxgKwLw4","__v":0},"tabledatadet":[{"_id":"5f8d33a614712100171d0c80","sareeproductname":"demo","sareeqty":450,"sareerate":1350,"sareecode":"555","sareehsncode":"8245","date":"2020-10-22T18:30:00.000Z","sareeproductid":"KuyjqOlhv","__v":0,"collected":{"productname":"555","qty":10,"dis":23},"total":13477}],"tax_details":{"totamt":13477,"taxamt":"641.76","tottaxpercent":5,"cgsttax":"320.88","sgsttax":"320.88","roundoff":12835,"totamtwithtax":12835.24}}
+this.dateandtime = (new Date()).toLocaleDateString('en-GB')+" & "+(new Date()).toLocaleTimeString('en-US');
+    // this.api.billingarray_sareeprod = {"invoiceno":10,"invoicedate":"28/10/2020","invoicemonth":10,"invoiceyear":2020,"customerdetails":{"_id":"5f9929b05945cf73c433ad71","customername":"test","phoneumber":"12549780","address":"12349894asdfja; sdjfa;sdjf","emailid":"test@gmail.com","adhaarid":"2136548970","date":"28/10/2020","partygstin":"153264897","customerid":"CvsqxQBQf","__v":0},"tabledatadet":[{"_id":"5f97f132d12bc400171b9f25","sareeproductname":"GULABA CHUDI","sareeqty":11,"sareerate":665,"sareecode":"DT860","sareehsncode":"-","date":null,"sareeproductid":"9E10X8DC8","__v":0,"collected":{"productname":"DT860","qty":1,"dis":0},"total":665}],"tax_details":{"totamt":665,"taxamt":"31.67","tottaxpercent":5,"cgsttax":"15.84","sgsttax":"15.84","roundoff":633,"totamtwithtax":633.33}}
     this.rupessinwords = numberWords.convert(this.api.billingarray_sareeprod.tax_details.totamt)
     // console.log(this.rupessinwords)
     // console.log(    this.api.billingarray_sareeprod ,"**********")

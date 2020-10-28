@@ -53,7 +53,7 @@
         <div class="row">
         <div class="col-sm-6"> 
           <input type="text" value="{{'Vehicle No:'}}" class="form-control">
-          <input type="text" value="Date & Time of Supply:" class="form-control">
+          <input type="text" value="Date & Time of Supply: &nbsp;&nbsp;&nbsp;&nbsp; {{dateandtime}}" class="form-control">
           <input type="text" value="Place of Supply:" class="form-control">
           <input type="text" value="Trasportation Mode:(Own/Hired)" class="form-control">
 
@@ -61,8 +61,10 @@
         </div>
         <div class="col-sm-6"> 
           <input type="text" value="Invoice No: {{api.billingarray_incgst.invoiceno || 'xxx'}}" class="form-control">
-          <input type="text" value="Invoice Date: {{api.billingarray_incgst.invoicedate || 'xxx'}}" class="form-control">
+          <input type="text" value="Invoice Date:{{api.billingarray_incgst.invoicedate || 'xxx'}}" class="form-control">
           <input type="text" value="State & Code: TamilNadu & 33" class="form-control">
+          <input type="text" value="Party's GSTIN: {{api.billingarray_sareeprod.customerdetails.partygstin || 'XXX'}}" class="form-control">
+
 
           <!-- <table  class="table table-bordered table-sm">
               <thead>
@@ -119,7 +121,7 @@
     </div>
     <div class="row">
       <div class="col-sm-4">
-        <p style="border-style: ridge;" class="text-center">Subject to Salem Jurisdiction</p>
+        <!-- <p style="border-style: ridge;" class="text-center">Subject to Salem Jurisdiction</p> -->
         <p class="alignleft">Bank Details:</p>
         <p class="alignleft" style="font-size: large;"><br>
           <span>Name : Shree jeyam silvers,</span><br>
@@ -169,7 +171,7 @@
         <label  for="Rupees"><b>Rupees (In Words): </b>&nbsp;{{rupessinwords | uppercase}}</label><br>
       </div><br>
       <div class="col-sm-12 text-center" style="border-style: ridge;padding: 6px 6px;">
-        <label  for="Rupees" ><b> * Goods once sold will not be exchange or taken back Subject to salem Jurisdiction  E&OE</b></label><br>
+        <label  for="Rupees" ><b> * Goods once sold will not be exchange or taken back &nbsp;&nbsp;&nbsp;&nbsp; Subject to salem Jurisdiction  E&OE</b></label><br>
       </div>
       <div class="col-sm-6">
         <br>
