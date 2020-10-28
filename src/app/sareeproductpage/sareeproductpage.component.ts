@@ -13,7 +13,7 @@ var ELEMENT_DATA2: any = [];
 })
 export class SareeproductpageComponent implements OnInit {
 
-  displayedColumns:any = ['sno','sareeproductname','sareehsncode', 'sareeqty','sareerate','update','delete'];
+  displayedColumns:any = ['sno','sareeproductname', 'sareeqty','sareerate','update','delete'];
   // customertable;
   dataSource = new MatTableDataSource(ELEMENT_DATA);  
   dataSource2 = new MatTableDataSource(ELEMENT_DATA2);  
@@ -28,7 +28,7 @@ export class SareeproductpageComponent implements OnInit {
       sareeqty: ['', Validators.required],
       sareerate: ['', Validators.required],
       sareecode: ['', Validators.required],
-      sareehsncode:['', Validators.required],
+      // sareehsncode:['', Validators.required],
       date: ['', Validators.required]
       });
 
@@ -82,8 +82,9 @@ onSubmit() {
   this.sareesForm.value.sareeqty == null || this.sareesForm.value.sareeqty == "" && 
   this.sareesForm.value.sareerate == null || this.sareesForm.value.sareerate == "" && 
   this.sareesForm.value.sareecode == null || this.sareesForm.value.sareecode == "" && 
-  this.sareesForm.value.date == null || this.sareesForm.value.date == "" &&
-  this.sareesForm.value.sareehsncode == null || this.sareesForm.value.sareehsncode == ""){
+  this.sareesForm.value.date == null || this.sareesForm.value.date == ""
+  // this.sareesForm.value.sareehsncode == null || this.sareesForm.value.sareehsncode == ""
+  ){
     this.api.snackmsg("Please fill all the fields","close");
     return;
   }else{
@@ -127,7 +128,7 @@ this.sareesForm.controls.sareeproductname.setValue(para.sareeproductname);
 this.sareesForm.controls.sareeqty.setValue(para.sareeqty);
 this.sareesForm.controls.sareerate.setValue(para.sareerate);
 this.sareesForm.controls.sareecode.setValue(para.sareecode);
-this.sareesForm.controls.sareehsncode.setValue(para.sareehsncode);
+// this.sareesForm.controls.sareehsncode.setValue(para.sareehsncode);
 this.sareesForm.controls.date.setValue(para.date);
 }
 Update(){

@@ -38,6 +38,7 @@ cus_phonenumber:any;
   filteredOptions2: Observable<string[]>;
 proditem;
 public totamtModel:any=0;
+public onegramsilverModel:any=""
 
 
   constructor(public api:ApiService,public formBuilder: FormBuilder,public router:Router) { 
@@ -61,6 +62,7 @@ public totamtModel:any=0;
     this.api.billingarray_nonincgst.taxdet_role="nonincludednon";
     this.productForm = this.formBuilder.group({
       productname: ['', Validators.required],
+      // onegramsilverate:['',Validators.required],
       // rate: ['', Validators.required],
       // qty: ['', Validators.required]
     
@@ -74,7 +76,6 @@ public totamtModel:any=0;
     // sgsttax: ['', Validators.required],
     // roundoff: ['', Validators.required],
     // totamtwithtax: ['', Validators.required]
-
     taxdet_totalamountbeforetax:['',Validators.required],
     taxdet_totalamountaftertax:['', Validators.required],
     taxdet_totalamountoftax:['', Validators.required],
@@ -156,16 +157,26 @@ public totamtModel:any=0;
 }
 
 add() { 
+
+  // if(this.selectedproditem.length != 0){
+  
   // this.proditem.rate = this.productForm.controls.rate.value
 this.selectedproditem.push(this.proditem);
 this.productForm.reset();
 console.log(this.selectedproditem)
 this.value2=""
 this.tabledata();
+// return;
+//   }else{
+//     this.api.snackmsg("Please Choose product","Close")
+//   return;
+//   }
+    
    
 }
 taxcalc(){
   this.api.billingarray_nonincgst.tax_details ="";
+  this.api.billingarray_nonincgst.tax_details.onegramsilverrate = String(this.onegramsilverModel)
   let taxamount =0;
   let tax_cgst_sgst =0;
   let totalamount_withtax = 0;
@@ -205,7 +216,7 @@ remove(dat){
   this.tabledata();
 }
 
-productCount(){
+productCount(){  
   this.api.productbillcount().then(res =>{
     console.log(res)
     //  console.log(res['count']);
@@ -223,18 +234,23 @@ productCount(){
 }
 
 pr0ductbill(){
-console.log(this.api.billingarray_nonincgst)
-
-return;
-this.api.Productbill(this.api.billingarray_nonincgst).then(res =>{
-  console.log(res)
-  if(res['status'] == true){
-    this.api.snackmsg(res["msg"],"close");
-    this.router.navigateByUrl('/nonincludedgstbillpage')
+  if(this.selectedproditem.length != 0){
+    console.log(this.api.billingarray_nonincgst)
+    this.api.Productbill(this.api.billingarray_nonincgst).then(res =>{
+      console.log(res)
+      if(res['status'] == true){
+        this.api.snackmsg(res["msg"],"close");
+        this.router.navigateByUrl('/nonincludedgstbillpage')
+      }
+    }).catch(e =>{
+      console.log(e)
+    })
+  }else{
+    this.api.snackmsg("Please add Least one","close");
+    return;
   }
-}).catch(e =>{
-  console.log(e)
-})
+  
+
 }
 
 
