@@ -36,7 +36,7 @@
       </span>
     </div>
     <div class="col-sm-6"> <br>
-      <p style="font-size: large;" class="text-center"><b>SHREE JEYAM SILVERS & SAREES</b></p>
+      <p style="font-size: x-large;" class="text-center"><b>SHREE JEYAM SILVERS & SAREES</b></p>
         <p class="text-center">Wholesale and Retail<br>
           <span>31, Chairman Ramalingam Street, </span><br>
           <span>(Opposite to paavadi girls higher secondary school), </span><br>
@@ -44,7 +44,7 @@
         </p>          
         </div>
     <div class="col-sm-3"> <br>
-      <span><img src="../../assets/photo/murugan.jpg" style="width:120px;height:120px;">
+      <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="../../assets/photo/murugan.jpg" style="width:120px;height:120px;">
       </span>
     </div>
   </div>
@@ -52,28 +52,26 @@
         
         <div class="row">
         <div class="col-sm-6"> 
-          <input type="text" value="{{'Vehicle No:'}}" class="form-control">
+          
+          <label  class="text-left form-control" for="invoice">Vehicle No: &nbsp;</label>
+          <label  class="text-left form-control" for="invoice">Date & Time of Supply: &nbsp;<b>{{dateandtime}}</b></label>
+          <label  class="text-left form-control" for="invoice">Place of Supply: &nbsp;<b></b></label>
+          <label  class="text-left form-control" for="invoice">Trasportation Mode:(Own/Hired): &nbsp;<b></b></label>
+
+          <!-- <input type="text" value="{{'Vehicle No:'}}" class="form-control">
           <input type="text" value="Date & Time of Supply: &nbsp;&nbsp;&nbsp;&nbsp; {{dateandtime}}" class="form-control">
           <input type="text" value="Place of Supply:" class="form-control">
-          <input type="text" value="Trasportation Mode:(Own/Hired)" class="form-control">
+          <input type="text" value="Trasportation Mode:(Own/Hired)" class="form-control"> -->
 
           
         </div>
         <div class="col-sm-6"> 
-          <input type="text" value="Invoice No: {{api.billingarray_incgst.invoiceno || 'xxx'}}" class="form-control">
-          <input type="text" value="Invoice Date:{{api.billingarray_incgst.invoicedate || 'xxx'}}" class="form-control">
-          <input type="text" value="State & Code: TamilNadu & 33" class="form-control">
-          <input type="text" value="Party's GSTIN: {{api.billingarray_sareeprod.customerdetails.partygstin || 'XXX'}}" class="form-control">
+          <label  class="text-left form-control" for="invoice">Invoice No: &nbsp;<b>{{api.billingarray_incgst.invoiceno || 'xxx'}}</b></label>
+          <label  class="text-left form-control" for="invoice">Invoice Date: &nbsp;<b>{{api.billingarray_incgst.invoicedate || 'xxx'}}</b></label>
+          <label  class="text-left form-control" for="invoice">State & Code: &nbsp;<b>{{'TamilNadu & 33'}}</b></label>
+          <label  class="text-left form-control" for="invoice">Party's GSTIN: &nbsp;<b>{{api.billingarray_sareeprod.customerdetails.partygstin || 'XXX'}}</b></label>
 
 
-          <!-- <table  class="table table-bordered table-sm">
-              <thead>
-                <tr>
-                    <th>GSTIN</th>
-                    <td>{{"33BFSPP1826D1ZG"}}</td>
-                </tr>
-              </thead>
-          </table> -->
       </div>
           </div>
       </div><br>
@@ -126,6 +124,7 @@
         <p class="alignleft" style="font-size: large;"><br>
           <span>Name : Shree jeyam silvers,</span><br>
           <span>Bank Name - Indian Overseas Bank,</span><br>
+          <span>Branch Name - Shevapet Salem,</span><br>
           <span>A/c No. - 014902000002879,</span><br>
           <span> IFSC Code - IOBA0000149 </span></p>
       </div>

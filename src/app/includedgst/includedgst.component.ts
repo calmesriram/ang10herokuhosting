@@ -58,6 +58,7 @@ public totamtModel:any=0;
     this.api.billingarray_incgst = {};
     this.api.billingarray_nonincgst = {};
     // window.print()
+    this.api.billingarray_incgst.taxdet_role="includedgst";
     this.productForm = this.formBuilder.group({
       productname: ['', Validators.required],
       // rate: ['', Validators.required],

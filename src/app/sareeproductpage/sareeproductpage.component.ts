@@ -77,6 +77,7 @@ console.log(data);
 }
 
 onSubmit() {
+  this.sareesForm.controls.date.setValue((new Date()).toLocaleDateString('en-GB'));
   if(this.sareesForm.value.sareeproductname == null || this.sareesForm.value.sareeproductname == "" && 
   this.sareesForm.value.sareeqty == null || this.sareesForm.value.sareeqty == "" && 
   this.sareesForm.value.sareerate == null || this.sareesForm.value.sareerate == "" && 

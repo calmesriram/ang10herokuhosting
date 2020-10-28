@@ -58,7 +58,7 @@ public totamtModel:any=0;
   ngOnInit() {
     this.api.billingarray_incgst = {};
     this.api.billingarray_nonincgst = {};
-    // window.print()
+    this.api.billingarray_nonincgst.taxdet_role="nonincludednon";
     this.productForm = this.formBuilder.group({
       productname: ['', Validators.required],
       // rate: ['', Validators.required],
@@ -224,7 +224,8 @@ productCount(){
 
 pr0ductbill(){
 console.log(this.api.billingarray_nonincgst)
-// return;
+
+return;
 this.api.Productbill(this.api.billingarray_nonincgst).then(res =>{
   console.log(res)
   if(res['status'] == true){

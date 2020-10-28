@@ -10,13 +10,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 export class ApiService {
 public baseurl:String= "https://jwlserver.herokuapp.com"
 // public baseurl:String= "http://localhost:3000"
-public billingobject:any={
-  customerdetails:[],
-  tabledatadet:[],
-  tax_details_addtional_bill_1:[],
-  invoiceno:String,
-invoicedate:String
-};
+
 public billingarray_sareeprod:any={
   customerdetails:[],
   tabledatadet:[],
