@@ -23,8 +23,8 @@ export class MonthandyearwiseinvoiceComponent implements OnInit {
   productsareeloader:boolean;
   constructor(public api:ApiService,public formBuilder: FormBuilder,public router:Router) { }
 
-  displayedColumns2:any = ['print','position','invoicenumber','name','phonenumber','adhaarid','invoicedate','total','emailid'];  
-  displayedColumns:any = ['print','position','taxdet_role','invoicenumber','name','phonenumber','adhaarid','invoicedate','total','emailid'];  
+  displayedColumns2:any = ['position','invoicenumber','name','phonenumber','adhaarid','invoicedate','total','emailid'];  
+  displayedColumns:any = ['position','taxdet_role','invoicenumber','name','phonenumber','adhaarid','invoicedate','total','emailid'];  
 
   dataSource = new MatTableDataSource(ELEMENT_DATA); 
   dataSource2 = new MatTableDataSource(ELEMENT_DATA2); 

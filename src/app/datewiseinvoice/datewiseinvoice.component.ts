@@ -122,7 +122,8 @@ let datewise_product_saree =  {
       this.api.billingarray_nonincgst.tax_details.taxdet_totalamountofsgsttax = data.taxdet_totalamountofsgsttax;
       this.api.billingarray_nonincgst.tax_details.taxdet_totalamountoftax= data.taxdet_totalamountoftax;
       this.api.billingarray_nonincgst.tax_details.taxdet_totalamountaftertax = data.taxdet_totalamountaftertax;
-      this.router.navigateByUrl('/nonincludedgstbillpage')
+      alert("Your have been selected Invoice Number of "+data.invoicenumber + " And " + data.taxdet_role +" Page");
+      this.router.navigateByUrl('/nonincludedgstbillpage');
       return;
     }
     if(data.taxdet_role == "includedgst"){
@@ -139,9 +140,28 @@ let datewise_product_saree =  {
       this.api.billingarray_incgst.tax_details.taxdet_totalamountofsgsttax = data.taxdet_totalamountofsgsttax;
       this.api.billingarray_incgst.tax_details.taxdet_totalamountoftax= data.taxdet_totalamountoftax;
       this.api.billingarray_incgst.tax_details.taxdet_totalamountaftertax = data.taxdet_totalamountaftertax;
-      this.router.navigateByUrl('/includedgstbillpage')
+      alert("Your have been selected Invoice Number of "+data.invoicenumber + " And " + data.taxdet_role +" Page");
+      this.router.navigateByUrl('/includedgstbillpage');
       return;
     }
+  }
+  datewiseforsareeproduct(data){
+    // console.log(data)
+    this.api.billingarray_sareeprod.invoiceno = data.cust_invoicenumber;
+    this.api.billingarray_sareeprod.invoicedate = data.cust_invoicedate;
+    this.api.billingarray_sareeprod.customerdetails.customername = data.cust_name;
+    this.api.billingarray_sareeprod.customerdetails.phoneumber = data.cust_phonenumber;
+    this.api.billingarray_sareeprod.customerdetails.address =data.cust_address;
+    this.api.billingarray_sareeprod.customerdetails.partygstin = data.cust_partygstin;
+    this.api.billingarray_sareeprod.tabledatadet = data.cust_tabledatadet;
+    this.api.billingarray_sareeprod.tax_details.totamtwithtax = data.custtaxdet_roundoff;
+    this.api.billingarray_sareeprod.tax_details.cgsttax = data.custtaxdet_cgsttaxamount;
+    this.api.billingarray_sareeprod.tax_details.sgsttax = data.custtaxdet_sgsttaxamount;
+    this.api.billingarray_sareeprod.tax_details.taxamt = data.custtaxdet_taxamount;
+    this.api.billingarray_sareeprod.tax_details.totamt = data.custtaxdet_totalamount;
+    alert("Your have been selected Invoice Number of "+data.cust_invoicenumber + " At " + data.cust_invoicedate);
+      this.router.navigateByUrl('/sareebill');
+      return;
   }
 
 }
