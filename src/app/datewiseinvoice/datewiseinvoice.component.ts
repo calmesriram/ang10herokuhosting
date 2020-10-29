@@ -3,8 +3,11 @@ import { ApiService } from '../api.service';
 import { FormGroup, FormControl,FormBuilder,Validators } from '@angular/forms';
 import {MatTableDataSource} from '@angular/material/table';
 import { Router } from '@angular/router';
+
+
 var ELEMENT_DATA: any = [];
 var ELEMENT_DATA2: any = [];
+
 @Component({
   selector: 'app-datewiseinvoice',
   templateUrl: './datewiseinvoice.component.html',
@@ -146,7 +149,6 @@ let datewise_product_saree =  {
     }
   }
   datewiseforsareeproduct(data){
-    // console.log(data)
     this.api.billingarray_sareeprod.invoiceno = data.cust_invoicenumber;
     this.api.billingarray_sareeprod.invoicedate = data.cust_invoicedate;
     this.api.billingarray_sareeprod.customerdetails.customername = data.cust_name;

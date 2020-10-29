@@ -7,6 +7,8 @@ import {MatTableDataSource} from '@angular/material/table';
 import { Router } from '@angular/router';
 var ELEMENT_DATA: any = [];
 var ELEMENT_DATA2: any = [];
+import { ngxCsv } from 'ngx-csv/ngx-csv';
+import { async } from '@angular/core/testing';
 
 @Component({
   selector: 'app-monthandyearwiseinvoice',
@@ -17,12 +19,15 @@ export class MonthandyearwiseinvoiceComponent implements OnInit {
   monthandyearsareeForm: FormGroup;
   monthandyearForm: FormGroup;
   array_mon_year:any=[];
-  
+  invoice_product_month_year_csv_includedgst:any=[];
+  invoice_product_month_year_csv_nonincludedgst:any=[];
+  invoice_product_month_year_csv_includedgst_both:any=[];
     datesareeForm: FormGroup;
   productloader:boolean;
   productsareeloader:boolean;
   constructor(public api:ApiService,public formBuilder: FormBuilder,public router:Router) { }
 
+ productcsvheader:any = ["PARTY'S GSTIN","INVOICE NUMBER","INOVICE DATE","NAME","PHONE NUMBER","ADHAAR","ADDRESS","EMAILID","TAX PERCENT","CGST","SGST","TAX AMOUNT","BEFORE TAX AMOUNT","AFTER TAX AMOUNT"]
   displayedColumns2:any = ['position','invoicenumber','name','phonenumber','adhaarid','invoicedate','total','emailid'];  
   displayedColumns:any = ['position','taxdet_role','invoicenumber','name','phonenumber','adhaarid','invoicedate','total','emailid'];  
 
@@ -76,6 +81,68 @@ export class MonthandyearwiseinvoiceComponent implements OnInit {
         this.api.Invoiceproductmonthandyear(payload).then(res =>{
           console.log(res)
           if(res["status"] == true){
+            this.invoice_product_month_year_csv_includedgst.length = 0;
+  this.invoice_product_month_year_csv_nonincludedgst.length = 0;
+  this.invoice_product_month_year_csv_includedgst_both.length = 0;
+            if(res["data"].length != 0){
+              res["data"].forEach(async element => {
+                if(await element.taxdet_role == "nonincludedgst"){
+                  let temp ={
+                    "PARTY'S GSTIN":await element.partygstin,
+                    "INVOICE NUMBER":await element.invoicenumber,
+                    "INOVICE DATE": await element.invoicedate,
+                    "NAME":await element.name,
+                    "PHONE NUMBER":await element.phonenumber,
+                    "ADHAAR":await element.adhaarid,
+                    "ADDRESS":await element.address,
+                    "EMAILID":await element.emailid,
+                    "TAX PERCENT":await element.taxdet_taxpercenttage,
+                    "CGST":await element.taxdet_totalamountofcgsttax,
+                    "SGST":await element.taxdet_totalamountofsgsttax,
+                    "TAX AMOUNT":await element.taxdet_totalamountoftax,
+                    "BEFORE TAX AMOUNT":await element.taxdet_totalamountbeforetax,
+                    "AFTER TAX AMOUNT":await element.taxdet_totalamountaftertax,
+                  }
+                  this.invoice_product_month_year_csv_nonincludedgst.push(temp);  
+                }
+                if(await element.taxdet_role == "includedgst"){
+                  let temp ={
+                    "PARTY'S GSTIN":await element.partygstin,
+                    "INVOICE NUMBER":await element.invoicenumber,
+                    "INOVICE DATE": await element.invoicedate,
+                    "NAME":await element.name,
+                    "PHONE NUMBER":await element.phonenumber,
+                    "ADHAAR":await element.adhaarid,
+                    "ADDRESS":await element.address,
+                    "EMAILID":await element.emailid,
+                    "TAX PERCENT":await element.taxdet_taxpercenttage,
+                    "CGST":await element.taxdet_totalamountofcgsttax,
+                    "SGST":await element.taxdet_totalamountofsgsttax,
+                    "TAX AMOUNT":await element.taxdet_totalamountoftax,
+                    "BEFORE TAX AMOUNT":await element.taxdet_totalamountbeforetax,
+                    "AFTER TAX AMOUNT":await element.taxdet_totalamountaftertax,
+                  }
+                  this.invoice_product_month_year_csv_includedgst.push(temp);  
+                }
+                let temp ={
+                  "PARTY'S GSTIN":await element.partygstin,
+                  "INVOICE NUMBER":await element.invoicenumber,
+                  "INOVICE DATE": await element.invoicedate,
+                  "NAME":await element.name,
+                  "PHONE NUMBER":await element.phonenumber,
+                  "ADHAAR":await element.adhaarid,
+                  "ADDRESS":await element.address,
+                  "EMAILID":await element.emailid,
+                  "TAX PERCENT":await element.taxdet_taxpercenttage,
+                  "CGST":await element.taxdet_totalamountofcgsttax,
+                  "SGST":await element.taxdet_totalamountofsgsttax,
+                  "TAX AMOUNT":await element.taxdet_totalamountoftax,
+                  "BEFORE TAX AMOUNT":await element.taxdet_totalamountbeforetax,
+                  "AFTER TAX AMOUNT":await element.taxdet_totalamountaftertax,
+                }
+                this.invoice_product_month_year_csv_includedgst_both.push(temp);
+              });
+            }
             this.dataSource = new MatTableDataSource(res["data"]);
             this.productloader = false;
           }
@@ -100,6 +167,52 @@ export class MonthandyearwiseinvoiceComponent implements OnInit {
           this.productsareeloader = false;
           console.log(e)
         })
+  }
+
+  productincludedgstcsv(){
+    let filename = "Product_includedgst_"+(new Date()).toLocaleDateString('en-GB')+"&"+(new Date()).toLocaleTimeString('en-US');
+    var options = { 
+      fieldSeparator: ',',
+      quoteStrings: '"',
+      decimalseparator: '.',
+      showLabels: true, 
+      showTitle: true,
+      title: filename,
+      useBom: true,
+      noDownload: false,
+      headers:this.productcsvheader
+    };
+     new ngxCsv(this.invoice_product_month_year_csv_includedgst,filename, options);
+  }
+  productnonincludedgstcsv(){
+    let filename = "Product_nonincludedgst_"+(new Date()).toLocaleDateString('en-GB')+"&"+(new Date()).toLocaleTimeString('en-US');
+    var options = { 
+      fieldSeparator: ',',
+      quoteStrings: '"',
+      decimalseparator: '.',
+      showLabels: true, 
+      showTitle: true,
+      title: filename,
+      useBom: true,
+      noDownload: false,
+      headers:this.productcsvheader
+    };
+     new ngxCsv(this.invoice_product_month_year_csv_nonincludedgst,filename, options);
+  }
+  productbothcsv(){
+    let filename = "Product_included_nonincluded_"+(new Date()).toLocaleDateString('en-GB')+"&"+(new Date()).toLocaleTimeString('en-US');
+    var options = { 
+      fieldSeparator: ',',
+      quoteStrings: '"',
+      decimalseparator: '.',
+      showLabels: true, 
+      showTitle: true,
+      title: filename,
+      useBom: true,
+      noDownload: false,
+      headers:this.productcsvheader
+    };
+     new ngxCsv(this.invoice_product_month_year_csv_includedgst_both,filename, options);
   }
 
 }
