@@ -176,7 +176,7 @@ this.tabledata();
 }
 taxcalc(){
   this.api.billingarray_nonincgst.tax_details ="";
-  this.api.billingarray_nonincgst.tax_details.onegramsilverrate = String(this.onegramsilverModel)
+  // this.api.billingarray_nonincgst.tax_details.onegramsilverrate = String(this.onegramsilverModel)
   let taxamount =0;
   let tax_cgst_sgst =0;
   let totalamount_withtax = 0;
