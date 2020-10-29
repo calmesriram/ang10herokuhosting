@@ -29,7 +29,8 @@ invoicedate:String,
 invoicemonth:String,
   invoiceyear:String,
   taxdet_role:"includedgst",
-  onegramsilverrate:String
+  onegramsilverrate:String,
+  partygstin:String
 };
 public billingarray_nonincgst:any={
   customerdetails:[],
@@ -39,8 +40,9 @@ public billingarray_nonincgst:any={
 invoicedate:String,
 invoicemonth:String,
   invoiceyear:String,
-  taxdet_role:"nonincludednon",
-  onegramsilverrate:String
+  taxdet_role:"nonincludedgst",
+  onegramsilverrate:String,
+  partygstin:String
 };
 
   constructor(public _snackBar: MatSnackBar,public http: HttpClient,public spinner: NgxSpinnerService    ) {

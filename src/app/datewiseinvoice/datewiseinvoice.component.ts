@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { FormGroup, FormControl,FormBuilder,Validators } from '@angular/forms';
-import {map, startWith} from 'rxjs/operators';
-import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import { Router } from '@angular/router';
 var ELEMENT_DATA: any = [];
@@ -44,25 +42,12 @@ productsareeloader:boolean;
       {month:"12",year:(new Date()).getFullYear()},
       
     )
-
-//     (new Date()).toLocaleDateString('en-GB');
-// (new Date()).getMonth() +1 ;
-// (new Date()).getFullYear();
-    // this.api.Invoiceproductmonthandyear((new Date()).toLocaleDateString('en-GB')).then(res =>{
-    //   console.log(res)
-    // }).catch(e =>{
-    //   console.log(e)
-    // })
     this.dateForm = this.formBuilder.group({  
       date: ['', Validators.required]
       
   });
   this.datesareeForm = this.formBuilder.group({  
     datesaree: ['', Validators.required]
-    
-});
-  this.monthandyearForm = this.formBuilder.group({  
-    monyeardate: ['', Validators.required]
     
 });
 
@@ -121,29 +106,42 @@ let datewise_product_saree =  {
         })
     }
   }
-//   monyear(){
-//     // console.log(this.monthandyearForm.value)
-//  let payload =    {
-//    "invoicemonth":String(this.monthandyearForm.value.monyeardate.month),
-//    "invoiceyear":String(this.monthandyearForm.value.monyeardate.year)
-//   }
 
-//   let paload2 ={
-//     "cust_invoicemonth":String(this.monthandyearForm.value.monyeardate.month),
-//     "cust_invoiceyear":String(this.monthandyearForm.value.monyeardate.year)
-//   }
-//   console.log(payload)
-//     this.api.Invoiceproductmonthandyear(payload).then(res =>{
-//       console.log(res)
-//     }).catch(e =>{
-//       console.log(e)
-//     })
-
-//     this.api.Invoiceproductsareemonthandyear(paload2).then(res =>{
-//       console.log(res)
-//     }).catch(e =>{
-//       console.log(e)
-//     })
-// }
+  datewiseforproduct(data){
+    if(data.taxdet_role == "nonincludedgst"){
+      // console.log(data)
+      this.api.billingarray_nonincgst.invoiceno = data.invoicenumber;
+      this.api.billingarray_nonincgst.invoicedate = data.invoicedate;
+      this.api.billingarray_nonincgst.tabledatadet= data.tabledatadet;
+      this.api.billingarray_nonincgst.customerdetails.customername =data.name;   
+      this.api.billingarray_nonincgst.customerdetails.phoneumber =data.phonenumber;
+      this.api.billingarray_nonincgst.customerdetails.address=data.address;
+      this.api.billingarray_nonincgst.customerdetails.partygstin=data.partygstin;
+      this.api.billingarray_nonincgst.tax_details.taxdet_totalamountbeforetax = data.taxdet_totalamountbeforetax;
+      this.api.billingarray_nonincgst.tax_details.taxdet_totalamountofcgsttax = data.taxdet_totalamountofcgsttax; 
+      this.api.billingarray_nonincgst.tax_details.taxdet_totalamountofsgsttax = data.taxdet_totalamountofsgsttax;
+      this.api.billingarray_nonincgst.tax_details.taxdet_totalamountoftax= data.taxdet_totalamountoftax;
+      this.api.billingarray_nonincgst.tax_details.taxdet_totalamountaftertax = data.taxdet_totalamountaftertax;
+      this.router.navigateByUrl('/nonincludedgstbillpage')
+      return;
+    }
+    if(data.taxdet_role == "includedgst"){
+      // console.log(data)
+      this.api.billingarray_incgst.invoiceno = data.invoicenumber;
+      this.api.billingarray_incgst.invoicedate = data.invoicedate;
+      this.api.billingarray_incgst.tabledatadet= data.tabledatadet;
+      this.api.billingarray_incgst.customerdetails.customername =data.name;   
+      this.api.billingarray_incgst.customerdetails.phoneumber =data.phonenumber;
+      this.api.billingarray_incgst.customerdetails.address=data.address;
+      this.api.billingarray_incgst.customerdetails.partygstin=data.partygstin;
+      this.api.billingarray_incgst.tax_details.taxdet_totalamountbeforetax = data.taxdet_totalamountbeforetax;
+      this.api.billingarray_incgst.tax_details.taxdet_totalamountofcgsttax = data.taxdet_totalamountofcgsttax; 
+      this.api.billingarray_incgst.tax_details.taxdet_totalamountofsgsttax = data.taxdet_totalamountofsgsttax;
+      this.api.billingarray_incgst.tax_details.taxdet_totalamountoftax= data.taxdet_totalamountoftax;
+      this.api.billingarray_incgst.tax_details.taxdet_totalamountaftertax = data.taxdet_totalamountaftertax;
+      this.router.navigateByUrl('/includedgstbillpage')
+      return;
+    }
+  }
 
 }

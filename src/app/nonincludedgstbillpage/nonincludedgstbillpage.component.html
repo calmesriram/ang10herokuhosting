@@ -78,7 +78,7 @@
              <label class="text-right" for="cus_address">Customer Name:&nbsp;<b>{{api.billingarray_nonincgst.customerdetails.customername || "xxx"}}</b></label><br>
             <label  for="cus_address">Phone Number:&nbsp;<b>{{api.billingarray_nonincgst.customerdetails.phoneumber || "xxx"}}</b></label><br>
             <label  for="cus_address">Address:&nbsp;<b>{{api.billingarray_nonincgst.customerdetails.address || "xxx"}}</b></label><br>
-            <label  for="invoice">Party's GSTIN: &nbsp;<b>{{api.billingarray_sareeprod.customerdetails.partygstin || 'XXX'}}</b></label>
+            <label  for="invoice">Party's GSTIN: &nbsp;<b>{{this.api.billingarray_nonincgst.customerdetails.partygstin || 'XXX'}}</b></label>
 
           </div>
       </div>

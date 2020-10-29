@@ -59,7 +59,7 @@ public onegramsilverModel:any=""
   ngOnInit() {
     this.api.billingarray_incgst = {};
     this.api.billingarray_nonincgst = {};
-    this.api.billingarray_nonincgst.taxdet_role="nonincludednon";
+    this.api.billingarray_nonincgst.taxdet_role="nonincludedgst";
     this.productForm = this.formBuilder.group({
       productname: ['', Validators.required],
       // onegramsilverate:['',Validators.required],
