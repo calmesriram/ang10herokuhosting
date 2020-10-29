@@ -1,45 +1,260 @@
+                        
+   <div class="container-fluid">
+    <div class="row"> 
+      <div class="col-sm-12">
+       <mat-tab-group>
+         <mat-tab label="Product wise"> 
+           <br>
+           <!-- <div class="row">                                                   -->
+             <!-- <div class="col-sm-12"> -->
 
-                      <form  [formGroup]="dateForm" autocomplete="off">
+               <div class="col-sm-6">                                                  
+                 <form class="form-inline" [formGroup]="monthandyearForm" autocomplete="off">
+                   <div class="form-group">
+                    <mat-form-field appearance="fill">
+                      <mat-label>Month & Year</mat-label>
+                      <mat-select formControlName="monyeardate">
+                        <mat-option *ngFor="let item of array_mon_year" [value]="item">
+                          {{item.month}} | {{item.year}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                 </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                 <div class="form-group">
+                   <!-- <div class="example-button-row">                       -->
+                    <button mat-raised-button (click)="onSubmit()" color="primary">Get</button>
+                    <!-- </div> -->
+                 </div>
+                   </form>
+                 </div>
+
+                 <div class="col-sm-6">
+                   <div *ngIf="productloader">
+                     <div    class="spinner-border spinner-border-sm" role="status">
+                       <span class="sr-only">Loading...</span>
+                     </div>&nbsp;Loading...
+                   </div>
+
+                   </div>
+                   
+                 <!-- <div class="col-sm-2"></div> -->
+                 <!-- <br> -->
+                 <div class="col-sm-12">
+                       
+<form class="form-inline" autocomplete="off">                                                            
+
+<mat-form-field>
+ <mat-label>Search</mat-label>
+ <input matInput (keyup)="applyFilter($event)" #input>
+</mat-form-field>     
+<mat-label *ngIf='dataSource.data.length != 0 '>Total Records :{{dataSource.data.length}}</mat-label>         
+ </form>                      
+<div class="example-container mat-elevation-z8">
+<table mat-table [dataSource]="dataSource" matSort>                                
 
 
-                      <mat-form-field appearance="outline" class="example-full-width">                        
-                            <mat-label>Choose a date</mat-label>
-                            <input matInput formControlName="date" [matDatepicker]="picker">
-                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                            <mat-datepicker #picker></mat-datepicker>                          
-                      </mat-form-field>
-                      </form>
-                      <div class="example-button-row">                      
-                        <button mat-raised-button (click)="onSubmit()" color="primary">get</button>
-                      </div>
+<ng-container matColumnDef="print">
+ <th mat-header-cell *matHeaderCellDef> Print </th>
+ <td mat-cell *matCellDef="let producttable;let i = index;">
+   <mat-icon >print</mat-icon>
+ </td>
+ <td mat-footer-cell *matFooterCellDef>  </td>
+</ng-container>
+
+<ng-container matColumnDef="position">
+   <th mat-header-cell *matHeaderCellDef> No. </th>
+   <td mat-cell *matCellDef="let producttable;let i = index;"> {{i+1}}. </td>
+   <td mat-footer-cell *matFooterCellDef>  </td>
+</ng-container>
+
+<ng-container matColumnDef="taxdet_role">
+ <th mat-header-cell *matHeaderCellDef mat-sort-header> Role </th>
+ <td mat-cell *matCellDef="let producttable"> {{producttable.taxdet_role}} </td>
+ <td mat-footer-cell *matFooterCellDef>  </td>
+</ng-container>
+
+<ng-container matColumnDef="invoicenumber">
+ <th mat-header-cell *matHeaderCellDef mat-sort-header> Invoice Number </th>
+ <td mat-cell *matCellDef="let producttable"> {{producttable.invoicenumber}} </td>
+ <td mat-footer-cell *matFooterCellDef></td>
+</ng-container>
+
+<ng-container matColumnDef="name">
+ <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+ <td mat-cell *matCellDef="let producttable"> {{producttable.name}} </td>
+ <td mat-footer-cell *matFooterCellDef></td>
+</ng-container>
+
+<ng-container matColumnDef="phonenumber">
+ <th mat-header-cell *matHeaderCellDef mat-sort-header> Contact </th>
+ <td mat-cell *matCellDef="let producttable"> {{producttable.phonenumber}} </td>
+ <td mat-footer-cell *matFooterCellDef></td>
+</ng-container>
+
+<ng-container matColumnDef="adhaarid">
+ <th mat-header-cell *matHeaderCellDef mat-sort-header> Adhaar </th>
+ <td mat-cell *matCellDef="let producttable"> {{producttable.adhaarid}} </td>
+ <td mat-footer-cell *matFooterCellDef></td>
+</ng-container>
 
 
+<ng-container matColumnDef="invoicedate">
+ <th mat-header-cell *matHeaderCellDef mat-sort-header> Invoicedate </th>
+ <td mat-cell *matCellDef="let producttable"> {{producttable.invoicedate}} </td>
+ <td mat-footer-cell *matFooterCellDef></td>
+</ng-container>
 
-                      <form  [formGroup]="monthandyearForm" autocomplete="off">
-                        <mat-form-field appearance="fill">
-                        <mat-label>Month & Year</mat-label>
-                        <mat-select formControlName="monyeardate">
-                          <mat-option *ngFor="let item of array_mon_year" [value]="item">
-                            {{item.month}} | {{item.year}}
-                          </mat-option>
-                        </mat-select>
-                      </mat-form-field>
-                      </form>
-                      
-                      <div class="example-button-row">                      
-                        <button mat-raised-button (click)="monyear()" color="primary">get1</button>
-                      </div>
+<ng-container matColumnDef="total">
+ <th mat-header-cell *matHeaderCellDef mat-sort-header> Total </th>
+ <td mat-cell *matCellDef="let producttable">&#x20B9; {{producttable.taxdet_totalamountaftertax}}</td>
+ <td mat-footer-cell *matFooterCellDef>  </td>
+</ng-container>
 
-                      
-                      <div class="container-fluid">
-                        <div class="row">
-                          <div class="col-sm-12">
-                            <mat-tab-group>
-                              <mat-tab label="First"> Content 1 </mat-tab>
-                              <mat-tab label="Second"> Content 2 </mat-tab>
-                              <mat-tab label="Third"> Content 3 </mat-tab>
-                            </mat-tab-group>
-                            
-                          </div>                          
-                        </div>
-                      </div>
+<ng-container matColumnDef="emailid">
+ <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+ <td mat-cell *matCellDef="let producttable"> {{producttable.emailid}}</td>
+ <td mat-footer-cell *matFooterCellDef>  </td>
+</ng-container>
+
+<tr mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></tr>
+<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>                   
+<tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
+</table>
+
+</div>
+
+                 </div>
+             <!-- </div> -->
+           <!-- </div> -->
+           <br><br><br>
+         </mat-tab>
+         <mat-tab label="Saree Product wise"> 
+           <br>
+           <!-- <div class="row">                                                   -->
+             <!-- <div class="col-sm-12"> -->
+
+               <div class="col-sm-6">                                                  
+                <form class="form-inline" [formGroup]="monthandyearsareeForm" autocomplete="off">
+                  <div class="form-group">
+                   <mat-form-field appearance="fill">
+                     <mat-label>Month & Year</mat-label>
+                     <mat-select formControlName="monyearsareedate">
+                       <mat-option *ngFor="let item of array_mon_year" [value]="item">
+                         {{item.month}} | {{item.year}}
+                       </mat-option>
+                     </mat-select>
+                   </mat-form-field>
+                </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <div class="form-group">
+                  <!-- <div class="example-button-row">                       -->
+                   <button mat-raised-button (click)="onSubmitsareeproduct()" color="primary">Get</button>
+                   <!-- </div> -->
+                </div>
+                  </form>
+                 </div>
+
+                 <div class="col-sm-6">
+                   <div *ngIf="productsareeloader">
+                     <div    class="spinner-border spinner-border-sm" role="status">
+                       <span class="sr-only">Loading...</span>
+                     </div>&nbsp;Loading...
+                   </div>
+
+                   </div>
+                   
+                 <!-- <div class="col-sm-2"></div> -->
+                 <!-- <br> -->
+                 <div class="col-sm-12">
+                       
+<form class="form-inline" autocomplete="off">                                                            
+
+<mat-form-field>
+ <mat-label>Search</mat-label>
+ <input matInput (keyup)="applyFilter2($event)" #input>
+</mat-form-field>     
+<mat-label *ngIf='dataSource2.data.length != 0 '>Total Records :{{dataSource2.data.length}}</mat-label>         
+ </form>                      
+<div class="example-container mat-elevation-z8">
+<table mat-table [dataSource]="dataSource2" matSort>                                
+
+
+<ng-container matColumnDef="print">
+ <th mat-header-cell *matHeaderCellDef> Print </th>
+ <td mat-cell *matCellDef="let producttable;let i = index;">
+   <mat-icon >print</mat-icon>
+ </td>
+ <td mat-footer-cell *matFooterCellDef>  </td>
+</ng-container>
+
+<ng-container matColumnDef="position">
+   <th mat-header-cell *matHeaderCellDef> No. </th>
+   <td mat-cell *matCellDef="let producttable;let i = index;"> {{i+1}}. </td>
+   <td mat-footer-cell *matFooterCellDef>  </td>
+</ng-container>
+
+<!-- <ng-container matColumnDef="taxdet_role">
+ <th mat-header-cell *matHeaderCellDef mat-sort-header> Role </th>
+ <td mat-cell *matCellDef="let producttable"> {{producttable.taxdet_role}} </td>
+ <td mat-footer-cell *matFooterCellDef>  </td>
+</ng-container> -->
+
+<ng-container matColumnDef="invoicenumber">
+ <th mat-header-cell *matHeaderCellDef mat-sort-header> Invoice Number </th>
+ <td mat-cell *matCellDef="let producttable"> {{producttable.cust_invoicenumber}} </td>
+ <td mat-footer-cell *matFooterCellDef></td>
+</ng-container>
+
+<ng-container matColumnDef="name">
+ <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+ <td mat-cell *matCellDef="let producttable"> {{producttable.cust_name}} </td>
+ <td mat-footer-cell *matFooterCellDef></td>
+</ng-container>
+
+<ng-container matColumnDef="phonenumber">
+ <th mat-header-cell *matHeaderCellDef mat-sort-header> Contact </th>
+ <td mat-cell *matCellDef="let producttable"> {{producttable.cust_phonenumber}} </td>
+ <td mat-footer-cell *matFooterCellDef></td>
+</ng-container>
+
+<ng-container matColumnDef="adhaarid">
+ <th mat-header-cell *matHeaderCellDef mat-sort-header> Adhaar </th>
+ <td mat-cell *matCellDef="let producttable"> {{producttable.cust_adhaarid}} </td>
+ <td mat-footer-cell *matFooterCellDef></td>
+</ng-container>
+
+
+<ng-container matColumnDef="invoicedate">
+ <th mat-header-cell *matHeaderCellDef mat-sort-header> Invoicedate </th>
+ <td mat-cell *matCellDef="let producttable"> {{producttable.cust_invoicedate}} </td>
+ <td mat-footer-cell *matFooterCellDef></td>
+</ng-container>
+
+<ng-container matColumnDef="total">
+ <th mat-header-cell *matHeaderCellDef mat-sort-header> Total </th>
+ <td mat-cell *matCellDef="let producttable">&#x20B9; {{producttable.custtaxdet_totalamount}}</td>
+ <td mat-footer-cell *matFooterCellDef>  </td>
+</ng-container>
+
+<ng-container matColumnDef="emailid">
+ <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+ <td mat-cell *matCellDef="let producttable"> {{producttable.cust_emailid}}</td>
+ <td mat-footer-cell *matFooterCellDef>  </td>
+</ng-container>
+
+<tr mat-header-row *matHeaderRowDef="displayedColumns2;sticky: true"></tr>
+<tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>                   
+<tr mat-footer-row *matFooterRowDef="displayedColumns2; sticky: true"></tr>
+</table>
+
+</div>
+
+                 </div>
+             <!-- </div> -->
+           <!-- </div> -->
+           <br><br><br>  
+         </mat-tab>
+       </mat-tab-group>
+       
+      </div>                          
+   </div>
+ </div>

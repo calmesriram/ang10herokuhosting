@@ -13,25 +13,6 @@ var ELEMENT_DATA2: any = [];
   styleUrls: ['./datewiseinvoice.component.css']
 })
 export class DatewiseinvoiceComponent implements OnInit {
-  // billid: "zbwoDqIKm"
-  // cust_address: "14/6,thammannan street,gugai,salem-636006."
-  // cust_adhaarid: "12345678910"
-  // cust_customerid: "IqNdQfQ-c"
-  // cust_date: "2020-10-26T07:00:00.000Z"
-  // cust_emailid: "krciob@gmail.com"
-  // cust_invoicedate: "29/10/2020"
-  // cust_invoicemonth: "10"
-  // cust_invoiceyear: "2020"
-  // cust_name: "chandrasekaran"
-  // cust_phonenumber: "9443771179"
-  // cust_tabledatadet: [{…}]
-  // custtaxdet_cgsttaxamount: 27.38
-  // custtaxdet_roundoff: 1095
-  // custtaxdet_sgsttaxamount: 27.38
-  // custtaxdet_taxamount: 54.76
-  // custtaxdet_totalamount: 1150
-  // custtaxdet_totaltaxpercent: 5
-  // custtaxdet_totalwithtax: 1095.24
 
   displayedColumns2:any = ['print','position','invoicenumber','name','phonenumber','adhaarid','invoicedate','total','emailid'];  
   displayedColumns:any = ['print','position','taxdet_role','invoicenumber','name','phonenumber','adhaarid','invoicedate','total','emailid'];  
