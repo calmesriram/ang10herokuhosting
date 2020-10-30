@@ -47,7 +47,6 @@
                  <div class="col-sm-12">
                        
 <form class="form-inline" autocomplete="off">                                                            
-
 <mat-form-field>
  <mat-label>Search</mat-label>
  <input matInput (keyup)="applyFilter($event)" #input>
@@ -155,7 +154,8 @@
                 </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <div class="form-group">
                   <!-- <div class="example-button-row">                       -->
-                   <button mat-raised-button (click)="onSubmitsareeproduct()" color="primary">Get</button>
+                   <button mat-raised-button (click)="onSubmitsareeproduct()" color="primary">Get</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                   <button *ngIf="invoice_saree_product.length != 0" mat-raised-button (click)="sareeproductcsv()" color="primary">Download Csv</button>&nbsp;&nbsp;&nbsp;&nbsp;
                    <!-- </div> -->
                 </div>
                   </form>
@@ -180,8 +180,8 @@
  <mat-label>Search</mat-label>
  <input matInput (keyup)="applyFilter2($event)" #input>
 </mat-form-field>     
-<mat-label *ngIf='dataSource2.data.length != 0 '>Total Records :{{dataSource2.data.length}}</mat-label>         
- </form>                      
+<mat-label *ngIf='dataSource2.data.length != 0 '>Total Records :<span style="font-size: large;color: red;">{{dataSource2.data.length}}</span></mat-label>         
+</form>                      
 <div class="example-container mat-elevation-z8">
 <table mat-table [dataSource]="dataSource2" matSort>                                
 

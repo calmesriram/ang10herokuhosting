@@ -96,6 +96,8 @@
     <tr>
         <th>Sno</th>
         <th>Description</th>
+        <th>HSNC</th>
+
       <!-- <th>HSN Code</th>
       <th>Quantity</th>
       <th>Rate</th>
@@ -107,6 +109,8 @@
     <tr *ngFor="let items of api.billingarray_incgst.tabledatadet;index as i;">
       <td>{{i+1}} .</td>
       <td>{{ items.productname}}</td>
+      <td>{{ "7113"}}</td>
+
       <!-- <td>{{items.sareehsncode}}</td>
       <td>{{ items.collected.qty}}</td>
       <td>&#x20B9; {{ items.sareerate}}</td>

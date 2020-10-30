@@ -1,14 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { FormGroup, FormControl,FormBuilder,Validators } from '@angular/forms';
-import {map, startWith} from 'rxjs/operators';
-import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import { Router } from '@angular/router';
 var ELEMENT_DATA: any = [];
 var ELEMENT_DATA2: any = [];
 import { ngxCsv } from 'ngx-csv/ngx-csv';
-import { async } from '@angular/core/testing';
 
 @Component({
   selector: 'app-monthandyearwiseinvoice',
@@ -22,12 +19,15 @@ export class MonthandyearwiseinvoiceComponent implements OnInit {
   invoice_product_month_year_csv_includedgst:any=[];
   invoice_product_month_year_csv_nonincludedgst:any=[];
   invoice_product_month_year_csv_includedgst_both:any=[];
-    datesareeForm: FormGroup;
+  invoice_saree_product:any=[];
+
+  datesareeForm: FormGroup;
   productloader:boolean;
   productsareeloader:boolean;
-  constructor(public api:ApiService,public formBuilder: FormBuilder,public router:Router) { }
 
- productcsvheader:any = ["PARTY'S GSTIN","INVOICE NUMBER","INOVICE DATE","NAME","PHONE NUMBER","ADHAAR","ADDRESS","EMAILID","TAX PERCENT","CGST","SGST","TAX AMOUNT","BEFORE TAX AMOUNT","AFTER TAX AMOUNT"]
+  constructor(public api:ApiService,public formBuilder: FormBuilder,public router:Router) { }
+  sareeproductcsvheader:any = ["PARTY'S GSTIN","INVOICE NUMBER","INOVICE DATE","NAME","PHONE NUMBER","ADHAAR","ADDRESS","EMAILID","TAX PERCENT","CGST","SGST","TAX AMOUNT","BEFORE TAX AMOUNT","AFTER TAX AMOUNT"];
+  productcsvheader:any = ["PARTY'S GSTIN","INVOICE NUMBER","INOVICE DATE","NAME","PHONE NUMBER","ADHAAR","ADDRESS","EMAILID","TAX PERCENT","CGST","SGST","TAX AMOUNT","BEFORE TAX AMOUNT","AFTER TAX AMOUNT"];
   displayedColumns2:any = ['position','invoicenumber','name','phonenumber','adhaarid','invoicedate','total','emailid'];  
   displayedColumns:any = ['position','taxdet_role','invoicenumber','name','phonenumber','adhaarid','invoicedate','total','emailid'];  
 
@@ -63,12 +63,10 @@ export class MonthandyearwiseinvoiceComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;       
       this.dataSource.filter = filterValue.trim().toLowerCase();
-      console.log(this.dataSource.filter) 
   }
   applyFilter2(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;       
       this.dataSource2.filter = filterValue.trim().toLowerCase();
-      console.log(this.dataSource2.filter) 
   }
   onSubmit(){
       this.productloader = true;
@@ -159,8 +157,29 @@ export class MonthandyearwiseinvoiceComponent implements OnInit {
           }
         this.api.Invoiceproductsareemonthandyear(paload2).then(res =>{
           console.log(res)
+          this.invoice_saree_product.length = 0;
           if(res["status"] == true){
+            res["data"].forEach(async element => {              
+              let temp ={
+                "PARTY'S GSTIN":await element.cust_partygstin,
+                "INVOICE NUMBER":await element.cust_invoicenumber,
+                "INOVICE DATE": await element.cust_invoicedate,
+                "NAME":await element.cust_name,
+                "PHONE NUMBER":await element.cust_phonenumber,
+                "ADHAAR":await element.cust_adhaarid,
+                "ADDRESS":await element.cust_address,
+                "EMAILID":await element.cust_emailid,
+                "TAX PERCENT":await element.custtaxdet_totaltaxpercent,
+                "CGST":await element.custtaxdet_cgsttaxamount,
+                "SGST":await element.custtaxdet_sgsttaxamount,
+                "TAX AMOUNT":await element.custtaxdet_taxamount,
+                "BEFORE TAX AMOUNT":await element.custtaxdet_roundoff,
+                "AFTER TAX AMOUNT":await element.custtaxdet_totalamount,
+              }
+              this.invoice_saree_product.push(temp); 
+            })
             this.dataSource2 = new MatTableDataSource(res["data"]);
+            // invoice_saree_product
             this.productsareeloader = false;
           }
         }).catch(e =>{
@@ -213,6 +232,21 @@ export class MonthandyearwiseinvoiceComponent implements OnInit {
       headers:this.productcsvheader
     };
      new ngxCsv(this.invoice_product_month_year_csv_includedgst_both,filename, options);
+  }
+  sareeproductcsv(){
+    let filename = "Saree_Product"+(new Date()).toLocaleDateString('en-GB')+"&"+(new Date()).toLocaleTimeString('en-US');
+    var options = { 
+      fieldSeparator: ',',
+      quoteStrings: '"',
+      decimalseparator: '.',
+      showLabels: true, 
+      showTitle: true,
+      title: filename,
+      useBom: true,
+      noDownload: false,
+      headers:this.sareeproductcsvheader
+    };
+     new ngxCsv(this.invoice_saree_product,filename, options);
   }
 
 }
