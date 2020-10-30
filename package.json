@@ -34,6 +34,7 @@
     "jquery": "^3.5.1",
     "moment": "^2.29.1",
     "ngx-csv": "^0.3.2",
+    "ngx-print": "^1.2.0-beta.5",
     "ngx-spinner": "^10.0.1",
     "number-words": "^1.1.1",
     "path": "^0.12.7",

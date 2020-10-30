@@ -24,6 +24,7 @@ import { MAT_DATE_FORMATS } from '@angular/material/core';
 import { MY_DATE_FORMATS } from './mydateformat';
 import { MonthandyearwiseinvoiceComponent } from './monthandyearwiseinvoice/monthandyearwiseinvoice.component';
 import { DatewiseinvoiceComponent } from './datewiseinvoice/datewiseinvoice.component';
+import {NgxPrintModule} from 'ngx-print';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { DatewiseinvoiceComponent } from './datewiseinvoice/datewiseinvoice.comp
     DatewiseinvoiceComponent
   ],
   imports: [
+    NgxPrintModule,
     BrowserModule,
     AppRoutingModule,
     MaterialModule,
