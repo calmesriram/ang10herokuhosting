@@ -38,7 +38,7 @@ cus_phonenumber:any;
   filteredOptions2: Observable<string[]>;
 proditem;
 public totamtModel:any=0;
-
+public onegramNgModel:any ="";
   constructor(public api:ApiService,public formBuilder: FormBuilder,public router:Router) { 
     this.countryCtrl = new FormControl();
     this.countryCtrl2 = new FormControl();
@@ -216,7 +216,11 @@ productCount(){
 }
 
 pr0ductbill(){
-console.log(this.api.billingarray_incgst)
+  this.api.billingarray_incgst.onegramsilverrate = "";
+  this.api.billingarray_incgst.onegramsilverrate = this.onegramNgModel; 
+// console.log(this.api.billingarray_incgst)
+// this.router.navigateByUrl('/includedgstbillpage')
+
 // return;
 this.api.Productbill(this.api.billingarray_incgst).then(res =>{
   console.log(res)

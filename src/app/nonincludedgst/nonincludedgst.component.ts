@@ -38,7 +38,7 @@ cus_phonenumber:any;
   filteredOptions2: Observable<string[]>;
 proditem;
 public totamtModel:any=0;
-public onegramsilverModel:any=""
+public onegramNgModel:any ="";
 
 
   constructor(public api:ApiService,public formBuilder: FormBuilder,public router:Router) { 
@@ -234,6 +234,9 @@ productCount(){
 }
 
 pr0ductbill(){
+  this.api.billingarray_nonincgst.onegramsilverrate = "";
+  this.api.billingarray_nonincgst.onegramsilverrate = this.onegramNgModel; 
+
   if(this.selectedproditem.length != 0){
     console.log(this.api.billingarray_nonincgst)
     this.api.Productbill(this.api.billingarray_nonincgst).then(res =>{

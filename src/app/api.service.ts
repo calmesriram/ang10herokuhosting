@@ -29,7 +29,7 @@ invoicedate:String,
 invoicemonth:String,
   invoiceyear:String,
   taxdet_role:"includedgst",
-  onegramsilverrate:String,
+  onegramsilverrate:[],
   partygstin:String
 };
 public billingarray_nonincgst:any={
@@ -41,7 +41,7 @@ invoicedate:String,
 invoicemonth:String,
   invoiceyear:String,
   taxdet_role:"nonincludedgst",
-  onegramsilverrate:String,
+  onegramsilverrate:[],
   partygstin:String
 };
 

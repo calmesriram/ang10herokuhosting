@@ -71,6 +71,16 @@
                       <mat-label>Enter Total Amount</mat-label>
                       <input matInput type="number"  [(ngModel)]="totamtModel" (input)="taxcalc();" autocomplete="off" [ngModelOptions]="{standalone: true}" max >  
                     </mat-form-field>
+                    
+                    <mat-form-field appearance="outline"  class="example-full-width">
+                      <mat-label>Enter One Gram Silver Rate</mat-label>
+                      <input matInput type="number"  autocomplete="off" [(ngModel)]="onegramNgModel" [ngModelOptions]="{standalone: true}" >  
+                      
+                    <!-- <mat-form-field appearance="outline"  class="example-full-width">
+                      <mat-label>Enter One Gram Silver Rate</mat-label>
+                      <input matInput type="number" [(ngModel)]="onegramsilverModel" autocomplete="off" [ngModelOptions]="{standalone: true}" >  
+                    </mat-form-field> -->
+                    </mat-form-field>
                   </div>
                   <div class="col-sm-4">
                     <div class="example-button-row">

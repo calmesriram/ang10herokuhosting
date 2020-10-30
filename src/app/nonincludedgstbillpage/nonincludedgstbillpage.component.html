@@ -68,6 +68,8 @@
           <label  class="text-left form-control" for="invoice">Invoice No: &nbsp;<b>{{api.billingarray_nonincgst.invoiceno || 'xxx'}}</b></label>
           <label  class="text-left form-control" for="invoice">Invoice Date: &nbsp;<b>{{api.billingarray_nonincgst.invoicedate || 'xxx'}}</b></label>
           <label  class="text-left form-control" for="invoice">State & Code: &nbsp;<b>{{'TamilNadu & 33'}}</b></label>
+          <label *ngIf="api.billingarray_nonincgst.onegramsilverrate.length != 0"   class="text-left form-control"  for="invoice">Silver Rate For 1 gram: &nbsp;<b>{{api.billingarray_nonincgst.onegramsilverrate }}</b></label>
+
 
       </div>
           </div>
