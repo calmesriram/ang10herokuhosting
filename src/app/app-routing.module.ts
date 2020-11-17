@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { BujukiboutiqueComponent } from './bujukiboutique/bujukiboutique.component';
 import { CustomerComponent } from './customer/customer.component';
 import { DatewiseinvoiceComponent } from './datewiseinvoice/datewiseinvoice.component';
 import { HomeComponent } from './home/home.component';
@@ -41,6 +42,10 @@ const routes: Routes = [
   {
     path:'nonincludedgstbillpage',
     component:NonincludedgstbillpageComponent
+  },
+  {
+    path:'botique',
+    component:BujukiboutiqueComponent
   },
   {
     path:'includedgst',

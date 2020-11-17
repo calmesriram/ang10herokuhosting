@@ -1,5 +1,5 @@
 <mat-toolbar color="primary">
-  <span class="fill-remaining-space">
+    <span class="fill-remaining-space">
     <button mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon>menu</mat-icon>
     </button>
@@ -7,32 +7,32 @@
       <button mat-menu-item routerLink="/home">
         <mat-icon>home</mat-icon>
         <span>Home</span>
-      </button>
-      <button mat-menu-item routerLink="/customer">
+    </button>
+    <button mat-menu-item routerLink="/customer">
         <mat-icon>people_outline</mat-icon>
         <span>Customer</span>
       </button>
-      <button mat-menu-item routerLink="/product">
+    <button mat-menu-item routerLink="/product">
         <mat-icon>queue</mat-icon>
         <span>Product</span>
       </button>
-      <button mat-menu-item routerLink="/sareeproduct">
+    <button mat-menu-item routerLink="/sareeproduct">
         <mat-icon>queue</mat-icon>
         <span>Saree Product</span>
       </button>
-      <button mat-menu-item routerLink="/sareeproductgst">
+    <button mat-menu-item routerLink="/sareeproductgst">
         <mat-icon>receipt</mat-icon>
         <span>Saree Product GST</span>
       </button>
-      <button mat-menu-item routerLink="/includedgst">
+    <button mat-menu-item routerLink="/includedgst">
         <mat-icon>receipt</mat-icon>
         <span>Included GST</span>
       </button>
-      <button mat-menu-item routerLink="/nonincludedgst">
+    <button mat-menu-item routerLink="/nonincludedgst">
         <mat-icon>receipt</mat-icon>
         <span>Not Included GST</span>
       </button>
-      <!-- <button mat-menu-item routerLink="/sareebill">
+    <!-- <button mat-menu-item routerLink="/sareebill">
         <mat-icon>print</mat-icon>
         <span>Saree Bill Print</span>
       </button>
@@ -44,22 +44,31 @@
         <mat-icon>print</mat-icon>
         <span> Non Included Gst Bill Print</span>
       </button> -->
-      <button mat-menu-item routerLink="/invoicemonthandyearwise">
+    <button mat-menu-item routerLink="/invoicemonthandyearwise">
         <mat-icon>print</mat-icon>
         <span>Month & Year</span>
       </button>
-      <button mat-menu-item routerLink="/invoicedatewise">
+    <button mat-menu-item routerLink="/invoicedatewise">
         <mat-icon>print</mat-icon>
         <span>DateWise</span>
       </button>
+    <button mat-menu-item routerLink="/botique">
+      <mat-icon>
+      <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-scissors" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M3.5 3.5c-.614-.884-.074-1.962.858-2.5L8 7.226 11.642 1c.932.538 1.472 1.616.858 2.5L8.81 8.61l1.556 2.661a2.5 2.5 0 1 1-.794.637L8 9.73l-1.572 2.177a2.5 2.5 0 1 1-.794-.637L7.19 8.61 3.5 3.5zm2.5 10a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm7 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+      </svg></mat-icon>
+        <!-- <mat-icon>print</mat-icon> -->
+        <span>Botique</span>
+        
+      </button>
     </mat-menu>
-  </span>
-  <span class="fill-remaining-space">SHREE JEYAM SILVERS</span>
+    </span>
+    <span class="fill-remaining-space">SHREE JEYAM SILVERS</span>
 </mat-toolbar>
 
 <router-outlet></router-outlet>
 
-<ngx-spinner bdOpacity = 1 bdColor = "rgba(103,97,97,0.71)" size = "large" color = "#fff" type = "timer" [fullScreen] = "true">
-  <br />
-<p style="color: white" > Check your LAN/Wifi Connection </p>
+<ngx-spinner bdOpacity=1 bdColor="rgba(103,97,97,0.71)" size="large" color="#fff" type="timer" [fullScreen]="true">
+    <br />
+    <p style="color: white"> Check your LAN/Wifi Connection </p>
 </ngx-spinner>

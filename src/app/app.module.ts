@@ -26,6 +26,7 @@ import { MonthandyearwiseinvoiceComponent } from './monthandyearwiseinvoice/mont
 import { DatewiseinvoiceComponent } from './datewiseinvoice/datewiseinvoice.component';
 import {NgxPrintModule} from 'ngx-print';
 import {AutocompleteLibModule} from 'angular-ng-autocomplete';
+import { BujukiboutiqueComponent } from './bujukiboutique/bujukiboutique.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import {AutocompleteLibModule} from 'angular-ng-autocomplete';
     IncludedgstComponent,
     SareeproductgstComponent,
     MonthandyearwiseinvoiceComponent,
-    DatewiseinvoiceComponent
+    DatewiseinvoiceComponent,
+    BujukiboutiqueComponent
   ],
   imports: [
     NgxPrintModule,
