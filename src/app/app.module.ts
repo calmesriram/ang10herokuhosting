@@ -25,6 +25,7 @@ import { MY_DATE_FORMATS } from './mydateformat';
 import { MonthandyearwiseinvoiceComponent } from './monthandyearwiseinvoice/monthandyearwiseinvoice.component';
 import { DatewiseinvoiceComponent } from './datewiseinvoice/datewiseinvoice.component';
 import {NgxPrintModule} from 'ngx-print';
+import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import {NgxPrintModule} from 'ngx-print';
     HttpClientModule,
     NgxSpinnerModule,
     MatDatepickerModule,
+    AutocompleteLibModule
     //MomentDateModule
     
   ],

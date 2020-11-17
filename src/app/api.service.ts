@@ -149,6 +149,26 @@ Postsareeproduct(data){
     })
   })
 }
+// bill purchase details by customer name
+Postbilldetailbycustname(data){
+  return new Promise((resolve,reject) => {
+    this.http.post(this.baseurl+"/Customerpurchasbilldetails",data).subscribe(res => {
+      resolve(res);
+    }, err => {
+      resolve(err);
+    })
+  })
+}
+//saree bill purchase details by customer name
+Postsareebilldetailbycustname(data){
+  return new Promise((resolve,reject) => {
+    this.http.post(this.baseurl+"/Customerpurchasbillsareedetails",data).subscribe(res => {
+      resolve(res);
+    }, err => {
+      resolve(err);
+    })
+  })
+}
 Putsareeproduct(data,sareecode){
   return new Promise((resolve,reject) => {
     this.http.put(this.baseurl+"/Saree/"+sareecode,data).subscribe(res => {
