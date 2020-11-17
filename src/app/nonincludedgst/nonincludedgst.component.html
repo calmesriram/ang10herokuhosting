@@ -105,79 +105,86 @@
             </div>
         </div>
         <div class="col-sm-9">
+            <div class="card">
+                <div class="card-header text-center">
+                    Product Collected / Invoice No: {{api.billingarray_nonincgst.invoiceno || "XXX"}}
+                </div>
+                <div class="card-body">
 
-            <form class="form-inline" autocomplete="off">
+                    <form class="form-inline" autocomplete="off">
 
-                <mat-form-field>
-                    <mat-label>Search</mat-label>
-                    <input matInput (keyup)="applyFilter($event)" placeholder="Name " #input>
-                </mat-form-field>
-            </form>
-            <div class="example-container mat-elevation-z8">
-                <table mat-table [dataSource]="dataSource" matSort>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Search</mat-label>
+                            <input matInput (keyup)="applyFilter($event)" #input>
+                        </mat-form-field>
+                    </form>
+                    <div class="example-container mat-elevation-z8">
+                        <table mat-table [dataSource]="dataSource" matSort>
 
-                    <ng-container matColumnDef="position">
-                        <th mat-header-cell *matHeaderCellDef> No. </th>
-                        <td mat-cell *matCellDef="let producttable;let i = index;"> {{i+1}}. </td>
-                        <td mat-footer-cell *matFooterCellDef> </td>
+                            <ng-container matColumnDef="position">
+                                <th mat-header-cell *matHeaderCellDef> No. </th>
+                                <td mat-cell *matCellDef="let producttable;let i = index;"> {{i+1}}. </td>
+                                <td mat-footer-cell *matFooterCellDef> </td>
 
-                    </ng-container>
+                            </ng-container>
 
-                    <ng-container matColumnDef="productname">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Product Name </th>
-                        <td mat-cell *matCellDef="let producttable"> {{producttable.productname}} </td>
-                        <td mat-footer-cell *matFooterCellDef> </td>
+                            <ng-container matColumnDef="productname">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Product Name </th>
+                                <td mat-cell *matCellDef="let producttable"> {{producttable.productname}} </td>
+                                <td mat-footer-cell *matFooterCellDef> </td>
 
-                    </ng-container>
+                            </ng-container>
 
-                    <ng-container matColumnDef="rate">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Rate </th>
-                        <td mat-cell *matCellDef="let producttable"> {{producttable.rate}} </td>
-                        <td mat-footer-cell *matFooterCellDef>{{getTotalAmount() | currency:'INR'}} </td>
-                    </ng-container>
-                    <!-- s -->
+                            <ng-container matColumnDef="rate">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Rate </th>
+                                <td mat-cell *matCellDef="let producttable"> {{producttable.rate}} </td>
+                                <td mat-footer-cell *matFooterCellDef>{{getTotalAmount() | currency:'INR'}} </td>
+                            </ng-container>
+                            <!-- s -->
 
-                    <ng-container matColumnDef="Delete">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Delete </th>
-                        <td mat-cell *matCellDef="let producttable">
-                            <mat-icon (click)="remove(producttable)" color="warn">delete</mat-icon>
-                        </td>
-                        <td mat-footer-cell *matFooterCellDef> </td>
+                            <ng-container matColumnDef="Delete">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Delete </th>
+                                <td mat-cell *matCellDef="let producttable">
+                                    <mat-icon (click)="remove(producttable)" color="warn">delete</mat-icon>
+                                </td>
+                                <td mat-footer-cell *matFooterCellDef> </td>
 
-                    </ng-container>
+                            </ng-container>
 
-                    <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></tr>
-                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                    <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
-                </table>
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                            <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
+                        </table>
 
+                    </div>
+                </div>
             </div>
         </div>
         <div class="col-sm-3">
+            <br>
             <form class="form-inline" autocomplete="off" [formGroup]="gstForm">
-
-                <mat-form-field class="example-full-width">
+                <mat-form-field class="example-full-width" appearance="outline">
                     <mat-label>Total Amount Before Tax</mat-label>
                     <input matInput placeholder="totalamounttaxs" readonly formControlName="taxdet_totalamountbeforetax">
                 </mat-form-field>
 
-                <mat-form-field class="example-full-width">
+                <mat-form-field class="example-full-width" appearance="outline">
                     <mat-label>Tax of CGST 1.5 %</mat-label>
                     <input matInput placeholder="cgsttax" readonly formControlName="taxdet_totalamountofcgsttax">
                 </mat-form-field>
 
-                <mat-form-field class="example-full-width">
+                <mat-form-field class="example-full-width" appearance="outline">
                     <mat-label>Tax of SGST 1.5 %</mat-label>
                     <input matInput placeholder="sgsttax" readonly formControlName="taxdet_totalamountofsgsttax">
                 </mat-form-field>
 
-                <mat-form-field class="example-full-width">
+                <mat-form-field class="example-full-width" appearance="outline">
                     <mat-label> Total Tax Amount</mat-label>
                     <input matInput placeholder="taxamt" readonly formControlName="taxdet_totalamountoftax">
                 </mat-form-field>
 
 
-                <mat-form-field class="example-full-width">
+                <mat-form-field class="example-full-width" appearance="outline">
                     <mat-label>Total Amount After Tax</mat-label>
                     <input matInput placeholder="Total Amount" readonly formControlName="taxdet_totalamountaftertax" value="{{0}}">
                 </mat-form-field>

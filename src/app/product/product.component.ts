@@ -67,7 +67,10 @@ onSubmit() {
   
   this.productForm.controls.date.setValue((new Date()).toLocaleDateString('en-GB'));
 
-  console.warn(this.productForm.value);
+  if(this.productForm.value.productname == ""){
+    this.api.snackmsg("Enter The Product Name","close")
+    return;
+  }
   this.api.Postproduct(this.productForm.value).then((data)=>{
     console.log(data)
     this.getproduct();
