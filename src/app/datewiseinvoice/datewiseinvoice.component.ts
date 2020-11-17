@@ -112,7 +112,7 @@ let datewise_product_saree =  {
 
   datewiseforproduct(data){
     if(data.taxdet_role == "nonincludedgst"){
-      // console.log(data)
+      console.log(data)
       this.api.billingarray_nonincgst.invoiceno = data.invoicenumber;
       this.api.billingarray_nonincgst.invoicedate = data.invoicedate;
       this.api.billingarray_nonincgst.tabledatadet= data.tabledatadet;
