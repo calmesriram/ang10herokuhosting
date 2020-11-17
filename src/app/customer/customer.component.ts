@@ -44,15 +44,11 @@ export class CustomerComponent implements OnInit {
   console.log(res)
   let temp = [];
   let count =0;
-  if(res['status']== true){
+  if(res['status']== true && res['data'].length != 0){
     res['data'].forEach(async element => {
-      // for(let i=0;i<=await element.tabledatadet;i++){
-        //   temp.push(await element.tabledatadet [i])
-        // }
         await element.tabledatadet.forEach(async data => {
           console.log(await data)
-          temp = (await data)
-          // this.silverdataSource = new MatTableDataSource(await data);        
+          temp = (await data)          
         });
         count++;
     });

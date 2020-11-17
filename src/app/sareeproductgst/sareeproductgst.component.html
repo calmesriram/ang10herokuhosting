@@ -93,7 +93,7 @@
                     <form [formGroup]="productForm">
 
                         <div class="ng-autocomplete example-full-width">
-                            <ng-autocomplete formControlName="productname" [data]="productdetails" (selected)='selectedproduct($event)' [searchKeyword]="keyword" placeHolder="Enter the Product Code" [itemTemplate]="itemTemplate3" [notFoundTemplate]="notFoundTemplate3">
+                            <ng-autocomplete [data]="productdetails" (selected)='selectedproduct($event)' [searchKeyword]="keyword" placeHolder="Enter the Product Code" [itemTemplate]="itemTemplate3" [notFoundTemplate]="notFoundTemplate3">
                             </ng-autocomplete>
 
                             <ng-template #itemTemplate3 let-item>
@@ -143,7 +143,7 @@
                 </div>
                 <div class="card-footer text-muted">
                     <button style="float: left;" mat-raised-button (click)="add();" color="primary">Add</button>
-                    <button style="float: right;" mat-raised-button (click)="sareebill();" color="primary">Save</button>
+                    <button style="float: right;" mat-raised-button (click)="SareeBill();" color="primary">Save</button>
 
                 </div>
             </div>

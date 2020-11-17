@@ -69,10 +69,11 @@ export class SareeproductgstComponent implements OnInit {
   }
   selectedproduct(item) {
     console.log(item)
+    this.productForm.controls.productname.setValue(item.sareeproductname);
     this.prod_details_table.length = 0;
     this.prod_details_table = item;
     this.proditem = "";
-    this.proditem = item;
+    this.proditem = item;    
   }
   selectedcustomer(para) {
     this.cust_details_table.length = 0;
@@ -95,7 +96,7 @@ export class SareeproductgstComponent implements OnInit {
       }
       if (data.status == true && data.data.length != 0) {
         this.custormerdetails.length = 0;
-        this.custormerdetails = data.data; this.country_lis = data.data
+        this.custormerdetails = data.data;
       }
       console.log(data);
     }).catch(err => {
@@ -114,10 +115,9 @@ export class SareeproductgstComponent implements OnInit {
     })
   }
 
-  sareebill() {
+  SareeBill() {
     console.log(this.api.billingarray_sareeprod)
     this.api.Postsareebill(this.api.billingarray_sareeprod).then(res => {
-      console.log(res)
       if (res['status'] == true) {
         this.api.snackmsg(res["msg"], "close");
         this.router.navigateByUrl('/sareebill')
@@ -147,8 +147,8 @@ export class SareeproductgstComponent implements OnInit {
     this.calc_amount2 = this.calc_amount - this.getTotalAmount();
   }
   add() {
-    this.proditem.collected = this.productForm.value;
-    this.productForm.value
+    console.log(this.productForm.value)
+    this.proditem.collected = this.productForm.value;    
     this.selectedproditem.push(this.proditem)
     this.productForm.reset();
     this.tabledata();
@@ -173,7 +173,7 @@ export class SareeproductgstComponent implements OnInit {
     this.gstForm.controls.roundoff.setValue(Math.round(totalamount_withtax));
     this.api.billingarray_sareeprod.tax_details = this.gstForm.value;
   }
-  
+
   tabledata() {
     this.api.billingarray_sareeprod.tabledatadet = "";
     this.productarray.length = 0;
