@@ -18,22 +18,22 @@ export class NonincludedgstComponent implements OnInit {
   productForm: FormGroup;
   gstForm: FormGroup;
   selectedproditem:any=[];  
-  productdetails:any = [];
-  custormerdetails:any =[];
   cust_details_table:any= [];
   prod_details_table:any = [];
   cus_address:any;
-cus_adhaarid:any;
-cus_customername:any;
-cus_emailid:any;
-cus_phonenumber:any; 
+  cus_adhaarid:any;
+  cus_customername:any;
+  cus_emailid:any;
+  cus_phonenumber:any; 
   filteredOptions: Observable<string[]>;
   filteredOptions2: Observable<string[]>;
-proditem;
-public totamtModel:any=0;
-public onegramNgModel:any ="";
+  proditem;
+  public totamtModel:any=0;
+  public onegramNgModel:any ="";
   keyword = "productname";
   keyword2 ="customername";
+  productdetails:any = [];
+  custormerdetails:any =[];
 
 
   constructor(public api:ApiService,public formBuilder: FormBuilder,public router:Router) { }
@@ -113,7 +113,7 @@ public onegramNgModel:any ="";
 
 add() { 
 this.selectedproditem.push(this.proditem);
-this.productForm.reset();
+  this.productForm.reset();
 this.tabledata();   
 }
 taxcalc(){
