@@ -11,91 +11,123 @@
                     <div id="example">
                         <div style="border-style: double;">
 
-                            <p style="float:right;text-align: left; padding: 10px;">Cell: 8015456354 <br> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                            <p class="mytd" style="float:right;text-align: left; padding: 10px;">Cell: 8015456354 <br> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
                                 <span>7358361164</span>
                             </p>
                             <br><br>
                             <div style="text-align: center;">
                                 <img mat-card-image class="responsive" src="../../assets/photo/image.png" alt="Image" width="99%;">
                                 <br><br>
-                                <p>31, Chairman Ramalingam Street, <br>
+                                <p class="mytd">31, Chairman Ramalingam Street, <br>
                                     <span>(Opposite to pavadi Girls Higher Secondary School),Salem - 636 001.</span></p>
                             </div>
                             <table class="table table-bordered table-hover">
-                                <!-- <thead>
-                            <tr>
-                                <th class="myth" scope="col">NO :</th>
-                                <th scope="col">Date</th>
-                            </tr>
-                        </thead> -->
                                 <tbody>
                                     <tr>
                                         <th class="myth" scope="col">No:</th>
-                                        <td>{{custormerdetails.no || "XXX"}}</td>
+                                        <td class="mytd">{{custormerdetails.no || "XXX"}}</td>
 
                                     </tr>
                                     <tr>
                                         <th class="myth" scope="col">Date</th>
-                                        <td>{{custormerdetails.date | date : "dd.MM.y" || "XXX"}}</td>
+                                        <td class="mytd">{{custormerdetails.date | date : "dd.MM.y" || "XXX"}}</td>
 
                                     </tr>
                                     <tr>
                                         <th class="myth" scope="col">Customer Name :</th>
-                                        <td>{{custormerdetails.customername || "XXX"}}</td>
+                                        <td class="mytd">{{custormerdetails.customername || "XXX"}}</td>
 
                                     </tr>
                                     <tr>
                                         <th class="myth" scope="col">Mobile Number :</th>
-                                        <td>{{custormerdetails.mobilenumber || "XXX"}}</td>
+                                        <td class="mytd">{{custormerdetails.mobilenumber || "XXX"}}</td>
 
                                     </tr>
                                     <tr>
                                         <th class="myth" scope="col">Lining :</th>
-                                        <td>{{custormerdetails.lining || "XXX"}}</td>
+                                        <td class="mytd">{{custormerdetails.lining || "XXX"}}</td>
 
                                     </tr>
                                     <tr>
                                         <th class="myth" scope="col">Falls :</th>
-                                        <td>{{custormerdetails.falls || "XXX"}}</td>
+                                        <td class="mytd">{{custormerdetails.falls || "XXX"}}</td>
 
                                     </tr>
                                     <tr>
                                         <th class="myth" scope="col">Saree Oral Falls :</th>
-                                        <td>{{custormerdetails.sareeoralfalls || "XXX"}}</td>
+                                        <td class="mytd">{{custormerdetails.sareeoralfalls || "XXX"}}</td>
 
                                     </tr>
                                     <tr>
                                         <th class="myth" scope="col">Saree Mudi :</th>
-                                        <td>{{custormerdetails.mudi || "XXX"}}</td>
+                                        <td class="mytd">{{custormerdetails.mudi || "XXX"}}</td>
 
                                     </tr>
                                     <tr>
                                         <th class="myth" scope="col">Embroidary Work :</th>
-                                        <td>{{custormerdetails.embroidarywork || "XXX"}}</td>
+                                        <td class="mytd">{{custormerdetails.embroidarywork || "XXX"}}</td>
 
                                     </tr>
                                     <tr>
                                         <th class="myth" scope="col">Aari Work :</th>
-                                        <td>{{custormerdetails.aariwork || "XXX"}}</td>
+                                        <td class="mytd">{{custormerdetails.aariwork || "XXX"}}</td>
 
                                     </tr>
                                     <tr>
                                         <th class="myth" scope="col">Chudi :</th>
-                                        <td>{{custormerdetails.chudi || "XXX"}}</td>
+                                        <td class="mytd">{{custormerdetails.chudi || "XXX"}}</td>
 
                                     </tr>
                                     <tr>
                                         <th class="myth" scope="col">Blouse :</th>
-                                        <td>{{custormerdetails.blouse || "XXX"}}</td>
+                                        <td class="mytd">{{custormerdetails.blouse || "XXX"}}</td>
 
                                     </tr>
                                     <tr>
                                         <th class="myth" scope="col">Amount :</th>
-                                        <td>{{custormerdetails.amount || "XXX"}}</td>
+                                        <td class="mytd">{{custormerdetails.amount || "XXX"}}</td>
 
                                     </tr>
                                 </tbody>
                             </table>
+
+                            <div class="row" style="margin: 2px;">
+                                <div class="col-sm-6" style="border-style: ridge;width: 100%;text-align: center;">
+                                    <br><br><br>
+                                    <p style="padding-bottom:5px;">Party's Signature</p>
+                                </div>
+                                <div class="col-sm-6" style="border-style: ridge;width: 100%;text-align: center;">
+                                    <b><span><b><small>For</small></b>&nbsp;Bujuki's Boutique</span>
+                                    </b>
+                                    <br><br><br>
+                                    <p>Proprietor</p>
+                                </div>
+                            </div>
+                            <!-- <p class="text-center" style="border-style: ridge; margin:-2px -50px 10px 2px;">
+                                <span></span><br>
+                                <span></span><br>
+                                <br>
+                                <span>Party's Signature</span><br>
+                            </p> -->
+                            <!-- <div class="row">
+                                <div class="col-sm-6">
+                                    <p class="text-center" style="border-style: ridge; padding:0px 40px 5px;">
+                                        <span></span><br>
+                                        <span></span><br>
+                                        <br><br>
+                                        <span>Party's Signature</span><br>
+                                    </p>
+                                </div>
+                                <div class="col-sm-6">
+                                    <p class="text-center" style="border-style: ridge;">
+                                        <b><span><b><small>For</small></b>&nbsp;Bujuki's Boutique</span>
+                                        </b><br>
+                                        <span></span><br>
+                                        <span></span><br><br>
+                                        <span>Proprietor</span><br>
+                                    </p>
+                                </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
