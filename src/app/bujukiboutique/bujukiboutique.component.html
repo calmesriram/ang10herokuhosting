@@ -8,74 +8,99 @@
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">Bujuki's Boutique</h5>
-                    <table class="table table-bordered table-hover">
-                        <thead>
+                    <div id="example">
+                        <div style="border-style: double;width: 580px;border-color: red;text-align: center;">
+
+                            <p style="float:right;text-align: left; padding: 10px;">Cell: 8015456354 <br> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                                <span>7358361164</span>
+                            </p>
+                            <br><br>
+                            <div style="text-align: center;">
+                                <img mat-card-image class="responsive" src="../../assets/photo/image.png" alt="Image" width="99%;">
+                                <br><br>
+                                <p>31, Chairman Ramalingam Street, <br>
+                                    <span>(Opposite to pavadi Girls Higher Secondary School),Salem - 636 001.</span></p>
+                            </div>
+                            <table class="table table-bordered table-hover">
+                                <!-- <thead>
                             <tr>
                                 <th class="myth" scope="col">NO :</th>
                                 <th scope="col">Date</th>
                             </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th class="myth" scope="col">Customer Name :</th>
-                                <td>Mark</td>
+                        </thead> -->
+                                <tbody>
+                                    <tr>
+                                        <th class="myth" scope="col">No:</th>
+                                        <td>{{custormerdetails.no}}</td>
 
-                            </tr>
-                            <tr>
-                                <th class="myth" scope="col">Mobile Number :</th>
-                                <td>Mark</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="myth" scope="col">Date</th>
+                                        <td>{{custormerdetails.date | date : "dd.MM.y" }}</td>
 
-                            </tr>
-                            <tr>
-                                <th class="myth" scope="col">Lining :</th>
-                                <td>Mark</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="myth" scope="col">Customer Name :</th>
+                                        <td>{{custormerdetails.customername}}</td>
 
-                            </tr>
-                            <tr>
-                                <th class="myth" scope="col">Falls :</th>
-                                <td>Mark</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="myth" scope="col">Mobile Number :</th>
+                                        <td>{{custormerdetails.mobilenumber}}</td>
 
-                            </tr>
-                            <tr>
-                                <th class="myth" scope="col">Saree Oral Falls :</th>
-                                <td>Mark</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="myth" scope="col">Lining :</th>
+                                        <td>{{custormerdetails.lining}}</td>
 
-                            </tr>
-                            <tr>
-                                <th class="myth" scope="col">Saree Mudi :</th>
-                                <td>Mark</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="myth" scope="col">Falls :</th>
+                                        <td>{{custormerdetails.falls}}</td>
 
-                            </tr>
-                            <tr>
-                                <th class="myth" scope="col">Embroidary Work :</th>
-                                <td>Mark</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="myth" scope="col">Saree Oral Falls :</th>
+                                        <td>{{custormerdetails.sareeoralfalls}}</td>
 
-                            </tr>
-                            <tr>
-                                <th class="myth" scope="col">Aari Work :</th>
-                                <td>Mark</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="myth" scope="col">Saree Mudi :</th>
+                                        <td>{{custormerdetails.mudi}}</td>
 
-                            </tr>
-                            <tr>
-                                <th class="myth" scope="col">Chudi :</th>
-                                <td>Mark</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="myth" scope="col">Embroidary Work :</th>
+                                        <td>{{custormerdetails.embroidarywork}}</td>
 
-                            </tr>
-                            <tr>
-                                <th class="myth" scope="col">Blouse :</th>
-                                <td>Mark</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="myth" scope="col">Aari Work :</th>
+                                        <td>{{custormerdetails.aariwork}}</td>
 
-                            </tr>
-                            <tr>
-                                <th class="myth" scope="col">Amount :</th>
-                                <td>Mark</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="myth" scope="col">Chudi :</th>
+                                        <td>{{custormerdetails.chudi}}</td>
 
-                            </tr>
-                        </tbody>
-                    </table>
+                                    </tr>
+                                    <tr>
+                                        <th class="myth" scope="col">Blouse :</th>
+                                        <td>{{custormerdetails.blouse}}</td>
+
+                                    </tr>
+                                    <tr>
+                                        <th class="myth" scope="col">Amount :</th>
+                                        <td>{{custormerdetails.amount}}</td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-footer text-muted">
-                    <button style="margin:10px;" type="button" class="btn btn-primary">Print</button>
+                    <button style="margin:10px;" [useExistingCss]="true" printSectionId="example" ngxPrint type="button" class="btn btn-primary">Print</button>
                 </div>
             </div>
         </div>
@@ -86,67 +111,79 @@
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">Bujuki's Boutique</h5>
-                    <form>
+                    <form [formGroup]="customerForm" autocomplete="off">
                         <div class="row">
                             <div class="col-sm-6">
                                 <mat-form-field appearance="outline" class="example-full-width">
-                                    <mat-label>Enter Total Amount</mat-label>
-                                    <input matInput type="text" autocomplete="off">
+                                    <mat-label>Enter No</mat-label>
+                                    <input matInput type="text" formControlName="no" autocomplete="off">
+                                </mat-form-field>
+
+                                <mat-form-field appearance="outline" class="example-full-width">
+                                    <mat-label>Choose a date</mat-label>
+                                    <input matInput formControlName="date" [matDatepicker]="picker">
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                </mat-form-field>
+
+
+                                <mat-form-field appearance="outline" class="example-full-width">
+                                    <mat-label>Enter Customer Name</mat-label>
+                                    <input matInput formControlName="customername" type="text" autocomplete="off">
                                 </mat-form-field>
                                 <mat-form-field appearance="outline" class="example-full-width">
-                                    <mat-label>Enter Total Amount</mat-label>
-                                    <input matInput type="text" autocomplete="off">
+                                    <mat-label>Enter Mobile Number</mat-label>
+                                    <input matInput formControlName="mobilenumber" type="text" autocomplete="off">
                                 </mat-form-field>
                                 <mat-form-field appearance="outline" class="example-full-width">
-                                    <mat-label>Enter Total Amount</mat-label>
-                                    <input matInput type="text" autocomplete="off">
+                                    <mat-label>Enter Lining</mat-label>
+                                    <input matInput formControlName="lining" type="text" autocomplete="off">
                                 </mat-form-field>
                                 <mat-form-field appearance="outline" class="example-full-width">
-                                    <mat-label>Enter Total Amount</mat-label>
-                                    <input matInput type="text" autocomplete="off">
+                                    <mat-label>Enter Falls</mat-label>
+                                    <input matInput formControlName="falls" type="text" autocomplete="off">
                                 </mat-form-field>
                                 <mat-form-field appearance="outline" class="example-full-width">
-                                    <mat-label>Enter Total Amount</mat-label>
-                                    <input matInput type="text" autocomplete="off">
-                                </mat-form-field>
-                                <mat-form-field appearance="outline" class="example-full-width">
-                                    <mat-label>Enter Total Amount</mat-label>
-                                    <input matInput type="text" autocomplete="off">
+                                    <mat-label>Enter Saree Oral Falls</mat-label>
+                                    <input matInput formControlName="sareeoralfalls" type="text" autocomplete="off">
                                 </mat-form-field>
 
                             </div>
                             <div class="col-sm-6">
+
                                 <mat-form-field appearance="outline" class="example-full-width">
-                                    <mat-label>Enter Total Amount</mat-label>
-                                    <input matInput type="number" autocomplete="off">
+                                    <mat-label>Enter Saree Mudi</mat-label>
+                                    <input matInput formControlName="mudi" type="text" autocomplete="off">
+                                </mat-form-field>
+
+                                <mat-form-field appearance="outline" class="example-full-width">
+                                    <mat-label>Enter Embroidary Work</mat-label>
+                                    <input matInput formControlName="embroidarywork" type="text" autocomplete="off">
                                 </mat-form-field>
                                 <mat-form-field appearance="outline" class="example-full-width">
-                                    <mat-label>Enter Total Amount</mat-label>
-                                    <input matInput type="text" autocomplete="off">
+                                    <mat-label>Enter Aari Work</mat-label>
+                                    <input matInput formControlName="aariwork" type="text" autocomplete="off">
                                 </mat-form-field>
                                 <mat-form-field appearance="outline" class="example-full-width">
-                                    <mat-label>Enter Total Amount</mat-label>
-                                    <input matInput type="text" autocomplete="off">
+                                    <mat-label>Enter Chudi</mat-label>
+                                    <input matInput formControlName="chudi" type="text" autocomplete="off">
                                 </mat-form-field>
                                 <mat-form-field appearance="outline" class="example-full-width">
-                                    <mat-label>Enter Total Amount</mat-label>
-                                    <input matInput type="text" autocomplete="off">
+                                    <mat-label>Enter Blouse</mat-label>
+                                    <input matInput formControlName="blouse" type="text" autocomplete="off">
                                 </mat-form-field>
                                 <mat-form-field appearance="outline" class="example-full-width">
-                                    <mat-label>Enter Total Amount</mat-label>
-                                    <input matInput type="text" autocomplete="off">
+                                    <mat-label>Enter Amount</mat-label>
+                                    <input matInput formControlName="amount" type="text" autocomplete="off">
                                 </mat-form-field>
-                                <mat-form-field appearance="outline" class="example-full-width">
-                                    <mat-label>Enter Total Amount</mat-label>
-                                    <input matInput type="text" autocomplete="off">
-                                </mat-form-field>
+
                             </div>
                         </div>
                     </form>
                 </div>
                 <div class="card-footer text-muted">
-                    <button style="margin:10px;" type="button" class="btn btn-primary">Save</button>
-                    <button style="margin:10px;" type="button" class="btn btn-primary">Clear</button>
+                    <button style="margin:10px;" type="button" (click)="Submit();" class="btn btn-primary">Submit</button>
+                    <button style="margin:10px;" type="button" (click)="clear();" class="btn btn-primary">Clear</button>
                 </div>
             </div>
         </div>
