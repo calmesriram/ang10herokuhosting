@@ -9,7 +9,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Bujuki's Boutique</h5>
                     <div id="example">
-                        <div style="border-style: double;width: 580px;border-color: red;text-align: center;">
+                        <div style="border-style: double;width: 580px;">
 
                             <p style="float:right;text-align: left; padding: 10px;">Cell: 8015456354 <br> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
                                 <span>7358361164</span>
@@ -31,67 +31,67 @@
                                 <tbody>
                                     <tr>
                                         <th class="myth" scope="col">No:</th>
-                                        <td>{{custormerdetails.no}}</td>
+                                        <td>{{custormerdetails.no || "XXX"}}</td>
 
                                     </tr>
                                     <tr>
                                         <th class="myth" scope="col">Date</th>
-                                        <td>{{custormerdetails.date | date : "dd.MM.y" }}</td>
+                                        <td>{{custormerdetails.date | date : "dd.MM.y" || "XXX"}}</td>
 
                                     </tr>
                                     <tr>
                                         <th class="myth" scope="col">Customer Name :</th>
-                                        <td>{{custormerdetails.customername}}</td>
+                                        <td>{{custormerdetails.customername || "XXX"}}</td>
 
                                     </tr>
                                     <tr>
                                         <th class="myth" scope="col">Mobile Number :</th>
-                                        <td>{{custormerdetails.mobilenumber}}</td>
+                                        <td>{{custormerdetails.mobilenumber || "XXX"}}</td>
 
                                     </tr>
                                     <tr>
                                         <th class="myth" scope="col">Lining :</th>
-                                        <td>{{custormerdetails.lining}}</td>
+                                        <td>{{custormerdetails.lining || "XXX"}}</td>
 
                                     </tr>
                                     <tr>
                                         <th class="myth" scope="col">Falls :</th>
-                                        <td>{{custormerdetails.falls}}</td>
+                                        <td>{{custormerdetails.falls || "XXX"}}</td>
 
                                     </tr>
                                     <tr>
                                         <th class="myth" scope="col">Saree Oral Falls :</th>
-                                        <td>{{custormerdetails.sareeoralfalls}}</td>
+                                        <td>{{custormerdetails.sareeoralfalls || "XXX"}}</td>
 
                                     </tr>
                                     <tr>
                                         <th class="myth" scope="col">Saree Mudi :</th>
-                                        <td>{{custormerdetails.mudi}}</td>
+                                        <td>{{custormerdetails.mudi || "XXX"}}</td>
 
                                     </tr>
                                     <tr>
                                         <th class="myth" scope="col">Embroidary Work :</th>
-                                        <td>{{custormerdetails.embroidarywork}}</td>
+                                        <td>{{custormerdetails.embroidarywork || "XXX"}}</td>
 
                                     </tr>
                                     <tr>
                                         <th class="myth" scope="col">Aari Work :</th>
-                                        <td>{{custormerdetails.aariwork}}</td>
+                                        <td>{{custormerdetails.aariwork || "XXX"}}</td>
 
                                     </tr>
                                     <tr>
                                         <th class="myth" scope="col">Chudi :</th>
-                                        <td>{{custormerdetails.chudi}}</td>
+                                        <td>{{custormerdetails.chudi || "XXX"}}</td>
 
                                     </tr>
                                     <tr>
                                         <th class="myth" scope="col">Blouse :</th>
-                                        <td>{{custormerdetails.blouse}}</td>
+                                        <td>{{custormerdetails.blouse || "XXX"}}</td>
 
                                     </tr>
                                     <tr>
                                         <th class="myth" scope="col">Amount :</th>
-                                        <td>{{custormerdetails.amount}}</td>
+                                        <td>{{custormerdetails.amount || "XXX"}}</td>
 
                                     </tr>
                                 </tbody>

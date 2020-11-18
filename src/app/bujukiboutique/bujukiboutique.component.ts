@@ -27,9 +27,8 @@ export class BujukiboutiqueComponent implements OnInit {
 
     });
 
-    this.custormerdetails = {"no":"10","date":"2020-11-17T18:30:00.000Z","customername":"santhoush","mobilenumber":"987486120","lining":"50","falls":"20","sareeoralfalls":"10","mudi":"0","embroidarywork":"15","aariwork":"0","chudi":"350","blouse":"0","amount":"550"}
-    console.log(this.custormerdetails)
-    // console.log(this.customerForm.value.date).toLocaleDateString('en-GB')+" & "+(this.customerForm.value.date).toLocaleTimeString('en-US');
+    // this.custormerdetails = {"no":"10","date":"2020-11-17T18:30:00.000Z","customername":"santhoush","mobilenumber":"987486120","lining":"50","falls":"20","sareeoralfalls":"10","mudi":"0","embroidarywork":"15","aariwork":"0","chudi":"350","blouse":"0","amount":"550"}
+    // console.log(this.custormerdetails)    
   }
   Submit() {
     this.custormerdetails.length = 0;    
