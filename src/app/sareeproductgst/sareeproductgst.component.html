@@ -115,7 +115,7 @@
                             <input matInput type="number" autocomplete="off" formControlName="dis" max>
                         </mat-form-field>
                     </form>
-                    <h5 class="card-title text-center">Detail of <span class="badge badge-info">{{prod_details_table.sareeproductname}}</span></h5>
+                    <h5 class="card-title text-center">Detail of <span class="badge badge-info">{{prod_details_table.sareeproductname || "XXX"}}</span></h5>
                     <table class="table table-striped table-hover cus">
                         <tbody>
                             <tr>
@@ -152,12 +152,17 @@
             <div class="card">
                 <div class="row">
                     <div class="col-sm-8">
+
+
                         <form class="form-inline" autocomplete="off">
                             &nbsp;&nbsp;&nbsp;&nbsp;
                             <mat-form-field appearance="outline">
                                 <mat-label>Search</mat-label>
                                 <input matInput (keyup)="applyFilter($event)" #input>
                             </mat-form-field>&nbsp;&nbsp;&nbsp;
+                            <div class="text-center" style="padding: 10px;">
+                                Invoice No:<span style="font-size: large;color: red;">&nbsp;&nbsp;{{api.billingarray_sareeprod.invoiceno || "XXX"}}</span>
+                            </div>
                         </form>
                         <div class="example-container mat-elevation-z8">
                             <table mat-table [dataSource]="dataSource" matSort>
@@ -232,8 +237,8 @@
                             <mat-label> Customer Received Amount</mat-label>
                             <input matInput #calc [(ngModel)]="calc_amount" (input)="Calculate();" maxlength="10" autocomplete="off">
                             <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="calc.value=''">
-                            <mat-icon>close</mat-icon>
-                             </button>
+                                <mat-icon>close</mat-icon>
+                            </button>
                         </mat-form-field>
                         <br><br><br>
                     </div>
