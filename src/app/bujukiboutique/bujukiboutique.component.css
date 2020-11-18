@@ -20,3 +20,15 @@
     background-image: url('../../assets/photo/image.png');
     background-size: cover;
 }
+
+@page {
+    size: A5;
+}
+
+html,
+body {
+    width: 210mm;
+    height: 148mm;
+    /* border-style: solid;
+    border-width: 5px; */
+}
