@@ -65,6 +65,24 @@ export class ApiService {
         sub.complete();
       }));
   }
+  Putupdatecustomer(data, customerid) {
+    return new Promise((resolve, reject) => {
+      this.http.put(this.baseurl + "/Customer/" + customerid, data).subscribe(res => {
+        resolve(res);
+      }, err => {
+        resolve(err);
+      })
+    })
+  }
+  deletecustomer(customerid) {
+    return new Promise((resolve, reject) => {
+      this.http.delete(this.baseurl + "/Customer/" + customerid).subscribe(res => {
+        resolve(res);
+      }, err => {
+        resolve(err);
+      })
+    })
+  }
   Postcustomer(data) {
     return new Promise((resolve, reject) => {
       this.http.post(this.baseurl + "/Customer", data).subscribe(res => {
