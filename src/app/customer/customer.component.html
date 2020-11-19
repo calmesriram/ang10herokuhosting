@@ -123,37 +123,4 @@
         </div>
     </div>
     <br><br>
-    <div class="row">
-
-        <mat-form-field>
-            <mat-label>Search</mat-label>
-            <input matInput (keyup)="silverapplyFilter($event)" placeholder="Search by Name,Phone Number" #input>
-        </mat-form-field>
-
-        <div class="example-container mat-elevation-z8">
-            <table mat-table [dataSource]="silverdataSource" matSort>
-                <ng-container matColumnDef="productname">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Product Name </th>
-                    <td mat-cell *matCellDef="let customertable"> {{customertable.productname}} </td>
-                    <td mat-footer-cell *matFooterCellDef> </td>
-                </ng-container>
-
-                <ng-container matColumnDef="date">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
-                    <td mat-cell *matCellDef="let customertable"> {{customertable.date}} </td>
-                    <td mat-footer-cell *matFooterCellDef> </td>
-                </ng-container>
-
-                <!-- <ng-container matColumnDef="total">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Total </th>
-                <td mat-cell *matCellDef="let customertable"> {{customertable.adhaarid}} </td>
-                <td mat-footer-cell *matFooterCellDef>  </td>
-              </ng-container> -->
-
-                <tr mat-header-row *matHeaderRowDef="displayedColumnssilver;sticky: true"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumnssilver;"></tr>
-                <tr mat-footer-row *matFooterRowDef="displayedColumnssilver; sticky: true"></tr>
-            </table>
-        </div>
-    </div>
 </div>
