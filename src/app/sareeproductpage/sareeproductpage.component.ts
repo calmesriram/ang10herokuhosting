@@ -13,7 +13,7 @@ var ELEMENT_DATA2: any = [];
 })
 export class SareeproductpageComponent implements OnInit {
 
-  displayedColumns: any = ['sno', 'sareeproductname', 'sareeqty', 'sareerate', 'update', 'delete'];
+  displayedColumns: any = ['sno', 'sareeproductname', 'sareecode','sareeqty', 'sareerate', 'update', 'delete'];
   // customertable;
   dataSource = new MatTableDataSource(ELEMENT_DATA);
   dataSource2 = new MatTableDataSource(ELEMENT_DATA2);

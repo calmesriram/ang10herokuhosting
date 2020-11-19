@@ -40,7 +40,7 @@
                         <div class="col-sm-8">
                             <mat-form-field appearance="outline">
                                 <mat-label>Search</mat-label>
-                                <input matInput (keyup)="applyFilter($event)" placeholder="Search by Name,Phone Number" #input>
+                                <input matInput (keyup)="applyFilter($event)" #input>
                             </mat-form-field>
 
                             <div class="example-container mat-elevation-z8">
@@ -54,32 +54,35 @@
 
                                     <ng-container matColumnDef="sareeproductname">
                                         <th mat-header-cell *matHeaderCellDef mat-sort-header> Product Name </th>
-                                        <td mat-cell *matCellDef="let customertable"> {{customertable.sareeproductname}} </td>
+                                        <td mat-cell *matCellDef="let customertable"> {{customertable?.sareeproductname}}
+                                        </td>
                                         <td mat-footer-cell *matFooterCellDef> </td>
                                     </ng-container>
 
-                                    <!-- <ng-container matColumnDef="sareehsncode">
-                          <th mat-header-cell *matHeaderCellDef mat-sort-header> Hsn Code </th>
-                          <td mat-cell *matCellDef="let customertable"> {{customertable.sareehsncode}} </td>
-                          <td mat-footer-cell *matFooterCellDef>  </td>
-                        </ng-container> -->
+                                    <ng-container matColumnDef="sareecode">
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Code </th>
+                                        <td mat-cell *matCellDef="let customertable"> {{customertable?.sareecode}}
+                                        </td>
+                                        <td mat-footer-cell *matFooterCellDef> </td>
+                                    </ng-container>
 
                                     <ng-container matColumnDef="sareeqty">
                                         <th mat-header-cell *matHeaderCellDef mat-sort-header> Quality </th>
-                                        <td mat-cell *matCellDef="let customertable"> {{customertable.sareeqty}} </td>
+                                        <td mat-cell *matCellDef="let customertable"> {{customertable?.sareeqty}} </td>
                                         <td mat-footer-cell *matFooterCellDef> </td>
                                     </ng-container>
 
                                     <ng-container matColumnDef="sareerate">
                                         <th mat-header-cell *matHeaderCellDef mat-sort-header> Rate </th>
-                                        <td mat-cell *matCellDef="let customertable"> {{customertable.sareerate}} </td>
+                                        <td mat-cell *matCellDef="let customertable">&#8377;&nbsp;{{customertable?.sareerate}} </td>
                                         <td mat-footer-cell *matFooterCellDef> </td>
                                     </ng-container>
 
                                     <ng-container matColumnDef="update">
                                         <th mat-header-cell *matHeaderCellDef mat-sort-header> Update </th>
                                         <td mat-cell *matCellDef="let customertable">
-                                            <mat-icon (click)="loaddata(customertable)" color="primary">autorenew</mat-icon>
+                                            <mat-icon (click)="loaddata(customertable)" color="primary">autorenew
+                                            </mat-icon>
                                         </td>
                                         <td mat-footer-cell *matFooterCellDef> </td>
                                     </ng-container>
@@ -121,7 +124,7 @@
                 <div class="card-body">
                     <mat-form-field>
                         <mat-label>Search</mat-label>
-                        <input matInput (keyup)="applyFilter2($event)" placeholder="Search by Name,Phone Number" #input>
+                        <input matInput (keyup)="applyFilter2($event)" #input>
                     </mat-form-field>
 
                     <div class="example-container mat-elevation-z8">
@@ -135,25 +138,25 @@
 
                             <ng-container matColumnDef="sareeproductname">
                                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Product Name </th>
-                                <td mat-cell *matCellDef="let customertable"> {{customertable.sareeproductname}} </td>
+                                <td mat-cell *matCellDef="let customertable"> {{customertable?.sareeproductname}} </td>
                                 <td mat-footer-cell *matFooterCellDef> </td>
                             </ng-container>
-
-                            <ng-container matColumnDef="sareehsncode">
-                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Hsn Code </th>
-                                <td mat-cell *matCellDef="let customertable"> {{customertable.sareehsncode}} </td>
+                            <ng-container matColumnDef="sareecode">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Code </th>
+                                <td mat-cell *matCellDef="let customertable"> {{customertable?.sareecode}}
+                                </td>
                                 <td mat-footer-cell *matFooterCellDef> </td>
                             </ng-container>
 
                             <ng-container matColumnDef="sareeqty">
                                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Quality </th>
-                                <td mat-cell *matCellDef="let customertable"> {{customertable.sareeqty}} </td>
+                                <td mat-cell *matCellDef="let customertable"> {{customertable?.sareeqty}} </td>
                                 <td mat-footer-cell *matFooterCellDef> </td>
                             </ng-container>
 
                             <ng-container matColumnDef="sareerate">
                                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Rate </th>
-                                <td mat-cell *matCellDef="let customertable"> {{customertable.sareerate}} </td>
+                                <td mat-cell *matCellDef="let customertable">&#8377;&nbsp;{{customertable?.sareerate}} </td>
                                 <td mat-footer-cell *matFooterCellDef> </td>
                             </ng-container>
 
