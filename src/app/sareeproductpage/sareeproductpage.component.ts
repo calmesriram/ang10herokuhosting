@@ -2,6 +2,7 @@ import { AfterViewInit, Component, ViewChild, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
 
 var ELEMENT_DATA: any = [];
 var ELEMENT_DATA2: any = [];
@@ -12,6 +13,7 @@ var ELEMENT_DATA2: any = [];
   styleUrls: ['./sareeproductpage.component.css']
 })
 export class SareeproductpageComponent implements OnInit {
+  @ViewChild(MatSort) sort: MatSort;
 
   displayedColumns: any = ['sno', 'sareeproductname', 'sareecode', 'sareeqty', 'sareerate', 'update', 'delete'];
   // customertable;
@@ -68,6 +70,10 @@ export class SareeproductpageComponent implements OnInit {
         // this.btnhideshow = false;
         this.dataSource = new MatTableDataSource(qtyproduct);
         this.dataSource2 = new MatTableDataSource(lowqtyproduct);
+        setTimeout(() => {
+          this.dataSource.sort = this.sort; 
+          this.dataSource2.sort = this.sort;           
+        });
       }
       console.log(data);
 

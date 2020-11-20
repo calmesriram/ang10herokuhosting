@@ -18,18 +18,20 @@ export class CustomerComponent implements OnInit {
   displayedColumnssilver: any = ['productname', 'date'];
   displayedColumnssaree: any = ['sno', 'update', 'delete', 'customername', 'phoneumber', 'adhaarid', 'partygstin', 'address', 'emailid'];
   updatebtn: boolean;
-  loader:boolean;
+  loader: boolean;
   customerdet_id: String = "";
-  // customertable;
   dataSource = new MatTableDataSource(ELEMENT_DATA);
   silverdataSource = new MatTableDataSource(ELEMENT_DATA2);
   sareedataSource = new MatTableDataSource(ELEMENT_DATA3);
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+
+  @ViewChild(MatSort) sort: MatSort;
 
   customerForm: FormGroup;
   constructor(public api: ApiService, public formBuilder: FormBuilder) { }
   // profileForm:FormControl
   ngOnInit(): void {
+    // this.dataSource.sort = this.sort;
+
     this.customerForm = this.formBuilder.group({
       customername: ['', Validators.required],
       phoneumber: ['', Validators.required],
@@ -70,10 +72,7 @@ export class CustomerComponent implements OnInit {
     //   console.log(e)
     // })
   }
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    // this.dataSource.sort = this.sort;    
-  }
+
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -89,22 +88,22 @@ export class CustomerComponent implements OnInit {
   }
   getcustomer() {
     this.api.Getcustomer().then((data: any) => {
-      // console.log(data.data.length)
       if (data.data.length == 0) {
-        this.api.snackmsg("No Record(s) Found", "Close")
+        this.api.snackmsg("No Record(s) Found", "Close");
+        return;
       }
       if (data.status == true && data.data.length != 0) {
-        // console.log(data)
-        // this.customertable = data.data
         this.dataSource = new MatTableDataSource(data.data);
+        // setTimeout(() => {
+          // console.log(this.sort) //not undefined
+          this.dataSource.sort = this.sort; 
+        // })
       }
-      // console.log(data);
-
     }).catch(err => {
+      console.log(err)
       // this.api.snackmsg("Hail","close")
     })
   }
-
   onSubmit() {
     this.loader = true;
     this.customerForm.controls.date.setValue((new Date()).toLocaleDateString('en-GB'));
