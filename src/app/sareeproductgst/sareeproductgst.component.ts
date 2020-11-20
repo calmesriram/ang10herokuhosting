@@ -13,6 +13,7 @@ var ELEMENT_DATA: any = [];
   styleUrls: ['./sareeproductgst.component.css']
 })
 export class SareeproductgstComponent implements OnInit {
+  loader: boolean;
   displayedColumns: any = ['position', 'productname', 'qty', 'rate', 'subtotal', 'discount', 'total', 'Delete'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
   productForm: FormGroup;
@@ -73,7 +74,7 @@ export class SareeproductgstComponent implements OnInit {
     this.prod_details_table.length = 0;
     this.prod_details_table = item;
     this.proditem = "";
-    this.proditem = item;    
+    this.proditem = item;
   }
   selectedcustomer(para) {
     this.cust_details_table.length = 0;
@@ -90,7 +91,9 @@ export class SareeproductgstComponent implements OnInit {
     return this.productarray.map(t => t.total).reduce((acc, value) => acc + value, 0);
   }
   getcustomer() {
+    this.loader = true;
     this.api.Getcustomer().then((data: any) => {
+      this.loader = false;
       if (data.data.length == 0) {
         this.api.snackmsg("No Record(s) Found", "Close")
       }
@@ -100,44 +103,54 @@ export class SareeproductgstComponent implements OnInit {
       }
       console.log(data);
     }).catch(err => {
+      this.loader = false;
       // this.api.snackmsg("Hail","close")
     })
   }
 
   sareebillcout() {
+    this.loader = true;
     this.api.sareebillcount().then(res => {
+      this.loader = false;
       this.api.billingarray_sareeprod.invoiceno = res["count"] + 1;
       this.api.billingarray_sareeprod.invoicedate = (new Date()).toLocaleDateString('en-GB');
       this.api.billingarray_sareeprod.invoicemonth = (new Date()).getMonth() + 1;
       this.api.billingarray_sareeprod.invoiceyear = (new Date()).getFullYear();
     }).catch(e => {
+      this.loader = false;
       console.log(e)
     })
   }
 
   SareeBill() {
+    this.loader = true;
     console.log(this.api.billingarray_sareeprod)
     this.api.Postsareebill(this.api.billingarray_sareeprod).then(res => {
+      this.loader = false;
       if (res['status'] == true) {
         this.api.snackmsg(res["msg"], "close");
         this.router.navigateByUrl('/sareebill')
       }
     }).catch(e => {
+      this.loader = false;
       console.log(e)
     })
   }
 
   getsareeproduct() {
+    this.loader = true;
     this.api.Getsareeproduct().then((res: any) => {
+      this.loader = false;
       if (res.data.length == 0) {
         this.api.snackmsg("No Record(s) Found", "Close")
       }
-      if (res.status == true && res.data.length != 0) {
+      if (res.status == true && res.data.length != 0) {        
         this.productdetails.length = 0;
         console.log(res)
-        this.productdetails = res.data;       
+        this.productdetails = res.data;
       }
     }).catch(err => {
+      this.loader = false;
       // this.api.snackmsg("Hail","close")
     })
   }
@@ -148,7 +161,7 @@ export class SareeproductgstComponent implements OnInit {
   }
   add() {
     console.log(this.productForm.value)
-    this.proditem.collected = this.productForm.value;    
+    this.proditem.collected = this.productForm.value;
     this.selectedproditem.push(this.proditem)
     this.productForm.reset();
     this.tabledata();

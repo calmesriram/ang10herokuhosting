@@ -1,4 +1,9 @@
 <br>
+<div *ngIf="loader" class="text-center">
+    Loading...
+    <mat-progress-bar mode="query"></mat-progress-bar>
+</div>
+<br>
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-6">
@@ -161,7 +166,7 @@
                                 <input matInput (keyup)="applyFilter($event)" #input>
                             </mat-form-field>&nbsp;&nbsp;&nbsp;
                             <div class="text-center" style="padding: 10px;">
-                                Invoice No:<span style="font-size: large;color: red;">&nbsp;&nbsp;{{api.billingarray_sareeprod.invoiceno || "XXX"}}</span>
+                                Invoice No:<span style="font-size: large;color: red;">&nbsp;&nbsp;{{api.billingarray_sareeprod?.invoiceno || "XXX"}}</span>
                             </div>
                         </form>
                         <div class="example-container mat-elevation-z8">

@@ -18,6 +18,7 @@ export class CustomerComponent implements OnInit {
   displayedColumnssilver: any = ['productname', 'date'];
   displayedColumnssaree: any = ['sno', 'update', 'delete', 'customername', 'phoneumber', 'adhaarid', 'partygstin', 'address', 'emailid'];
   updatebtn: boolean;
+  loader:boolean;
   customerdet_id: String = "";
   // customertable;
   dataSource = new MatTableDataSource(ELEMENT_DATA);
@@ -40,7 +41,7 @@ export class CustomerComponent implements OnInit {
     });
 
     this.getcustomer();
-    let d = { "name": "Amar" };
+    // let d = { "name": "Amar" };
     // this.api.Postbilldetailbycustname(d).then(res => {
     //   // console.log(res)
     //   let temp = [];
@@ -105,11 +106,13 @@ export class CustomerComponent implements OnInit {
   }
 
   onSubmit() {
+    this.loader = true;
     this.customerForm.controls.date.setValue((new Date()).toLocaleDateString('en-GB'));
 
     console.warn(this.customerForm.value);
     // return;
     this.api.Postcustomer(this.customerForm.value).then((data) => {
+      this.loader = false;
       // console.log(data)
       this.getcustomer();
       if (data['status'] == true) {
@@ -117,6 +120,7 @@ export class CustomerComponent implements OnInit {
         this.customerForm.reset();
       }
     }).catch(e => {
+      this.loader = false;
       console.log(e)
       this.getcustomer();
     })
@@ -135,8 +139,10 @@ export class CustomerComponent implements OnInit {
     return;
   }
   updatecustomer() {
+    this.loader = true;
     this.api.Putupdatecustomer(this.customerForm.value, this.customerdet_id)
       .then(res => {
+        this.loader = false;
         this.getcustomer();
         if (res['status'] == true) {
           this.api.snackmsg(res["msg"], "close");
@@ -144,19 +150,23 @@ export class CustomerComponent implements OnInit {
         }
       })
       .catch(e => {
+        this.loader = false;
         console.log(e)
         this.getcustomer();
       })
   }
   deletecustomer(customercode) {
+    this.loader = true;
     this.api.deletecustomer(customercode)
       .then(res => {
+        this.loader = false;
         this.getcustomer();
         if (res['status'] == true) {
           this.api.snackmsg(res["msg"], "close");
         }
       })
       .catch(e => {
+        this.loader = false;
         console.log(e)
         this.getcustomer();
       })

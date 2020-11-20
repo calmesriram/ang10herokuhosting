@@ -13,11 +13,12 @@ var ELEMENT_DATA2: any = [];
 })
 export class SareeproductpageComponent implements OnInit {
 
-  displayedColumns: any = ['sno', 'sareeproductname', 'sareecode','sareeqty', 'sareerate', 'update', 'delete'];
+  displayedColumns: any = ['sno', 'sareeproductname', 'sareecode', 'sareeqty', 'sareerate', 'update', 'delete'];
   // customertable;
   dataSource = new MatTableDataSource(ELEMENT_DATA);
   dataSource2 = new MatTableDataSource(ELEMENT_DATA2);
   btnhideshow: Boolean;
+  loader: boolean;
   pcodedisable: Boolean;
   sareesForm: FormGroup;
   constructor(public api: ApiService, public formBuilder: FormBuilder) { }
@@ -77,7 +78,8 @@ export class SareeproductpageComponent implements OnInit {
   }
 
   onSubmit() {
-    if(this.sareesForm.value.sareeproductname == ""){
+
+    if (this.sareesForm.value.sareeproductname == "") {
       this.api.snackmsg("Please fill all the fields", "close");
       return;
     }
@@ -92,13 +94,16 @@ export class SareeproductpageComponent implements OnInit {
       this.api.snackmsg("Please fill all the fields", "close");
       return;
     } else {
+      this.loader = true;
       this.api.Postsareeproduct(this.sareesForm.value).then((data) => {
         // console.log(data)
+        this.loader = false;
         this.getsareeproduct();
         this.sareesForm.reset();
         this.api.snackmsg(data["msg"], "close");
 
       }).catch(e => {
+        this.loader = false;
         console.log(e)
         this.api.snackmsg(e, "close");
         this.getsareeproduct();
@@ -115,12 +120,15 @@ export class SareeproductpageComponent implements OnInit {
 
   Delete(para) {
     this.btnhideshow = false;
+    this.loader = true;
     this.api.Deletesareeproduct(para.sareecode).then(res => {
+      this.loader = false;
       if (res["status"] == true) {
         this.getsareeproduct();
         this.api.snackmsg(res["msg"], "close");
       }
     }).catch(e => {
+      this.loader = false;
       this.api.snackmsg(e, "close");
     })
   }
@@ -136,9 +144,11 @@ export class SareeproductpageComponent implements OnInit {
     this.sareesForm.controls.date.setValue(para.date);
   }
   Update() {
+    this.loader = true;
     console.log(this.sareesForm.value, this.sareesForm.controls.sareecode.value)
     this.api.Putsareeproduct(this.sareesForm.value, this.sareesForm.controls.sareecode.value).then(res => {
       // console.log(res)
+      this.loader = false;
       if (res['status'] == true) {
         this.api.snackmsg(res["msg"], "close");
         this.btnhideshow = false;
@@ -147,6 +157,7 @@ export class SareeproductpageComponent implements OnInit {
         this.sareesForm.reset();
       }
     }).catch(e => {
+      this.loader = false;
       console.log(e)
       this.api.snackmsg(e, "close");
       this.btnhideshow = false;
