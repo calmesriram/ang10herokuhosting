@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule,CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,9 +24,10 @@ import { MAT_DATE_FORMATS } from '@angular/material/core';
 import { MY_DATE_FORMATS } from './mydateformat';
 import { MonthandyearwiseinvoiceComponent } from './monthandyearwiseinvoice/monthandyearwiseinvoice.component';
 import { DatewiseinvoiceComponent } from './datewiseinvoice/datewiseinvoice.component';
-import {NgxPrintModule} from 'ngx-print';
-import {AutocompleteLibModule} from 'angular-ng-autocomplete';
+import { NgxPrintModule } from 'ngx-print';
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { BujukiboutiqueComponent } from './bujukiboutique/bujukiboutique.component';
+import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 
 
 @NgModule({
@@ -44,29 +45,30 @@ import { BujukiboutiqueComponent } from './bujukiboutique/bujukiboutique.compone
     SareeproductgstComponent,
     MonthandyearwiseinvoiceComponent,
     DatewiseinvoiceComponent,
-    BujukiboutiqueComponent
+    BujukiboutiqueComponent,
+    DeleteDialogComponent
   ],
   imports: [
     NgxPrintModule,
     BrowserModule,
     AppRoutingModule,
     MaterialModule,
-    FormsModule, 
+    FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
     NgxSpinnerModule,
     MatDatepickerModule,
     AutocompleteLibModule
-    //MomentDateModule
-    
+    //MomentDateModule    
   ],
+  entryComponents: [DeleteDialogComponent],
   providers: [ApiService,
     { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS }
   ],
-  // schemas: [
-  //   CUSTOM_ELEMENTS_SCHEMA
-  // ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

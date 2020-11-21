@@ -3,6 +3,8 @@ import { ApiService } from '../api.service';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 
 var ELEMENT_DATA: any = [];
 var ELEMENT_DATA2: any = [];
@@ -23,7 +25,7 @@ export class SareeproductpageComponent implements OnInit {
   loader: boolean;
   pcodedisable: Boolean;
   sareesForm: FormGroup;
-  constructor(public api: ApiService, public formBuilder: FormBuilder) { }
+  constructor(private dialog: MatDialog, public api: ApiService, public formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.sareesForm = this.formBuilder.group({
@@ -71,8 +73,8 @@ export class SareeproductpageComponent implements OnInit {
         this.dataSource = new MatTableDataSource(qtyproduct);
         this.dataSource2 = new MatTableDataSource(lowqtyproduct);
         setTimeout(() => {
-          this.dataSource.sort = this.sort; 
-          this.dataSource2.sort = this.sort;           
+          this.dataSource.sort = this.sort;
+          this.dataSource2.sort = this.sort;
         });
       }
       console.log(data);
@@ -125,18 +127,30 @@ export class SareeproductpageComponent implements OnInit {
 
 
   Delete(para) {
-    this.btnhideshow = false;
-    this.loader = true;
-    this.api.Deletesareeproduct(para.sareecode).then(res => {
-      this.loader = false;
-      if (res["status"] == true) {
-        this.getsareeproduct();
-        this.api.snackmsg(res["msg"], "close");
+    const dialogRef = this.dialog.open(DeleteDialogComponent, {
+      // width: '250px',
+      data: para
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      // console.log('The dialog was closed', result);
+      if (result == "Yes") {
+        this.btnhideshow = false;
+        this.loader = true;
+        this.api.Deletesareeproduct(para.sareecode).then(res => {
+          this.loader = false;
+          if (res["status"] == true) {
+            this.getsareeproduct();
+            this.api.snackmsg(res["msg"], "close");
+          }
+        }).catch(e => {
+          this.loader = false;
+          this.api.snackmsg(e, "close");
+        })
+      } else {
+        return;
       }
-    }).catch(e => {
-      this.loader = false;
-      this.api.snackmsg(e, "close");
-    })
+    });
+
   }
   loaddata(para) {
     this.sareesForm.controls.sareecode.disable;

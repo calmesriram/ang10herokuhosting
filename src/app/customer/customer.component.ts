@@ -4,6 +4,8 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 var ELEMENT_DATA: any = [];
 var ELEMENT_DATA2: any = [];
@@ -27,7 +29,7 @@ export class CustomerComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   customerForm: FormGroup;
-  constructor(public api: ApiService, public formBuilder: FormBuilder) { }
+  constructor(private dialog: MatDialog, public api: ApiService, public formBuilder: FormBuilder) { }
   // profileForm:FormControl
   ngOnInit(): void {
     // this.dataSource.sort = this.sort;
@@ -43,34 +45,7 @@ export class CustomerComponent implements OnInit {
     });
 
     this.getcustomer();
-    // let d = { "name": "Amar" };
-    // this.api.Postbilldetailbycustname(d).then(res => {
-    //   // console.log(res)
-    //   let temp = [];
-    //   let count = 0;
-    //   if (res['status'] == true && res['data'].length != 0) {
-    //     res['data'].forEach(async element => {
-    //       await element.tabledatadet.forEach(async data => {
-    //         console.log(await data)
-    //         temp = (await data)
-    //       });
-    //       count++;
-    //     });
-    //     // console.log(count)
-    //   }
-    //   if (res["data"].length == count) {
 
-    //     // console.log("array", temp)
-    //   }
-
-    // }).catch(e => {
-    //   console.log(e)
-    // })
-    // this.api.Postsareebilldetailbycustname(d).then(res => {
-    //   console.log(res)
-    // }).catch(e => {
-    //   console.log(e)
-    // })
   }
 
 
@@ -95,8 +70,8 @@ export class CustomerComponent implements OnInit {
       if (data.status == true && data.data.length != 0) {
         this.dataSource = new MatTableDataSource(data.data);
         // setTimeout(() => {
-          // console.log(this.sort) //not undefined
-          this.dataSource.sort = this.sort; 
+        // console.log(this.sort) //not undefined
+        this.dataSource.sort = this.sort;
         // })
       }
     }).catch(err => {
@@ -154,21 +129,43 @@ export class CustomerComponent implements OnInit {
         this.getcustomer();
       })
   }
-  deletecustomer(customercode) {
-    this.loader = true;
-    this.api.deletecustomer(customercode)
-      .then(res => {
-        this.loader = false;
-        this.getcustomer();
-        if (res['status'] == true) {
-          this.api.snackmsg(res["msg"], "close");
-        }
-      })
-      .catch(e => {
-        this.loader = false;
-        console.log(e)
-        this.getcustomer();
-      })
+  deletecustomer(data) {
+
+    const dialogRef = this.dialog.open(DeleteDialogComponent, {
+      // width: '250px',
+      data: data
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // console.log('The dialog was closed', result);
+      if (result == "Yes") {
+        this.loader = true;
+        this.api.deletecustomer(data.customerid)
+          .then(res => {
+            this.loader = false;
+            this.getcustomer();
+            if (res['status'] == true) {
+              this.api.snackmsg(res["msg"], "close");
+            }
+          })
+          .catch(e => {
+            this.loader = false;
+            console.log(e)
+            this.getcustomer();
+          })
+      } else {
+        return;
+      }
+    });
+
+
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log('The dialog was closed',result);
+    //   if(result == "Yes"){
+
+    //   } 
+    // });  
+
   }
   cancle() {
     this.customerdet_id = "";
@@ -180,3 +177,31 @@ export class CustomerComponent implements OnInit {
 
 
 
+    // let d = { "name": "Amar" };
+    // this.api.Postbilldetailbycustname(d).then(res => {
+    //   // console.log(res)
+    //   let temp = [];
+    //   let count = 0;
+    //   if (res['status'] == true && res['data'].length != 0) {
+    //     res['data'].forEach(async element => {
+    //       await element.tabledatadet.forEach(async data => {
+    //         console.log(await data)
+    //         temp = (await data)
+    //       });
+    //       count++;
+    //     });
+    //     // console.log(count)
+    //   }
+    //   if (res["data"].length == count) {
+
+    //     // console.log("array", temp)
+    //   }
+
+    // }).catch(e => {
+    //   console.log(e)
+    // })
+    // this.api.Postsareebilldetailbycustname(d).then(res => {
+    //   console.log(res)
+    // }).catch(e => {
+    //   console.log(e)
+    // })
