@@ -52,8 +52,10 @@
                                 <mat-label>Search</mat-label>
                                 <input matInput (keyup)="applyFilter($event)" #input>
                             </mat-form-field>
-
-                            <div class="example-container mat-elevation-z8">
+                            <div *ngIf="dataSource.filteredData.length == 0 && dataSource.data.length != 0" style="font-size: larger;color:red;">
+                                No Match Found...
+                            </div><br>
+                            <div class="example-container">
                                 <table mat-table [dataSource]="dataSource" matSort>
                                     <!-- Item Column -->
                                     <ng-container matColumnDef="sno">
@@ -134,12 +136,14 @@
             <div class="card">
                 <div class="card-header text-center" style="color:red">Out Of Stock Products</div>
                 <div class="card-body">
-                    <mat-form-field>
+                    <mat-form-field appearance="outline">
                         <mat-label>Search</mat-label>
-                        <input matInput (keyup)="applyFilter2($event)" #input>
+                        <input matInput (keyup)="applyFilter2($event)" #input autocomplete="off">
                     </mat-form-field>
-
-                    <div class="example-container mat-elevation-z8">
+                    <div *ngIf="dataSource2.filteredData.length == 0 && dataSource2.data.length != 0" style="font-size: larger;color:red;">
+                        No Match Found...
+                    </div><br>
+                    <div class="example-container">
                         <table mat-table [dataSource]="dataSource2" matSort>
                             <!-- Item Column -->
                             <ng-container matColumnDef="sno">
@@ -190,7 +194,7 @@
                             </ng-container>
 
                             <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></tr>
-                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                            <tr mat-row [ngClass]="{'make-gold': row.sareeqty == '0'}" *matRowDef="let row; columns: displayedColumns;"></tr>
                             <!-- <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr> -->
                             <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
                         </table>

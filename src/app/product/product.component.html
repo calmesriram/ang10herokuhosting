@@ -13,15 +13,22 @@
                                     <mat-label>Product Name</mat-label>
                                     <input matInput formControlName="productname">
                                 </mat-form-field>
+
+                                <mat-form-field appearance="outline" class="example-full-width">
+                                    <mat-label>Grams</mat-label>
+                                    <input matInput formControlName="grams">
+                                </mat-form-field>
                             </form>
                         </div>
 
                         <div class="col-sm-8">
                             <mat-form-field appearance="outline">
                                 <mat-label>Search</mat-label>
-                                <input matInput (keyup)="applyFilter($event)" placeholder="Name Phone Number" #input>
+                                <input matInput (keyup)="applyFilter($event)" #input>
                             </mat-form-field>
-
+                            <div *ngIf="dataSource.filteredData.length == 0 && dataSource.data.length != 0" style="font-size: larger;color:red;">
+                                No Match Found...
+                            </div><br>
                             <div class="example-container mat-elevation-z8">
                                 <table mat-table [dataSource]="dataSource" matSort>
                                     <!-- Item Column -->
@@ -61,6 +68,9 @@
                                     <!-- <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr> -->
                                     <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
                                 </table>
+                                <div style="text-align: center;color: red;" *ngIf="dataSource.data.length == 0">
+                                    "No Records Found(s)"
+                                </div>
 
                             </div>
 

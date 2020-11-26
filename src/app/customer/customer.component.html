@@ -12,7 +12,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-sm-3">
-                            <form [formGroup]="customerForm" autocomplete="off">
+                            <form [formGroup]="customerForm" autocapitalize="on" autocomplete="off">
 
                                 <mat-form-field appearance="outline" class="example-full-width">
                                     <mat-label>Customer Name</mat-label>
@@ -22,7 +22,7 @@
                                 <mat-form-field appearance="outline" class="example-full-width">
                                     <mat-label>10-digit Mobile Number</mat-label>
                                     <span matPrefix>+ 91 &nbsp;</span>
-                                    <input matInput formControlName="phoneumber" maxlength="10" minlength="10">
+                                    <input matInput type="number" formControlName="phoneumber" maxlength="10" minlength="10">
                                 </mat-form-field>
 
 
@@ -33,7 +33,7 @@
 
                                 <mat-form-field appearance="outline" class="example-full-width">
                                     <mat-label>Aadhar</mat-label>
-                                    <input matInput formControlName="adhaarid">
+                                    <input matInput type="number" formControlName="adhaarid">
                                 </mat-form-field>
 
                                 <mat-form-field appearance="outline" class="example-full-width">
@@ -55,10 +55,13 @@
                                     <span class="sr-only">Loading...</span>
                                 </div>&nbsp;Loading...
                             </div>
-                            <mat-form-field>
+                            <mat-form-field appearance="outline">
                                 <mat-label>Search</mat-label>
-                                <input matInput (keyup)="applyFilter($event)" #input>
+                                <input matInput (keyup)="applyFilter($event)" #input autocomplete="off">
                             </mat-form-field>
+                            <div *ngIf="dataSource.filteredData.length == 0 && dataSource.data.length != 0" style="font-size: larger;color:red;">
+                                No Match Found...
+                            </div><br>
                             <div class="example-container mat-elevation-z8">
                                 <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
                                     <ng-container matColumnDef="sno">
